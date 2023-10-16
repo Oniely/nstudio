@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Nechma Studios</title>
         <link rel="stylesheet" href="./styles/style.css" />
         <script src="./script/animation.js" defer></script>
@@ -23,17 +23,101 @@
             class="nav_bar w-full h-[4.5rem] flex justify-between items-center px-[4rem] animate__animated animate__fadeInDown"
             id="main_navbar"
         >
-            <ul class="flex gap-6 text-[16px] relative">
+            <ul class="flex gap-6 text-[16px]">
                 <li>
-                    <a class="nav_links" href="">MEN</a>
+                    <a class="nav_links" id="NAV_LINK" href="">MEN</a>
+
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[4.5rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">New Arrivals</a>
+                                <a href="">Knitwear & Cardigans</a>
+                                <a href="">Cashmere</a>
+                                <a href="">Coats & Jackets</a>
+                                <a href="">Trousers</a>
+                                <a href="">Skirt</a>
+                                <a href="">Tops</a>
+                                <a href="">Dressese & Jumpsuits</a>
+                                <a href="">Blazers & Tailoring</a>
+                                <a href="">Shirt & Blouses</a>
+                                <a href="">T-shirts & Vests</a>
+                                <a href="">Jeans</a>
+                                <a href="">All Womenswear</a>
+                            </div>
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">New Accessories</a>
+                                <a href="">Bags</a>
+                                <a href="">Scarves & Hats</a>
+                                <a href="">Shoes</a>
+                                <a href="">Underwear & Socks</a>
+                                <a href="">All Accessories</a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <a class="nav_links" href="">WOMEN</a>
-                    <div></div>
+                    <a class="nav_links" id="NAV_LINK" href="">WOMEN</a>
+
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[4.5rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">New Arrivals</a>
+                                <a href="">Knitwear & Cardigans</a>
+                                <a href="">Cashmere</a>
+                                <a href="">Coats & Jackets</a>
+                                <a href="">Trousers</a>
+                                <a href="">Skirt</a>
+                                <a href="">Tops</a>
+                                <a href="">Dressese & Jumpsuits</a>
+                                <a href="">Blazers & Tailoring</a>
+                                <a href="">Shirt & Blouses</a>
+                                <a href="">T-shirts & Vests</a>
+                                <a href="">Jeans</a>
+                                <a href="">All Womenswear</a>
+                            </div>
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">New Accessories</a>
+                                <a href="">Bags</a>
+                                <a href="">The Quilted Bag</a>
+                                <a href="">Shoes & Boots</a>
+                                <a href="">Jewellery</a>
+                                <a href="">Scarves, Hats & Gloves</a>
+                                <a href="">Outdoor Layers</a>
+                                <a href="">Belts</a>
+                                <a href="">Underwear & Lingerie</a>
+                                <a href="">Socks & Tights</a>
+                                <a href="">All Accessories</a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <a class="nav_links" href="">COMMUNITY</a>
-                    <div></div>
+                    <a class="nav_links" id="NAV_LINK" href="">COMMUNITY</a>
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[4.5rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">Our mission</a>
+                                <a href="">COS Full Circle</a>
+                                <a href="">Product Care</a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
 
@@ -78,10 +162,10 @@
             >
                 <!-- Hero Text -->
                 <h1
-                    class="text-[clamp(5rem,_10vw,10rem)] font-['Lato'] text-[#101010] tracking-wide whitespace-nowrap absolute top-[14rem] animate__animated animate__fadeIn delay-200 pointer-events-none select-none"
+                    class="text-[clamp(5rem,_9.8vw,10rem)] font-['Lato'] text-[#101010] tracking-wide whitespace-nowrap absolute top-[13rem] animate__animated animate__fadeIn delay-200 pointer-events-none select-none"
                 >
                     <span>NECHMA</span>
-                    <span class="ml-[4.5rem]">STUDIO</span>
+                    <span class="ml-[5rem]">STUDIO</span>
                 </h1>
                 <!-- Hero Image -->
                 <div
@@ -112,9 +196,7 @@
         </main>
         <!-- Showcase Product Section -->
         <section class="w-full min-h-[110vh] bg-[#101010] flex">
-            <div
-                class="container m-auto h-fit p-[3rem] parent"
-            >
+            <div class="container m-auto h-fit p-[3rem] parent">
                 <div class="h-full shrink-0 mr-[3rem] div1">
                     <img
                         class="w-full h-full object-cover"
@@ -122,7 +204,9 @@
                         alt="product"
                     />
                 </div>
-                <div class="flex flex-col div2 text-[clamp(4.8rem,_10vw,_7.7rem)] text-left">
+                <div
+                    class="flex flex-col div2 text-[clamp(4.8rem,_10vw,_7.7rem)] text-left"
+                >
                     <h1
                         class="font-['Lato'] leading-[1] text-[#d9d9d9] whitespace-nowrap mb-[10px]"
                     >
@@ -134,7 +218,9 @@
                         NEW STYLE
                     </h1>
                 </div>
-                <div class="flex justify-between w-full gap-[10px] pr-[3rem] div3">
+                <div
+                    class="flex justify-between w-full gap-[10px] pr-[3rem] div3"
+                >
                     <img
                         class="object-cover"
                         src="./img/product/1.svg"
@@ -155,7 +241,7 @@
         </section>
         <!-- New Arival Section -->
         <section
-            class="flex flex-col justify-center items-center w-full h-auto px-14"
+            class="flex flex-col justify-center items-center w-full h-auto px-14 overflow-y-hidden"
         >
             <!-- Header -->
             <header
@@ -477,9 +563,7 @@
             </div>
         </section>
         <section class="w-full h-[100vh] bg-[#101010]">
-            <div class="container">
-
-            </div>
+            <div class="container"></div>
         </section>
     </body>
 </html>

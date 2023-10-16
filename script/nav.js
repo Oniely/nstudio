@@ -21,3 +21,37 @@ function updateNavbarVisibility() {
 
 window.addEventListener("scroll", updateNavbarVisibility);
 window.addEventListener("resize", updateNavbarVisibility);
+
+// -------------------------------------------------------
+
+const links = document.querySelectorAll("#NAV_LINK"); // Change ".your-link-class" to the appropriate CSS class or selector for your links
+let currentHoveredLink = null;
+let currentHoveredHoverLink = null;
+
+links.forEach((link) => {
+    link.addEventListener("mouseover", (e) => {
+        if (currentHoveredLink) {
+            currentHoveredLink.nextElementSibling.style.height = "0";
+            currentHoveredLink.nextElementSibling.style.padding = "0 2rem";
+            currentHoveredLink.nextElementSibling.style.borderBottom = "0";
+        }
+
+        currentHoveredLink = link;
+        let hoverLink = link.nextElementSibling;
+        currentHoveredHoverLink = hoverLink;
+
+        hoverLink.style.height = "25rem";
+        hoverLink.style.padding = "2rem 2rem";
+        hoverLink.style.borderBottom = "1px solid #101010";
+
+        hoverLink.addEventListener("mouseout", (e) => {
+            const targetElement = e.relatedTarget;
+
+            if (!currentHoveredHoverLink.contains(targetElement)) {
+                currentHoveredHoverLink.style.height = "0";
+                currentHoveredHoverLink.style.padding = "0 2rem";
+                currentHoveredHoverLink.style.borderBottom = "0";
+            }
+        });
+    });
+});
