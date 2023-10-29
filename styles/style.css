@@ -79,3 +79,25 @@ body {
 .nav_hover {
     transition: 0.5s ease;
 }
+
+.err {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    background: #FF3333;
+    width: 18rem;
+    text-align: center;
+    padding: 0.9rem;
+}
+
+.success {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    background: #4BB543;
+    width: 18rem;
+    text-align: center;
+    padding: 0.9rem;
+}
