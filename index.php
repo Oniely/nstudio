@@ -4,9 +4,9 @@ session_start();
 session_regenerate_id();
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
-    $id = $_SESSION["id"];
+    $userID = $_SESSION["id"];
 } else {
-    $id = "";
+    $userID = "";
 }
 
 require_once "./includes/functions.php";
@@ -22,26 +22,21 @@ require_once "./includes/functions.php";
     <!-- Navbar -->
     <?php require_once './views/partials/nav.php' ?>
     <!-- Hero Section -->
-    <main class="w-full h-[110vh] flex justify-center items-center pt-[6rem] overflow-hidden main_hero"
-        id="hero_section">
+    <main class="w-full h-[110vh] flex justify-center items-center pt-[6rem] overflow-hidden main_hero" id="hero_section">
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
-            <h1
-                class="text-[clamp(5rem,_9.8vw,10rem)] font-['Lato'] text-[#101010] tracking-wide whitespace-nowrap absolute top-[13rem] animate__animated animate__fadeIn delay-200 pointer-events-none select-none">
+            <h1 class="text-[clamp(5rem,_9.8vw,10rem)] font-['Lato'] text-[#101010] tracking-wide whitespace-nowrap absolute top-[13rem] animate__animated animate__fadeIn delay-200 pointer-events-none select-none">
                 <span>NECHMA</span>
                 <span class="ml-[5rem]">STUDIO</span>
             </h1>
             <!-- Hero Image -->
-            <div
-                class="w-[min(100%_35rem)] h-[max(100%,_40rem)] absolute bottom-[-2.5rem] animate__animated animate__fadeIn delay-400 pointer-events-none select-none">
+            <div class="w-[min(100%_35rem)] h-[max(100%,_40rem)] absolute bottom-[-2.5rem] animate__animated animate__fadeIn delay-400 pointer-events-none select-none">
                 <img class="w-full h-full object-cover" src="./img/nechma_hero.svg" alt="hero" />
             </div>
             <!-- Hero Buttons -->
             <div class="w-[min(95%,_65rem)] absolute bottom-[7rem] flex justify-between items-center">
-                <a class="border-[2px] border-[#211f22] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp"
-                    href="">FOR MEN</a>
-                <a class="border-[2px] border-[#211f22] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp"
-                    href="">FOR WOMEN</a>
+                <a class="border-[2px] border-[#211f22] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="">FOR MEN</a>
+                <a class="border-[2px] border-[#211f22] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="">FOR WOMEN</a>
             </div>
         </div>
     </main>
@@ -49,7 +44,7 @@ require_once "./includes/functions.php";
     <section class="w-full min-h-[110vh] bg-[#101010] flex">
         <div class="container m-auto h-fit p-[3rem] parent">
             <div class="h-full shrink-0 mr-[3rem] div1">
-                <img class="w-full h-full object-cover" src="./img/product/big_black_hero.svg" alt="product" />
+                <img class="max-w-full h-full object-cover" src="./img/product/big_black_hero.svg" alt="product" />
             </div>
             <div class="flex flex-col div2 text-[clamp(4.8rem,_10vw,_7.7rem)] text-left">
                 <h1 class="font-['Lato'] leading-[1] text-[#d9d9d9] whitespace-nowrap mb-[10px]">
@@ -60,9 +55,9 @@ require_once "./includes/functions.php";
                 </h1>
             </div>
             <div class="flex justify-between w-full gap-[10px] pr-[3rem] div3">
-                <img class="object-cover" src="./img/product/1.svg" alt="product" />
-                <img class="object-cover" src="./img/product/2.svg" alt="product" />
-                <img class="object-cover" src="./img/product/3.svg" alt="product" />
+                <img class="max-w-full object-cover" src="./img/product/1.svg" alt="product" />
+                <img class="max-w-full object-cover" src="./img/product/2.svg" alt="product" />
+                <img class="max-w-full object-cover" src="./img/product/3.svg" alt="product" />
             </div>
         </div>
     </section>
@@ -84,7 +79,7 @@ require_once "./includes/functions.php";
         <div class="container flex justify-evenly items-center gap-5 px-3">
             <?php
 
-            newMenProduct("product_tbl");
+            newMenProduct();
 
             ?>
         </div>
@@ -97,7 +92,7 @@ require_once "./includes/functions.php";
         <div class="container flex justify-evenly items-center gap-5 px-3 pb-[3rem]">
             <?php
 
-            newWomenProduct("product_tbl");
+            newWomenProduct();
 
             ?>
         </div>

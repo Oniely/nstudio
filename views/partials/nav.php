@@ -90,6 +90,11 @@
         </a>
 
         <ul class="flex gap-12 shrink-0">
+            <?php if (!isset($_SESSION["id"]) || $_SESSION["id"] === ""): ?>
+            <li>
+                <a class="text-[14px]" href="/nstudio/login.php">Sign in</a>
+            </li>
+            <?php endif; ?>
             <li>
                 <a href=""><img class="w-[1.5rem]" src="/nstudio/img/search.svg" alt="" /></a>
             </li>
@@ -97,10 +102,29 @@
                 <a href=""><img class="w-[1.5rem]" src="/nstudio/img/heart.svg" alt="" /></a>
             </li>
             <li>
-                <a href=""><img class="w-[1.5rem]" src="/nstudio/img/shopbag.svg" alt="" /></a>
+                <a class="relative" href="">
+                    <img class="w-[1.5rem]" src="/nstudio/img/shopbag.svg" alt="" />
+                    <span id="cartNumber" class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">                       
+                    <?php 
+                        if (isset($_SESSION["id"]) || $_SESSION["id"] !== "") {
+                            echo cartCount('cart_tbl', 'user_id', $_SESSION['id']) === 0 ? "" : cartCount('cart_tbl', 'user_id', $_SESSION['id']); 
+                        }
+                    ?>
+                    </span>
+                </a>
             </li>
+            <?php if (!isset($_SESSION["id"]) || $_SESSION["id"] === ""): ?>
             <li>
-                <a href=""><img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="" /></a>
+                <a href="/nstudio/login.php">
+                    <img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="" />
+                </a>
             </li>
+            <?php else: ?>
+            <li>
+                <a href="/nstudio/includes/logout.php">
+                    <img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="" />
+                </a>
+            </li>
+            <?php endif; ?>
         </ul>
 </nav>

@@ -1,5 +1,5 @@
 <section class="w-full h-[100vh] bg-[#101010]">
-        <div class="container flex h-full mx-auto px-[2.5rem] py-[3rem] text-[14px] relative">
+        <div class="w-full flex h-full mx-auto px-[2.5rem] py-[3rem] text-[14px] relative">
             <div class="flex flex-col items-start w-[18rem] gap-[6px] text-white">
                 <a href="">Contact Us</a>
                 <a href="">Delivery Information</a>

@@ -3,6 +3,10 @@
 session_start();
 session_regenerate_id();
 
+if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
+    header('location: index.php');
+}
+
 require "./includes/auth.php";
 
 ?>
@@ -32,7 +36,7 @@ require "./includes/auth.php";
                 include_once "./includes/auth.php";
 
                 if (isset($_POST['submit'])) {
-                    $userEmail = $_POST['userEmail'];
+                    $userEmail = $_POST['user_email'];
                     $passw = $_POST['password'];
 
                     if (loginAuth($userEmail, $passw)) {
@@ -45,7 +49,7 @@ require "./includes/auth.php";
                 ?>
                 <div class="w-[18rem] flex flex-col">
                     <label class="text-[13px]" for="userEmail">Username/Email</label>
-                    <input class="w-full h-full bg-slate-200 px-[10px] py-2" type="text" name="userEmail" id="userEmail" placeholder="example@gmail.com" />
+                    <input class="w-full h-full bg-slate-200 px-[10px] py-2" type="text" name="user_email" id="user_email" placeholder="example@gmail.com" />
                 </div>
                 <div class="w-[18rem] flex flex-col">
                     <label class="text-[13px]" for="password">Password</label>

@@ -13,16 +13,21 @@ function loginAuth($username, $password)
 {
     require "connection.php";
 
-    $sql = "SELECT id, username_email, password FROM user_acc_tbl WHERE username_email='$username'";
+    $sql = "SELECT * FROM user_tbl WHERE user_email='$username'";
     $result = $conn->query($sql);
 
-    while ($row = $result->fetch_assoc()) {
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['id'] = $row['id'];
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        if ($password === $row['user_password']) {
+            $_SESSION['id'] = $row['user_id'];
             return true;
         } else {
             session_destroy();
             return false;
         }
+    } else {
+        session_destroy();
+        return false;
     }
 }
