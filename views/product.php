@@ -15,15 +15,17 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM product_tbl WHERE product_id=$product_id";
     $result = $conn->query($sql);
 
-    while ($row = $result->fetch_assoc()) {
-        $_SESSION['product_id'] = $row['product_id'];
-        $prod_title = $row['product_name'];
-        $prod_desc = $row['product_description'];
-        $prod_price = $row['product_price'];
-        $prod_stocks = $row['product_quantity'];
-        $prod_brand = $row['product_brand'];
-        $prod_category = $row['product_category'];
-        $prod_img = "../img/product/prod" . $row['product_id'] . ".png";
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $_SESSION['product_id'] = $row['product_id'];
+            $prod_title = $row['product_name'];
+            $prod_desc = $row['product_description'];
+            $prod_price = $row['product_price'];
+            $prod_stocks = $row['product_quantity'];
+            $prod_brand = $row['product_brand'];
+            $prod_category = $row['product_category'];
+            $prod_img = "../img/product/prod" . $row['product_id'] . ".png";
+        }
     }
 }
 

@@ -102,12 +102,14 @@
                 <a href=""><img class="w-[1.5rem]" src="/nstudio/img/heart.svg" alt="" /></a>
             </li>
             <li>
-                <a class="relative" href="">
+                <a class="relative" href="/nstudio/views/cart.php?id=<?= @$_SESSION['id'] ?>">
                     <img class="w-[1.5rem]" src="/nstudio/img/shopbag.svg" alt="" />
                     <span id="cartNumber" class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">                       
                     <?php 
-                        if (isset($_SESSION["id"]) || $_SESSION["id"] !== "") {
-                            echo cartCount('cart_tbl', 'user_id', $_SESSION['id']) === 0 ? "" : cartCount('cart_tbl', 'user_id', $_SESSION['id']); 
+                        if (!isset($_SESSION["id"]) || $_SESSION["id"] === "") {
+                            echo "";
+                        } else {
+                            echo cartCount($_SESSION['id'], $_SESSION['product_id']);
                         }
                     ?>
                     </span>
