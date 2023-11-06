@@ -1,9 +1,10 @@
 <?php
 
 session_start();
+session_regenerate_id();
 
-require "../includes/connection.php";
-require "../includes/functions.php";
+require_once "../includes/connection.php";
+require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
@@ -21,9 +22,6 @@ if (isset($_GET['id'])) {
             $prod_title = $row['product_name'];
             $prod_desc = $row['product_description'];
             $prod_price = $row['product_price'];
-            $prod_stocks = $row['product_quantity'];
-            $prod_brand = $row['product_brand'];
-            $prod_category = $row['product_category'];
             $prod_img = "../img/product/prod" . $row['product_id'] . ".png";
         }
     }
@@ -35,7 +33,7 @@ if (isset($_GET['id'])) {
 
 <!-- Head -->
 <?php require './partials/head.php' ?>
-
+<script src="../script/product.js" defer></script>
 <!-- Body -->
 
 <body>
@@ -47,22 +45,7 @@ if (isset($_GET['id'])) {
         <h1><?= $prod_title ?></h1>
         <h1><?= $prod_price ?></h1>
         <p><?= $prod_desc ?></p>
-        <p><?= $prod_brand ?></p>
         <button type="button" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer" name="addToCartBtn" id="addToCartBtn" />Add to Cart</button>
-        <script>
-            $(document).ready(() => {
-                $('#addToCartBtn').on('click', () => {
-                    $.ajax({
-                    url: "../includes/add_to_cart.php",
-                    type: "POST",
-                    data: { action: "add_to_cart" },
-                    success: (res) => {
-                        $('#cartNumber').text(res);
-                        console.log(res);
-                    }})
-                })
-            })
-        </script>
     </main>
     <!-- Footer Section -->
     <?php require './partials/footer.php' ?>

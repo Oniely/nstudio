@@ -1,9 +1,10 @@
 <?php
 
 session_start();
+session_regenerate_id();
 
-include './redirect.php';
-include './connection.php';
+include '../redirect.php';
+include '../connection.php';
 
 if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
     if (isset($_SESSION['product_id']) && isset($_SESSION['id'])) {
@@ -18,7 +19,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
             $result = $conn->query($sql);
 
             if ($result) {
-                $sql = "SELECT quantity FROM cart_tbl WHERE user_id=$userID AND product_id=$product_id";
+                $sql = "SELECT * FROM cart_tbl WHERE user_id=$userID";
                 $result = $conn->query($sql);
 
                 if ($result && $result->num_rows > 0){
@@ -30,8 +31,23 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
         } else {
             $sql = "INSERT INTO cart_tbl (user_id, product_id, quantity) VALUES ($userID, $product_id, 1)";
             $result = $conn->query($sql);
+
+            if ($result) {
+                $sql = "SELECT * FROM cart_tbl WHERE user_id=$userID";
+                $result = $conn->query($sql);
+
+                if ($result && $result->num_rows > 0) {
+                    echo $result->num_rows;
+                } else {
+                    return;
+                }
+            } else {
+                return;
+            }
         }
     } else {
         return;
     }
+} else {
+    return;
 }

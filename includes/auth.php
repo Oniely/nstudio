@@ -21,6 +21,7 @@ function loginAuth($username, $password)
 
         if ($password === $row['user_password']) {
             $_SESSION['id'] = $row['user_id'];
+            $_SESSION['user_email'] = $row['user_email'];
             return true;
         } else {
             session_destroy();

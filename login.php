@@ -7,7 +7,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: index.php');
 }
 
-require "./includes/auth.php";
+require_once "./includes/auth.php";
 
 ?>
 <!doctype html>
