@@ -5,14 +5,16 @@ $(document).ready(() => {
         }
     });
 
-    $(document).on("click", ".minusBtn", function () {
-        let product_id = $(this).data("product-id");
-        adjustQuantity(product_id, -1, "minus_quantity");
+    $(document).on("click", ".minusBtn", function (e) {
+        let product_item_id = $(e.target).data("item-id");
+        adjustQuantity(product_item_id, "minus_quantity");
     });
 
-    $(document).on("click", ".addBtn", function () {
-        let product_id = $(this).data("product-id");
-        adjustQuantity(product_id, 1, "add_quantity");
+
+
+    $(document).on("click", ".addBtn", function (e) {
+        let product_item_id = $(e.target).data("item-id");
+        adjustQuantity(product_item_id, "add_quantity");
     });
 
     $("#popup-btn").on("click", () => {
@@ -24,46 +26,45 @@ $(document).ready(() => {
     $("#closeBtn").on("click", () => {
         $("#popup-modal").hide();
     });
-    
+
     $("#confirmBtn").on("click", () => {
-        let product_id = $(".minusBtn").data("product-id");
+        let product_item_id = $(".minusBtn").data("item-id");
         $.ajax({
             type: "POST",
             url: "../includes/ajax/delete_cart_product.php",
             data: {
                 action: "delete_product",
-                product_id: product_id,
+                item_id: product_item_id,
             },
             success: (res) => {
                 if (res === "SUCCESS") {
                     location.reload();
                 } else {
-                    $('popup-modal').hide();
+                    $("popup-modal").hide();
                 }
             },
         });
         $("#popup-modal").hide();
     });
 
-    function adjustQuantity(product_id, quantityChange, action) {
+    function adjustQuantity(product_item_id, action) {
         $.ajax({
             url: "../includes/ajax/cart_quantity.php",
             type: "POST",
             data: {
                 action: action,
-                product_id: product_id,
-                quantity_change: quantityChange,
+                item_id: product_item_id,
             },
             success: (res) => {
-                let quantityId = `[data-quantity-id='${product_id}'`;
-                let priceId = `[data-price-id='${product_id}'`;
+                let quantityId = `[data-quantity-id='${product_item_id}'`;
+                let priceId = `[data-price-id='${product_item_id}'`;
                 let data = JSON.parse(res);
 
                 if (parseInt(data[0]) === 0) {
                     $("#popup-btn").click();
                     return;
                 }
-                
+
                 $(quantityId).text(data[0]);
                 $(priceId).text(parseFloat(data[0] * data[1]).toFixed(2));
             },

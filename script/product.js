@@ -11,3 +11,10 @@ $(document).ready(() => {
         });
     });
 });
+
+$(document).ready(() => {
+    $(".hoverProduct").on('mouseover', (e) => {
+        let currentSrc = $(e.target).attr("src");
+        $('#showProduct').attr("src", currentSrc);
+    });
+})

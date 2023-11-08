@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-session_regenerate_id();
+require_once 'includes/session.php';
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];

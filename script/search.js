@@ -1,19 +1,19 @@
 $(document).ready(() => {
-        const form = $("#searchForm");
+    const form = $("#searchForm");
 
-        form.on("submit", function (e) {
-            e.preventDefault();
+    form.on("submit", function (e) {
+        e.preventDefault();
 
-            let keywords = $("#search").val();
-            const action = $(this).attr("action");
+        let keywords = $("#search").val();
+        const action = $(this).attr("action");
 
-            const to = new URL(
-                action,
-                `http://localhost/nstudio/views/search.php/?key=${keywords}`
-            );
+        const to = new URL(
+            action,
+            `http://localhost/nstudio/views/search.php/?key=${keywords}`
+        );
 
-            window.location.href = to.toString();
-        });
+        window.location.href = to.toString();
+    });
 
 
     $("#search").on("input", () => {
@@ -29,10 +29,10 @@ $(document).ready(() => {
                 data: { keywords: keywords },
                 dataType: "json",
                 success: (suggestions) => {
-                    if (suggestions.length < 1)
-                        return suggestionsDiv.append(
-                            $('<h1 class="text-2xl pt-3">').text("No Result")
-                        );
+                    if (suggestions.length < 1) return suggestionsDiv.append($('<h1 class="text-2xl pt-3">').text("No Result"));
+
+                    console.log(suggestions);
+
                     suggestions.forEach((suggestion) => {
                         let link = $(
                             `<a class='search_link underline mt-1 focus:font-semibold outline-0' href='/nstudio/views/search.php/?key=${suggestion}'>`
@@ -57,7 +57,7 @@ $(document).ready(() => {
         if (e.key === "Escape") {
             $("#searchForm").hide();
         }
-        
+
         if (e.key === "/") {
             $('#searchForm').show();
             $("#search").focus();

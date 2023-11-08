@@ -1,21 +1,20 @@
 <?php
 
-session_start();
-session_regenerate_id();
+include '../session.php';
 
 include '../redirect.php';
 include '../connection.php';
 
 if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
-    if (isset($_SESSION['product_id']) && isset($_SESSION['id'])) {
+    if (isset($_SESSION['product_item_id']) && isset($_SESSION['id'])) {
         $userID = $_SESSION['id'];
-        $product_id = $_SESSION['product_id'];
+        $product_item_id = $_SESSION['product_item_id'];
 
-        $sql = "SELECT * FROM cart_tbl WHERE user_id=$userID AND product_id=$product_id";
+        $sql = "SELECT * FROM cart_tbl WHERE user_id=$userID AND product_item_id=$product_item_id";
         $result = $conn->query($sql);
 
         if ($result && $result->num_rows > 0) {
-            $sql = "UPDATE cart_tbl SET quantity=quantity + 1 WHERE user_id=$userID AND product_id=$product_id";
+            $sql = "UPDATE cart_tbl SET quantity=quantity + 1 WHERE user_id=$userID AND product_item_id=$product_item_id";
             $result = $conn->query($sql);
 
             if ($result) {
@@ -29,7 +28,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                 }
             }
         } else {
-            $sql = "INSERT INTO cart_tbl (user_id, product_id, quantity) VALUES ($userID, $product_id, 1)";
+            // FIX ADD TO CART TO ADD ITEM INSTEAD OF PRODUCT
+            $sql = "INSERT INTO cart_tbl (user_id, product_item_id, quantity) VALUES ($userID, $product_item_id, 1)";
             $result = $conn->query($sql);
 
             if ($result) {
