@@ -23,7 +23,7 @@ require_once "../includes/functions.php";
 <html lang="en">
     <!-- Head -->
     <?php require './partials/head.php' ?>
-<body>
+<body class="min-h-screen">
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->

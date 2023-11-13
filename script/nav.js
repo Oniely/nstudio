@@ -1,21 +1,3 @@
-const navbar = document.getElementById("main_navbar");
-let prevScrollPos = window.scrollY;
-
-function updateNavbarVisibility() {
-    const currentScrollPos = window.scrollY;
-    if (currentScrollPos < prevScrollPos) {
-        $(navbar).css('top', '0');
-    } else {
-        $(navbar).css("top", "-4.5rem");
-    }
-    prevScrollPos = currentScrollPos;
-}
-
-window.addEventListener("scroll", updateNavbarVisibility);
-window.addEventListener("resize", updateNavbarVisibility);
-
-// -------------------------------------------------------
-
 const links = document.querySelectorAll("#NAV_LINK");
 let currentHoveredLink = null;
 let currentHoveredHoverLink = null;
@@ -35,6 +17,7 @@ links.forEach((link) => {
         hoverLink.style.height = "25rem";
         hoverLink.style.padding = "2rem 2rem";
         hoverLink.style.borderBottom = "1px solid #101010";
+        $('.nav_bar').css('border-bottom-color', 'transparent');
 
         hoverLink.addEventListener("mouseout", (e) => {
             const targetElement = e.relatedTarget;
@@ -43,6 +26,7 @@ links.forEach((link) => {
                 currentHoveredHoverLink.style.height = "0";
                 currentHoveredHoverLink.style.padding = "0 2rem";
                 currentHoveredHoverLink.style.borderBottom = "0";
+                $('.nav_bar').css('border-bottom-color', '#101010');
             }
         });
     });
@@ -65,5 +49,19 @@ $(document).on("click", (e) => {
         !$(e.target).closest("#user-dropdown").length
     ) {
         $("#user-dropdown").hide();
+    }
+});
+
+$('#burger').on('click', () => {
+    const isOpen = $('.line1').hasClass('open');
+
+    if (isOpen) {
+        $('.line1, .line3').removeClass('open');
+        $('.line2').removeClass('hide');
+        $('#burger_menu').removeClass('show');
+    } else {
+        $('.line1, .line3').addClass('open');
+        $('#burger_menu').addClass('show');
+        $('.line2').addClass('hide');
     }
 });

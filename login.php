@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-session_regenerate_id();
+require_once "./includes/session.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: index.php');
@@ -13,18 +12,9 @@ require_once "./includes/auth.php";
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nechma Studios</title>
-    <link rel="stylesheet" href="./styles/style.css">
+<?php require './views/partials/head.php' ?>
 
-    <!-- CDNs -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-</head>
-
-<body>
+<body class="min-h-screen">
     <main class="w-full h-screen flex justify-center items-center">
         <div class="w-[25rem] border border-[#101010] flex flex-col items-center py-[1.3rem] shadow-lg">
             <div class="w-[8rem] mb-[1.5rem]">

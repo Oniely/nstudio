@@ -16,13 +16,13 @@ require_once "./includes/functions.php";
 <html lang="en">
     <!-- Head -->
     <?php require './views/partials/head.php' ?>
-<body class="min-h-screen">
+<body>
     <!-- Navbar -->
     <?php require './views/partials/nav.php' ?>
     <!-- Main -->
     <main class="w-full h-full pt-[4.5rem]">
         <div class="w-full h-full min-h-full flex flex-wrap justify-evenly items-center">
-        <?php showAllMenProduct(); ?>
+        <?php showAllWomenProduct(); ?>
         </div>
     </main>
     <!-- Footer -->

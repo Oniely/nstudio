@@ -1,0 +1,99 @@
+nav {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 3rem;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #101010;
+  z-index: 50;
+}
+nav .nav_links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+nav .nav_links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #101010;
+}
+nav .hamburger-lines {
+  height: 26px;
+  width: 32px;
+  top: 0.7rem;
+  left: 1rem;
+  z-index: 2;
+  flex-direction: column;
+  justify-content: space-between;
+}
+nav .hamburger-lines .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: #0e2431;
+}
+nav .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+nav .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+nav .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+nav .line1.open {
+  transform: rotate(45deg);
+}
+nav .line2.hide {
+  transform: scaleY(0);
+}
+nav .line3.open {
+  transform: rotate(-45deg);
+}
+nav #burger_menu.show {
+  display: flex;
+  transition: 0.3s ease;
+}
+nav .logo {
+  max-width: 100%;
+  height: 2.8rem;
+  flex-shrink: 0;
+}
+nav .logo img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+nav .shop_links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+nav .shop_links img {
+  max-width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+nav .shop_links #searchBtn {
+  width: 20px;
+  height: 20px;
+}
+nav .shop_links #shopBagBtn {
+  width: 20px;
+  height: 20px;
+}
+nav .shop_links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #101010;
+}/*# sourceMappingURL=navbar.css.map */

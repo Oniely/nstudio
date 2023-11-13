@@ -1,8 +1,0 @@
-<!-- SELECT PROD ITEM DATA -->
-
-
-<!-- Select Prod Item Sizes -->
-SELECT product_item.id,size_value FROM size JOIN product_item WHERE size.id=product_item.size_id;
-
-<!-- Select Prod Item Colours -->
-SELECT product_item.id, colour_value FROM colour JOIN product_item WHERE colour.id=product_item.colour_id;

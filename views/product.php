@@ -9,11 +9,15 @@ if (isset($_SESSION["id"]) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 }
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['colour'])) {
     $product_id = $_GET['id'];
+    $colour_id = $_GET['colour'];
 
     $sql = "SELECT
-    product_item.id, 
+    product_item.id,
+    product_item.product_id,
+    product_item.size_id,
+    product_item.colour_id,
     product_tbl.product_name name,
     product_item.product_image1 item_img1,
     product_item.product_image2 item_img2,
@@ -25,13 +29,15 @@ if (isset($_GET['id'])) {
     JOIN size ON product_item.size_id = size.id
     JOIN colour ON product_item.colour_id = colour.id
     WHERE
-    product_tbl.product_id = $product_id";
+    product_item.product_id = $product_id";
 
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $_SESSION['product_item_id'] = $row['id'];
+            $_SESSION['product_id'] = $row['product_id'];
+            $_SESSION["{$_SESSION['product_id']}item_id"] = $row['id'];
+            $_SESSION['size_id'] = $row['size_id'];
             $id = $row['id'];
             $name = $row['name'];
             $price = $row['price'];
@@ -46,6 +52,9 @@ if (isset($_GET['id'])) {
             for ($i = 0; $i < count($blobDataArray); $i++) {
                 blobToImage($blobDataArray[$i], $outputPathsArray[$i]);
             }
+            ?>
+
+            <?php
         }
     } else {
         $error = "Product is out of Stock.";
@@ -61,12 +70,12 @@ if (isset($_GET['id'])) {
 <script src="../script/product.js" defer></script>
 <!-- Body -->
 
-<body>
+<body class="min-h-screen">
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="w-full h-full p-5">
-        <?php if ($result && $result->num_rows > 0): ?>
+        <?php if (@$result && @$result->num_rows > 0): ?>
             <div class="w-full h-full flex justify-start pt-[4.5rem]  gap-20">
                 <div class="w-[10rem] flex flex-col">
                     <img class="w-[10rem] hoverProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">
@@ -81,8 +90,18 @@ if (isset($_GET['id'])) {
                     <h1>
                         <?= $price ?>
                     </h1>
-                    <button type="button" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer"
-                        name="addToCartBtn" id="addToCartBtn">Add to Cart</button>
+                    <form action="/nstudio/views/product.php/?id=<?= $_SESSION['product_id'] ?>" id="productForm">
+                        <!-- Show Colours Dropdown Button -->
+                        <?php showProductColours($_SESSION['product_id'], $colour_id); ?>
+                        <div class="flex justify-center items-center w-max gap-3">
+                        <!-- Show Sizes Radio Button Group -->
+                        <?php showProductSizes($_SESSION['product_id'], $colour_id); ?>
+                        </div>
+                        <button type="submit" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer"
+                            name="addToCartBtn" id="addToCartBtn">
+                            Add to Cart
+                        </button>
+                    </form>
                 </div>
             </div>
         <?php else: ?>

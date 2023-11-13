@@ -22,7 +22,14 @@ if (isset($_POST['action']) && isset($_POST['item_id'])) {
             if ($_POST['action'] === "minus_quantity") {
                 $quantity = max(0, $quantity - 1); // Ensure quantity doesn't go below 0
             } elseif ($_POST['action'] === "add_quantity") {
-                $quantity = $quantity + 1;
+                $sql = "SELECT quantity FROM product_item WHERE id=?";
+                $query = $conn->prepare($sql);
+                $query->bind_param('i', $product_item_id);
+                $query->execute();
+                $result = $query->get_result()->fetch_row();
+                if ($result) {
+                    $quantity = min($result[0], $quantity + 1); // Ensure quantity doesn't go above the stock
+                }
             } else {
                 return;
             }

@@ -8,9 +8,26 @@ $(document).ready(() => {
     $(document).on("click", ".minusBtn", function (e) {
         let product_item_id = $(e.target).data("item-id");
         adjustQuantity(product_item_id, "minus_quantity");
+
+        $("#confirmBtn").on("click", () => {
+            $.ajax({
+                type: "POST",
+                url: "../includes/ajax/delete_cart_product.php",
+                data: {
+                    action: "delete_product",
+                    item_id: product_item_id,
+                },
+                success: (res) => {
+                    if (res === "SUCCESS") {
+                        location.reload();
+                    } else {
+                        $("popup-modal").hide();
+                    }
+                },
+            });
+            $("#popup-modal").hide();
+        });
     });
-
-
 
     $(document).on("click", ".addBtn", function (e) {
         let product_item_id = $(e.target).data("item-id");
@@ -27,26 +44,6 @@ $(document).ready(() => {
         $("#popup-modal").hide();
     });
 
-    $("#confirmBtn").on("click", () => {
-        let product_item_id = $(".minusBtn").data("item-id");
-        $.ajax({
-            type: "POST",
-            url: "../includes/ajax/delete_cart_product.php",
-            data: {
-                action: "delete_product",
-                item_id: product_item_id,
-            },
-            success: (res) => {
-                if (res === "SUCCESS") {
-                    location.reload();
-                } else {
-                    $("popup-modal").hide();
-                }
-            },
-        });
-        $("#popup-modal").hide();
-    });
-
     function adjustQuantity(product_item_id, action) {
         $.ajax({
             url: "../includes/ajax/cart_quantity.php",
@@ -59,6 +56,10 @@ $(document).ready(() => {
                 let quantityId = `[data-quantity-id='${product_item_id}'`;
                 let priceId = `[data-price-id='${product_item_id}'`;
                 let data = JSON.parse(res);
+                
+                if(res == "") {
+                    window.location.reload('/nstudio/login.php');
+                }
 
                 if (parseInt(data[0]) === 0) {
                     $("#popup-btn").click();
@@ -66,7 +67,8 @@ $(document).ready(() => {
                 }
 
                 $(quantityId).text(data[0]);
-                $(priceId).text(parseFloat(data[0] * data[1]).toFixed(2));
+                $(priceId).text(data[0] * data[1]);
+                $('#subtotal').text() + "1";
             },
             error: (xhr, status, error) => {
                 console.error("Error: " + error);
