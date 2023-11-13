@@ -38,32 +38,11 @@ require_once "./includes/functions.php";
             </div>
         </div>
     </main>
-    <!-- Showcase Product Section -->
-    <section class="w-full min-h-[110vh] bg-[#101010] flex">
-        <div class="container m-auto h-fit p-[3rem] parent">
-            <div class="h-full shrink-0 mr-[3rem] div1">
-                <img class="max-w-full h-full object-cover" src="./img/product/big_black_hero.svg" alt="product" />
-            </div>
-            <div class="flex flex-col div2 text-[clamp(4.8rem,_10vw,_7.7rem)] text-left">
-                <h1 class="font-['Lato'] leading-[1] text-[#d9d9d9] whitespace-nowrap mb-[10px]">
-                    NEW YEAR,
-                </h1>
-                <h1 class="font-['Lato'] leading-[1] text-[#d9d9d9] whitespace-nowrap">
-                    NEW STYLE
-                </h1>
-            </div>
-            <div class="flex justify-between w-full gap-[10px] pr-[3rem] div3">
-                <img class="max-w-full object-cover" src="./img/profile.svg" alt="product" />
-                <img class="max-w-full object-cover" src="./img/product/2.svg" alt="product" />
-                <img class="max-w-full object-cover" src="./img/product/3.svg" alt="product" />
-            </div>
-        </div>
-    </section>
     <!-- New Arival Section -->
     <section class="flex flex-col justify-center items-center w-full h-auto px-14 overflow-y-hidden">
         <!-- Header -->
         <header class="container h-[13rem] grid place-items-center text-center">
-            <h1 class="text-[4.5rem] font-['Lato'] whitespace-nowrap">
+            <h1 class="text-[clamp(4rem,10vw,4.5rem)] font-['Lato'] whitespace-nowrap">
                 NEW ARRIVAL
             </h1>
         </header>

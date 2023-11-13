@@ -27,9 +27,9 @@ require_once "../includes/functions.php";
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->
-    <main class="w-full h-full pt-[4.5rem]">
+    <main class="w-full h-full">
         <div class="w-full h-full max-h-full">
-            <div class='w-full h-full min-h-full flex flex-wrap justify-evenly items-center'>
+            <div class='w-full min-h-screen flex flex-wrap justify-evenly items-center'>
                 <?php 
                     if ($key != ""):
                         showSearchProduct($key);

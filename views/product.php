@@ -76,11 +76,11 @@ if (isset($_GET['id']) && isset($_GET['colour'])) {
     <!-- Main Section -->
     <main class="w-full h-full p-5">
         <?php if (@$result && @$result->num_rows > 0): ?>
-            <div class="w-full h-full flex justify-start pt-[4.5rem]  gap-20">
+            <div class="w-full h-full flex justify-start pt-[3rem]  gap-20">
                 <div class="w-[10rem] flex flex-col">
-                    <img class="w-[10rem] hoverProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">
-                    <img class="w-[10rem] hoverProduct" src="<?= "../img/product/{$id}_image2.png" ?>" alt="">
-                    <img class="w-[10rem] hoverProduct" src="<?= "../img/product/{$id}_image3.png" ?>" alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image2.png" ?>" alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image3.png" ?>" alt="">
                 </div>
                 <div class="w-full h-screen">
                     <img class="w-[20rem]" id="showProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">

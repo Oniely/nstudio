@@ -29,7 +29,7 @@ $(document).ready(() => {
                 data: { keywords: keywords },
                 dataType: "json",
                 success: (suggestions) => {
-                    if (suggestions.length < 1) return suggestionsDiv.append($('<h1 class="text-2xl pt-3">').text("No Result"));
+                    if (suggestions.length < 1) return suggestionsDiv.append($('<h1 class="text-2xl pt-3">').text(`See results for ${keywords}.`));
 
                     console.log(suggestions);
 

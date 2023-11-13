@@ -69,9 +69,18 @@ nav {
         transform: rotate(-45deg);
     }
 
+    #burger_menu {
+        transform: translateY(-10%);
+        transition: transform 0.3s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 1;
+    }
+
     #burger_menu.show {
-        display: flex;
-        transition: 0.3s ease;
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
     }
 
     .logo {

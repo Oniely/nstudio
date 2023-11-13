@@ -57,9 +57,17 @@ nav .line2.hide {
 nav .line3.open {
   transform: rotate(-45deg);
 }
+nav #burger_menu {
+  transform: translateY(-10%);
+  transition: transform 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+}
 nav #burger_menu.show {
-  display: flex;
-  transition: 0.3s ease;
+  transform: translateY(0);
+  visibility: visible;
+  opacity: 1;
 }
 nav .logo {
   max-width: 100%;
