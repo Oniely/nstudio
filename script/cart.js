@@ -56,8 +56,8 @@ $(document).ready(() => {
                 let quantityId = `[data-quantity-id='${product_item_id}'`;
                 let priceId = `[data-price-id='${product_item_id}'`;
                 let data = JSON.parse(res);
-                
-                if(res == "") {
+
+                if (res == "") {
                     window.location.reload('/nstudio/login.php');
                 }
 
@@ -68,7 +68,7 @@ $(document).ready(() => {
 
                 $(quantityId).text(data[0]);
                 $(priceId).text(data[0] * data[1]);
-                $('#subtotal').text() + "1";
+                $('#subtotal').text(data[2]);
             },
             error: (xhr, status, error) => {
                 console.error("Error: " + error);

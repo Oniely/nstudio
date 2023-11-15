@@ -173,7 +173,7 @@ function newMenProduct()
         $product_img = "prod" . $row['product_id'] . ".png";
         ?>
         <div
-            class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
+            class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
             <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                 <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
                 <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
@@ -211,7 +211,7 @@ function newWomenProduct()
         $product_img = "prod" . $row['product_id'] . ".png";
         ?>
         <div
-            class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
+            class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
             <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                 <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
                 <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
@@ -255,7 +255,20 @@ function showCartProducts($userID)
 
     require 'connection.php';
 
-    $sql = "SELECT cart_tbl.user_id, cart_tbl.product_item_id,cart_tbl.quantity cart_quantity, product_item.* FROM cart_tbl JOIN product_item WHERE cart_tbl.product_item_id = product_item.id AND cart_tbl.user_id = $userID;";
+    $sql = "SELECT
+            cart_tbl.user_id,
+            cart_tbl.product_item_id,
+            cart_tbl.quantity cart_quantity,
+            product_item.*,
+            product_tbl.product_price price
+            FROM
+            cart_tbl
+            JOIN product_item
+            JOIN product_tbl ON product_item.product_id = product_tbl.product_id
+            WHERE
+            cart_tbl.product_item_id = product_item.id
+            AND cart_tbl.user_id = $userID;";
+
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
@@ -292,12 +305,12 @@ function showCartProducts($userID)
         <span id="subtotal">
             <?= $subtotal ?>
         </span>
+
         <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="popup-btn"
             class="hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button">
             Toggle modal
         </button>
-
         <div id="popup-modal" tabindex="-1"
             class="fixed top-0 left-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center items-center w-full h-screen max-h-full">
             <div class="relative mt-[10rem] mx-auto w-full max-w-md max-h-full">
@@ -357,14 +370,14 @@ function showSearchProduct($keyword)
             $img = $row['product_image'];
             $path = "../img/product/prod$row[product_id].png";
             blobToImage($img, $path);
-
+            $product_id = $row['product_id'];
             $product_img = "prod$row[product_id].png";
             if ($row['product_new'] != 1):
                 ?>
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -389,7 +402,7 @@ function showSearchProduct($keyword)
                 <div
                     class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -403,11 +416,7 @@ function showSearchProduct($keyword)
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
-                        <div class="flex gap-2 ">
-                            <button class="w-3 h-3 bg-[#211f22]"></button>
-                            <button class="w-3 h-3 bg-[#524947]"></button>
-                            <button class="w-3 h-3 bg-[#8c7975]"></button>
-                        </div>
+                        <?php colourButtons($product_id); ?>
                     </div>
                 </div>
 
@@ -440,7 +449,7 @@ function colourButtons($product_id)
             <?php
             while ($row = $result->fetch_assoc()) {
                 ?>
-                <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"
+                <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"
                     class="w-3 h-3 border bg-[<?= $row['hex_code'] ?>]"></a>
                 <?php
             }

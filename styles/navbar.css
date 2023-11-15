@@ -1,27 +1,4 @@
-nav {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 0 3rem;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid #101010;
-  z-index: 50;
-}
-nav .nav_links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-nav .nav_links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: #101010;
-}
-nav .hamburger-lines {
+.hamburger-lines {
   height: 26px;
   width: 32px;
   top: 0.7rem;
@@ -30,78 +7,51 @@ nav .hamburger-lines {
   flex-direction: column;
   justify-content: space-between;
 }
-nav .hamburger-lines .line {
+
+.hamburger-lines .line {
   display: block;
   height: 4px;
   width: 100%;
   border-radius: 10px;
   background: #0e2431;
 }
-nav .hamburger-lines .line1 {
+
+.hamburger-lines .line1 {
   transform-origin: 0% 0%;
   transition: transform 0.4s ease-in-out;
 }
-nav .hamburger-lines .line2 {
+
+.hamburger-lines .line2 {
   transition: transform 0.2s ease-in-out;
 }
-nav .hamburger-lines .line3 {
+
+.hamburger-lines .line3 {
   transform-origin: 0% 100%;
   transition: transform 0.4s ease-in-out;
 }
-nav .line1.open {
+
+.line1.open {
   transform: rotate(45deg);
 }
-nav .line2.hide {
+
+.line2.hide {
   transform: scaleY(0);
 }
-nav .line3.open {
+
+.line3.open {
   transform: rotate(-45deg);
 }
-nav #burger_menu {
-  transform: translateY(-10%);
-  transition: transform 0.3s ease-in-out;
+
+#burger_menu {
+  max-height: 12.8rem;
+  height: 0;
   visibility: hidden;
-  opacity: 0;
-  z-index: 1;
+  z-index: 10;
+  transition: 0.3s ease-in-out;
 }
-nav #burger_menu.show {
-  transform: translateY(0);
+
+#burger_menu.show {
+  height: 100rem;
   visibility: visible;
   opacity: 1;
-}
-nav .logo {
-  max-width: 100%;
-  height: 2.8rem;
-  flex-shrink: 0;
-}
-nav .logo img {
-  max-width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-nav .shop_links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-shrink: 0;
-}
-nav .shop_links img {
-  max-width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-nav .shop_links #searchBtn {
-  width: 20px;
-  height: 20px;
-}
-nav .shop_links #shopBagBtn {
-  width: 20px;
-  height: 20px;
-}
-nav .shop_links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: #101010;
 }/*# sourceMappingURL=navbar.css.map */

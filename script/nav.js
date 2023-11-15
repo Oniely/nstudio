@@ -61,7 +61,7 @@ $('#burger').on('click', () => {
         $('#burger_menu').removeClass('show');
     } else {
         $('.line1, .line3').addClass('open');
-        $('#burger_menu').addClass('show');
         $('.line2').addClass('hide');
+        $('#burger_menu').addClass('show');
     }
 });

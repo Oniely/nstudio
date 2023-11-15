@@ -32,3 +32,26 @@ function loginAuth($username, $password)
         return false;
     }
 }
+
+function signUpAuth($fname, $lname, $contact, $username, $password)
+{
+    require "connection.php";
+
+    $sql = "SELECT * FROM site_user WHERE username='$username'";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return false;
+    }
+
+    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+    $query = $conn->prepare($insertSql);
+    $query->bind_param("sssss", $fname, $lname, $contact, $username, $password);
+    $query->execute();
+
+    if ($query->affected_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

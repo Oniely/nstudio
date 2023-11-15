@@ -85,13 +85,48 @@
         </li>
     </ul>
 
-    <button id="burger" class="hamburger-lines hidden md:flex">
-        <span class="line line1"></span>
-        <span class="line line2"></span>
-        <span class="line line3"></span>
-    </button>
+    <div class="md:flex justify-center items-center gap-8 hidden">
+        <button id="burger" class="hamburger-lines hidden md:flex">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+        </button>
 
-    <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-slate-100 py-2 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
+        <li class="items-center md:block hidden">
+            <button class="flex justify-center items-center" id="searchBtn">
+                <img class="max-w-full h-[1.3rem]" src="/nstudio/img/search.svg" alt="" />
+            </button>
+
+            <form id="searchForm" action="" method="GET"
+                class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden">
+                <div class="w-full max-h-full flex flex-col justify-center items-start px-5">
+
+                    <div class="w-full flex justify-between items-center">
+
+                        <input class="w-full h-[3.5rem] text-2xl outline-none border-none" id="search" type="text"
+                            placeholder="Search" autocomplete="off">
+
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            id="searchClose">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                    <div class="flex flex-col" id="suggestions"></div>
+
+                </div>
+            </form>
+        </li>
+    </div>
+
+    <div id="burger_menu"
+        class="absolute top-[3rem] left-0 w-full bg-slate-100 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
         <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">MEN</a>
         <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">WOMEN</a>
         <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">COMMUNITY</a>
@@ -104,7 +139,7 @@
 
     <ul class="flex gap-8 shrink-0 items-center">
         <!-- Search -->
-        <li class="items-center">
+        <li class="items-center md:hidden">
             <button class="flex justify-center items-center" id="searchBtn">
                 <img class="max-w-full h-[1.3rem]" src="/nstudio/img/search.svg" alt="" />
             </button>
@@ -154,7 +189,7 @@
         <!-- Account -->
         <?php if (!isset($_SESSION["id"]) || $_SESSION["id"] === ""): ?>
             <li class="md:hidden">
-                <a class="text-[14px]" href="/nstudio/login.php">SIGN IN</a>
+                <a class="text-[14px] hover:text-[#707070]" href="/nstudio/login.php">SIGN IN</a>
             </li>
         <?php else: ?>
             <li>
