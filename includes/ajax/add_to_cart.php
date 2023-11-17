@@ -5,7 +5,7 @@ include '../redirect.php';
 include '../connection.php';
 
 if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
-    if (isset($_SESSION['id']) && isset($_SESSION["{$_SESSION['id']}item_id"])) {
+    if (isset($_SESSION['id']) && isset($_SESSION["{$_SESSION['product_id']}item_id"])) {
         $userID = $_SESSION['id'];
         $product_item_id = $_SESSION["{$_SESSION['product_id']}item_id"];
 

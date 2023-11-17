@@ -8,28 +8,16 @@
                 class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="">New Arrivals</a>
-                        <a href="">Knitwear & Cardigans</a>
-                        <a href="">Cashmere</a>
-                        <a href="">Coats & Jackets</a>
-                        <a href="">Trousers</a>
-                        <a href="">Skirt</a>
-                        <a href="">Tops</a>
-                        <a href="">Dressese & Jumpsuits</a>
-                        <a href="">Blazers & Tailoring</a>
-                        <a href="">Shirt & Blouses</a>
-                        <a href="">T-shirts & Vests</a>
-                        <a href="">Jeans</a>
-                        <a href="">All Womenswear</a>
+                        <?php showLinkCategory("MEN") ?>
                     </div>
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                    <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
                         <a href="">New Accessories</a>
                         <a href="">Bags</a>
                         <a href="">Scarves & Hats</a>
                         <a href="">Shoes</a>
                         <a href="">Underwear & Socks</a>
                         <a href="">All Accessories</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </li>
@@ -40,21 +28,9 @@
                 class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="">New Arrivals</a>
-                        <a href="">Knitwear & Cardigans</a>
-                        <a href="">Cashmere</a>
-                        <a href="">Coats & Jackets</a>
-                        <a href="">Trousers</a>
-                        <a href="">Skirt</a>
-                        <a href="">Tops</a>
-                        <a href="">Dressese & Jumpsuits</a>
-                        <a href="">Blazers & Tailoring</a>
-                        <a href="">Shirt & Blouses</a>
-                        <a href="">T-shirts & Vests</a>
-                        <a href="">Jeans</a>
-                        <a href="">All Womenswear</a>
+                        <?php showLinkCategory("WOMEN") ?>
                     </div>
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                    <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
                         <a href="">New Accessories</a>
                         <a href="">Bags</a>
                         <a href="">The Quilted Bag</a>
@@ -66,7 +42,7 @@
                         <a href="">Underwear & Lingerie</a>
                         <a href="">Socks & Tights</a>
                         <a href="">All Accessories</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </li>
@@ -85,44 +61,15 @@
         </li>
     </ul>
 
-    <div class="md:flex justify-center items-center gap-8 hidden">
+    <div class="hidden md:flex justify-center items-center gap-8">
         <button id="burger" class="hamburger-lines hidden md:flex">
             <span class="line line1"></span>
             <span class="line line2"></span>
             <span class="line line3"></span>
         </button>
-
-        <li class="items-center md:block hidden">
-            <button class="flex justify-center items-center" id="searchBtn">
-                <img class="max-w-full h-[1.3rem]" src="/nstudio/img/search.svg" alt="" />
-            </button>
-
-            <form id="searchForm" action="" method="GET"
-                class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden">
-                <div class="w-full max-h-full flex flex-col justify-center items-start px-5">
-
-                    <div class="w-full flex justify-between items-center">
-
-                        <input class="w-full h-[3.5rem] text-2xl outline-none border-none" id="search" type="text"
-                            placeholder="Search" autocomplete="off">
-
-                        <button type="button"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            id="searchClose">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                        </button>
-
-                    </div>
-
-                    <div class="flex flex-col" id="suggestions"></div>
-
-                </div>
-            </form>
-        </li>
+        <button class="hidden md:flex justify-center items-center" id="searchBtn">
+            <img class="max-w-full h-[1.3rem]" src="/nstudio/img/search.svg" alt="" />
+        </button>
     </div>
 
     <div id="burger_menu"
@@ -139,8 +86,8 @@
 
     <ul class="flex gap-8 shrink-0 items-center">
         <!-- Search -->
-        <li class="items-center md:hidden">
-            <button class="flex justify-center items-center" id="searchBtn">
+        <li class="items-center">
+            <button class="md:hidden flex justify-center items-center" id="searchBtn">
                 <img class="max-w-full h-[1.3rem]" src="/nstudio/img/search.svg" alt="" />
             </button>
 

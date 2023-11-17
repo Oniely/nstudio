@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $_SESSION['product_id'] = $row['product_id'];
-                $_SESSION["{$_SESSION['product_id']}item_id"] = $row['id'];
+                $_SESSION["{$row['product_id']}item_id"] = $row['id'];
                 $_SESSION['size_id'] = $row['size_id'];
                 $id = $row['id'];
                 $name = $row['name'];
@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $_SESSION['product_id'] = $row['product_id'];
-            $_SESSION["{$_SESSION['product_id']}item_id"] = $row['id'];
+            $_SESSION["{$row['product_id']}item_id"] = $row['id'];
             $_SESSION['size_id'] = $row['size_id'];
             $id = $row['id'];
             $name = $row['name'];

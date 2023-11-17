@@ -20,7 +20,7 @@ function loginAuth($username, $password)
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        if ($password === $row['password']) {
+        if (password_verify($password, $row["password"])) {
             $_SESSION['id'] = $row['id'];
             return true;
         } else {
@@ -44,9 +44,11 @@ function signUpAuth($fname, $lname, $contact, $username, $password)
         return false;
     }
 
+    $hashedPass = hash_password($password);
+
     $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?)";
     $query = $conn->prepare($insertSql);
-    $query->bind_param("sssss", $fname, $lname, $contact, $username, $password);
+    $query->bind_param("sssss", $fname, $lname, $contact, $username, $hashedPass);
     $query->execute();
 
     if ($query->affected_rows > 0) {

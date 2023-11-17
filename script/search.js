@@ -44,7 +44,9 @@ $(document).ready(() => {
         }
     });
 
-    $("#searchBtn").on("click", () => {
+    const searchBtn = document.querySelectorAll('#searchBtn');
+
+    $(searchBtn).on("click", () => {
         $("#searchForm").toggle();
         $("#search").focus();
     });

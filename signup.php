@@ -4,6 +4,8 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: login.php');
 }
 
+require_once "includes/redirect.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +86,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                         $password = $_POST["password"];
 
                         if (signUpAuth($fname, $lname, $contact, $username, $password)) {
-                            header('location: login.php');
+                            redirect('login.php');
                         } else {
                             echo '<p class="text-xs text-[#ff0000] hidden">
                         Account already exists.

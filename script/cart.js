@@ -20,8 +20,10 @@ $(document).ready(() => {
                 success: (res) => {
                     if (res === "SUCCESS") {
                         location.reload();
+                    } else if (res === "FAILURE") {
+                        $("#popup-modal").hide();
                     } else {
-                        $("popup-modal").hide();
+                        $("#popup-modal").hide();
                     }
                 },
             });
@@ -57,22 +59,46 @@ $(document).ready(() => {
                 let priceId = `[data-price-id='${product_item_id}'`;
                 let data = JSON.parse(res);
 
-                if (res == "") {
+                if (res === "") {
                     window.location.reload('/nstudio/login.php');
+                    return;
                 }
 
                 if (parseInt(data[0]) === 0) {
+                    console.log("Quantity is zero. Triggering click on #popup-btn");
                     $("#popup-btn").click();
                     return;
                 }
 
+
                 $(quantityId).text(data[0]);
                 $(priceId).text(data[0] * data[1]);
-                $('#subtotal').text(data[2]);
+                $('#subtotal').text(data[2].toFixed(2));
             },
             error: (xhr, status, error) => {
                 console.error("Error: " + error);
             },
         });
     }
+});
+
+$('.removeItem').on('click', (e) => {
+    let product_item_id = $(e.target).data("delete-item-id");
+    $.ajax({
+        type: "POST",
+        url: "../includes/ajax/delete_cart_product.php",
+        data: {
+            action: "delete_product",
+            item_id: product_item_id,
+        },
+        success: (res) => {
+            if (res === "SUCCESS") {
+                location.reload();
+            } else if (res === "FAILURE") {
+                return;
+            } else {
+                return;
+            }
+        },
+    });
 });

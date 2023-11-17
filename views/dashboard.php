@@ -19,8 +19,10 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->
-    <main class="w-full h-full">
-
+    <main class="w-full h-full pt-[3rem]">
+        <div class="container min-h-screen">
+            
+        </div>
     </main>
     <!-- Footer -->
     <?php require './partials/footer.php' ?>
