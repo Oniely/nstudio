@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NStudio</title>
+        <!-- Styles -->
+        <link rel="stylesheet" href="/nstudio/styles/style.css" />
+        <link rel="stylesheet" href="/nstudio/styles/navbar.css" />
+
+        <!-- Scripts -->
+        <script src="/nstudio/script/animation.js" defer></script>
+        <script src="/nstudio/script/magnet.js" defer></script>
+        <script src="/nstudio/script/nav.js" defer></script>
+        <script src="/nstudio/script/search.js" defer></script>
+
+        <!-- CDNs -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+            integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+            crossorigin="anonymous"
+        />
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            clifford: "#da373d",
+                        },
+                    },
+                    screens: {
+                        "2xl": { max: "1535px" },
+                        xl: { max: "1280px" },
+                        lg: { max: "1024px" },
+                        md: { max: "768px" },
+                        sm: { max: "640px" },
+                        xs: { max: "440px" },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body class="min-h-screen">
+        <nav
+            class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b border-[#101010]"
+            id="main_navbar"
+        >
+            <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
+                <li>
+                    <a class="nav_links" id="NAV_LINK" href="/nstudio/men.php"
+                        >MEN</a
+                    >
+
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            ></div>
+                            <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="">New Accessories</a>
+                            <a href="">Bags</a>
+                            <a href="">Scarves & Hats</a>
+                            <a href="">Shoes</a>
+                            <a href="">Underwear & Socks</a>
+                            <a href="">All Accessories</a>
+                        </div> -->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav_links" id="NAV_LINK" href="/nstudio/women.php"
+                        >WOMEN</a
+                    >
+
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            ></div>
+                            <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="">New Accessories</a>
+                            <a href="">Bags</a>
+                            <a href="">The Quilted Bag</a>
+                            <a href="">Shoes & Boots</a>
+                            <a href="">Jewellery</a>
+                            <a href="">Scarves, Hats & Gloves</a>
+                            <a href="">Outdoor Layers</a>
+                            <a href="">Belts</a>
+                            <a href="">Underwear & Lingerie</a>
+                            <a href="">Socks & Tights</a>
+                            <a href="">All Accessories</a>
+                        </div> -->
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav_links" id="NAV_LINK" href="">COMMUNITY</a>
+                    <div
+                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
+                    >
+                        <div class="w-full h-full m-auto flex">
+                            <div
+                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
+                            >
+                                <a href="">Our mission</a>
+                                <a href="">COS Full Circle</a>
+                                <a href="">Product Care</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <a href="/nstudio/" class="h-[2.8rem] shrink-0">
+                <img
+                    class="max-w-full h-full object-contain"
+                    src="../img/nechma_logo.svg"
+                    alt="logo"
+                />
+            </a>
+
+            <ul class="flex gap-8 shrink-0 items-center">
+                <!-- Search -->
+                <li class="items-center">
+                    <button
+                        class="md:hidden flex justify-center items-center"
+                        id="searchBtn"
+                    >
+                        <img
+                            class="max-w-full h-[1.3rem]"
+                            src="../img/search.svg"
+                            alt=""
+                        />
+                    </button>
+
+                    <form
+                        id="searchForm"
+                        action=""
+                        method="GET"
+                        class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden"
+                    >
+                        <div
+                            class="w-full max-h-full flex flex-col justify-center items-start px-5"
+                        >
+                            <div
+                                class="w-full flex justify-between items-center"
+                            >
+                                <input
+                                    class="w-full h-[3.5rem] text-2xl outline-none border-none"
+                                    id="search"
+                                    type="text"
+                                    placeholder="Search"
+                                    autocomplete="off"
+                                />
+
+                                <button
+                                    type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    id="searchClose"
+                                >
+                                    <svg
+                                        class="w-4 h-4"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 14 14"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-col" id="suggestions"></div>
+                        </div>
+                    </form>
+                </li>
+                <!-- Cart -->
+                <li>
+                    <a
+                        class="relative"
+                        href="/nstudio/views/cart.php?id=<?= @$_SESSION['id'] ?>"
+                    >
+                        <img
+                            class="max-w-full h-[1.3rem]"
+                            src="../img/shopbag.svg"
+                            alt=""
+                        />
+                        <span
+                            id="cartNumber"
+                            class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full"
+                        >
+                            <?php if (!isset($_SESSION["id"]) || $_SESSION["id"]
+                            === "") { echo ""; } else { echo
+                            cartCount($_SESSION['id']); } ?>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <button
+                        type="button"
+                        class="relative"
+                        id="user-menu-button"
+                        data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom"
+                    >
+                        <span class="sr-only">Open user menu</span>
+
+                        <img
+                            class="w-[1.5rem]"
+                            src="../img/profile.svg"
+                            alt=""
+                        />
+
+                        <div
+                            class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                            id="user-dropdown"
+                        >
+                            <ul class="py-2" aria-labelledby="user-menu-button">
+                                <li>
+                                    <a
+                                        href="/nstudio/views/dashboard.php"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Dashboard</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Settings</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Earnings</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/nstudio/includes/logout.php"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        >Sign out</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <main class="min-h-screen">
+            <div class="container min-h-screen bg-[#101010]">
+                <div
+                    class="flex md:hidden justify-center items-center w-full py-20 px-10 lg:px-6 gap-5"
+                >
+                    <div
+                        class="lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)] flex flex-col justify-between"
+                    >
+                        <div
+                            class="lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] lg:h-[clamp(13rem,31.25vw+-2rem,18rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)] h-[clamp(18rem,10.6154rem+11.5385vw,21rem)]"
+                        >
+                            <img
+                                class="w-full h-full object-contain"
+                                src="../img/big_new_title.png"
+                                alt="/"
+                            />
+                        </div>
+                        <!-- prettier-ignore -->
+                        <div class="flex justify-between items-center lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)]">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="../img/product/1_image1.jpg" alt="">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="../img/product/1_image2.jpg" alt="">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)] max-w-full object-cover object-top" src="../img/product/1_image3.jpg" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="lg:w-[clamp(32rem,23rem+18.75vw,35rem)] lg:h-[clamp(26.5rem,_59.375vw_+_-2rem,36rem)] w-[35rem] h-[clamp(36rem,21.2308rem+23.0769vw,42rem)]"
+                    >
+                        <img
+                            class="w-full h-full object-cover object-top"
+                            src="../img/big_hero.png"
+                            alt=""
+                        />
+                    </div>
+                </div>
+
+                <div class="hidden md:flex flex-col justify-center items-center w-full p-12 px-16 md:px-6 gap-8 sm:gap-5">
+                    <div class="xs:w-full w-[clamp(26rem,43.902vw+13.927rem,35rem)] xs:h-fit h-[clamp(11rem,19.512vw+5.634rem,15rem)]">
+                        <img class="w-full h-full object-cover xs:object-contain" src="../img/big_new_title.png" alt="">
+                    </div>
+                    <div class="xs:w-full w-[clamp(26rem,43.902vw+13.927rem,35rem)]">
+                        <img class="w-full h-full object-cover object-top" src="../img/big_hero.png" alt="big_hero">
+                    </div>
+                    <div class="flex justify-between items-center xs:gap-1 xs:w-full xs:h-fit w-[clamp(26rem,43.902vw+13.927rem,35rem)] h-[clamp(14rem,19.512vw+8.634rem,18rem)]">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="../img/product/1_image1.jpg" alt="1">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="../img/product/1_image2.jpg" alt="1">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="../img/product/1_image3.jpg" alt="1">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-8">
+            <hr />
+            <div
+                class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4"
+            >
+                <div
+                    class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium"
+                >
+                    <ul class="md:w-full">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="#">Returns & Funds</a></li>
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Payment</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQs Privacy</a></li>
+                        <li><a href="#">Notice Cookie</a></li>
+                        <li><a href="#">Notice Cookie Settings</a></li>
+                    </ul>
+                    <ul class="md:w-full">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Spotify</a></li>
+                    </ul>
+                </div>
+                <div
+                    class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2"
+                >
+                    <div
+                        class="md:flex md:gap-[5px] text-lg font-semibold leading-5"
+                    >
+                        <!-- prettier-ignore -->
+                        <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your 
+              first order.</p>
+                    </div>
+                    <div class="w-[12rem] md:w-full text-center">
+                        <button
+                            class="w-full h-full bg-[#101010] text-white text-[12px] py-3"
+                        >
+                            SUBSCRIBE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

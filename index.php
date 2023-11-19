@@ -42,6 +42,57 @@ require_once "./includes/functions.php";
             </div>
         </div>
     </main>
+    <!-- Product Showcase Section -->
+    <section class="min-h-screen">
+        <div class="container min-h-screen bg-[#101010]">
+                <div
+                    class="flex md:hidden justify-center items-center w-full py-20 px-10 lg:px-6 gap-5"
+                >
+                    <div
+                        class="lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)] flex flex-col justify-between"
+                    >
+                        <div
+                            class="lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] lg:h-[clamp(13rem,31.25vw+-2rem,18rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)] h-[clamp(18rem,10.6154rem+11.5385vw,21rem)]"
+                        >
+                            <img
+                                class="w-full h-full object-contain"
+                                src="./img/big_new_title.png"
+                                alt="/"
+                            />
+                        </div>
+                        <!-- prettier-ignore -->
+                        <div class="flex justify-between items-center lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)]">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/product/1_image1.jpg" alt="">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/product/1_image2.jpg" alt="">
+                            <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)] max-w-full object-cover object-top" src="./img/product/1_image3.jpg" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="lg:w-[clamp(32rem,23rem+18.75vw,35rem)] lg:h-[clamp(26.5rem,_59.375vw_+_-2rem,36rem)] w-[35rem] h-[clamp(36rem,21.2308rem+23.0769vw,42rem)]"
+                    >
+                        <img
+                            class="w-full h-full object-cover object-top"
+                            src="./img/big_hero.png"
+                            alt=""
+                        />
+                    </div>
+                </div>
+
+                <div class="hidden md:flex flex-col justify-center items-center w-full p-12 px-16 md:px-6 gap-8 sm:gap-5">
+                    <div class="xs:w-full w-[clamp(26rem,43.902vw+13.927rem,35rem)] xs:h-fit h-[clamp(11rem,19.512vw+5.634rem,15rem)]">
+                        <img class="w-full h-full object-cover xs:object-contain" src="./img/big_new_title.png" alt="">
+                    </div>
+                    <div class="xs:w-full w-[clamp(26rem,43.902vw+13.927rem,35rem)]">
+                        <img class="w-full h-full object-cover object-top" src="./img/big_hero.png" alt="big_hero">
+                    </div>
+                    <div class="flex justify-between items-center xs:gap-1 xs:w-full xs:h-fit w-[clamp(26rem,43.902vw+13.927rem,35rem)] h-[clamp(14rem,19.512vw+8.634rem,18rem)]">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/product/1_image1.jpg" alt="1">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/product/1_image2.jpg" alt="1">
+                        <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/product/1_image3.jpg" alt="1">
+                    </div>
+                </div>
+            </div>
+    </section>
     <!-- New Arival Section -->
     <section class="flex flex-col justify-center items-center w-full h-auto px-14 md:px-4 overflow-hidden">
         <!-- Header -->

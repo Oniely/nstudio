@@ -118,11 +118,14 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "" && isset($_GET['id'])) {
                             >SHIPPING & TAXES CALCULATED AT CHECKOUT</span
                         >
                         <div class="w-full h-10 mt-2">
-                            <button
-                                class="w-full h-full bg-gray-900 text-white text-sm font-semibold"
-                            >
-                                CHECKOUT
-                            </button>
+                            <div class="w-full h-full bg-gray-900 text-white text-sm font-semibold flex justify-center items-center">
+                                <a
+                                    href="./checkout.php"
+                                    class="w-full h-full flex justify-center items-center"
+                                >
+                                    CHECKOUT
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,7 @@
         </div>
         <div class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2">
             <div class="md:flex md:gap-[5px] text-lg font-semibold leading-5">
+                <!-- prettier-ignore -->
                 <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your 
                 first order.</p>
             </div>

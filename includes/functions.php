@@ -366,6 +366,25 @@ function showCartProducts($userID)
     }
 }
 
+function checkSearchKey($keyword) {
+    require "connection.php";
+
+    $key = "%$keyword%";
+
+    $sql = "SELECT * FROM product_tbl WHERE keywords LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $key);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function showSearchProduct($keyword)
 {
     require 'connection.php';
