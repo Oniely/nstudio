@@ -25,9 +25,10 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "" && isset($_GET['id'])) {
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="min-h-screen">
+        <?php if(checkCartProduct($userID)): ?>
             <div
                 class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-0 md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col"
-            >
+            >   
                 <div
                     class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 px-14 lg:px-10 md:px-4 w-auto"
                 >
@@ -130,6 +131,11 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "" && isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
+            <?php else: ?>
+                <div class="h-screen flex justify-center items-center">
+                    <h1 class="text-2xl bg-slate-200 p-6 rounded-lg">No item in cart.</h1>
+                </div>
+            <?php endif; ?>
         </main>
     <!-- Footer Section -->
     <?php require './partials/footer.php' ?>

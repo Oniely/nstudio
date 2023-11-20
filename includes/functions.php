@@ -248,7 +248,19 @@ function cartCount($userID)
     }
 }
 
+function checkCartProduct($userID)
+{
+    require "connection.php";
 
+    $sql = "SELECT * FROM cart_tbl WHERE user_id=$userID";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function showCartProducts($userID)
 {
