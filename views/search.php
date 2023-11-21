@@ -13,8 +13,9 @@ $type_id = "";
 
 if (isset($_GET['key'])) {
     $key = $_GET['key'];
-} elseif (isset($_GET['type'])) {
+} elseif (isset($_GET['type']) && isset($_GET['category'])) {
     $type_id = $_GET['type'];
+    $category = $_GET['category'];
 
     include "../includes/connection.php";
 
@@ -53,7 +54,7 @@ require_once "../includes/functions.php";
                     if (@$key != ""):
                         showSearchProduct($key);
                     elseif (@$type_id != ""):
-                        showSearchProductByType($type_id);
+                        showSearchProductByType($type_id, $category);
                     else:
                         ?>
                         <div class='w-full h-screen flex justify-center items-center'>

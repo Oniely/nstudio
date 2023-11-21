@@ -10,14 +10,6 @@
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
                         <?php showLinkCategory("MEN") ?>
                     </div>
-                    <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="">New Accessories</a>
-                        <a href="">Bags</a>
-                        <a href="">Scarves & Hats</a>
-                        <a href="">Shoes</a>
-                        <a href="">Underwear & Socks</a>
-                        <a href="">All Accessories</a>
-                    </div> -->
                 </div>
             </div>
         </li>
@@ -30,19 +22,6 @@
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
                         <?php showLinkCategory("WOMEN") ?>
                     </div>
-                    <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="">New Accessories</a>
-                        <a href="">Bags</a>
-                        <a href="">The Quilted Bag</a>
-                        <a href="">Shoes & Boots</a>
-                        <a href="">Jewellery</a>
-                        <a href="">Scarves, Hats & Gloves</a>
-                        <a href="">Outdoor Layers</a>
-                        <a href="">Belts</a>
-                        <a href="">Underwear & Lingerie</a>
-                        <a href="">Socks & Tights</a>
-                        <a href="">All Accessories</a>
-                    </div> -->
                 </div>
             </div>
         </li>

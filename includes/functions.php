@@ -476,21 +476,20 @@ function showSearchProduct($keyword)
     }
 }
 
-function showSearchProductByType($type_id) {
+function showSearchProductByType($type_id, $category) {
     require "connection.php";
 
-    $sql = "SELECT
-            product_tbl.product_id,
-            product_tbl.product_name,
-            product_tbl.product_price,
-            product_tbl.product_image,
-            product_tbl.product_new,
-            product_type.type_value
-            FROM
-            product_tbl
-            JOIN product_type ON product_tbl.product_type_id = product_type.id
-            WHERE
-            product_tbl.product_type_id = $type_id";
+    $sql = "SELECT 
+    product_tbl.product_id, 
+    product_tbl.product_name, 
+    product_tbl.product_price, 
+    product_tbl.product_image, 
+    product_tbl.product_new, 
+    product_type.type_value 
+    FROM product_tbl 
+    JOIN product_type ON product_tbl.product_type_id = product_type.id 
+    WHERE product_tbl.product_type_id = $type_id 
+    AND product_tbl.product_category = $category;";
 
     $result = $conn->query($sql);
 
@@ -565,7 +564,14 @@ function colourButtons($product_id)
 {
     require "connection.php";
 
-    $sql = "SELECT product_item.product_id, product_item.colour_id, colour.colour_value, colour.hex_code FROM colour JOIN product_item WHERE colour.id = product_item.colour_id AND product_item.product_id = ?;";
+    $sql = "SELECT product_item.product_id, 
+            product_item.colour_id, 
+            colour.colour_value, 
+            colour.hex_code 
+            FROM colour JOIN product_item 
+            WHERE colour.id = product_item.colour_id 
+            AND product_item.product_id = ?";
+
     $query = $conn->prepare($sql);
     $query->bind_param("i", $product_id);
     $query->execute();
@@ -728,18 +734,19 @@ function showLinkCategory($product_category)
     require "connection.php";
 
     $sql = "SELECT distinct
-            product_type.*
+            product_type.*,
+            product_tbl.product_category category
             FROM
             product_type
             JOIN product_tbl ON product_tbl.product_category = '$product_category'
-            AND product_tbl.product_type_id = product_type.id LIMIT 8";
+            AND product_tbl.product_type_id = product_type.id LIMIT 8;";
 
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             ?>
-            <a href="/nstudio/views/search.php?type=<?= $row['id'] ?>"><?= $row['type_value'] ?></a>
+            <a href="/nstudio/views/search.php?type=<?= $row['id']?>&category='<?= $row['category'] ?>'"><?= $row['type_value'] ?></a>
             <?php
         }
     }
