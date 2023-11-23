@@ -1,43 +1,7 @@
 <nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b border-[#101010]"
     id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
-        <li>
-            <a class="nav_links" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
-
-            <div
-                class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                <div class="w-full h-full m-auto flex">
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <?php showLinkCategory("MEN") ?>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="nav_links" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
-
-            <div
-                class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                <div class="w-full h-full m-auto flex">
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <?php showLinkCategory("WOMEN") ?>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="nav_links" id="NAV_LINK" href="">COLLECTION</a>
-            <div
-                class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                <div class="w-full h-full m-auto flex">
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="">Our mission</a>
-                        <a href="">COS Full Circle</a>
-                        <a href="">Product Care</a>
-                    </div>
-                </div>
-            </div>
-        </li>
+        <?php showNavLinkDesktop() ?>
     </ul>
 
     <div class="hidden md:flex justify-center items-center gap-8">
@@ -51,12 +15,8 @@
         </button>
     </div>
 
-    <div id="burger_menu"
-        class="absolute top-[3rem] left-0 w-full bg-slate-100 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">MEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">WOMEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">COMMUNITY</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="#">SIGN IN</a>
+    <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-slate-100 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
+        <?php showNavLinkMobile() ?>
     </div>
 
     <a href="/nstudio/" class="h-[2.8rem] shrink-0">

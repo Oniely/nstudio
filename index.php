@@ -104,10 +104,10 @@ require_once "./includes/functions.php";
         <!-- Sub Header -->
         <div class="container flex justify-between mt-4 mb-3">
             <h3 class="text-2xl font-[600] font-['Lato']">FOR MEN</h3>
-            <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="">View all</a>
+            <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/men.php">View all</a>
         </div>
         <!-- MEN PRODUCT -->
-        <div class="container flex justify-evenly items-center gap-5 px-3 md:flex-wrap">
+        <div class="container flex md:flex-wrap justify-evenly items-center gap-5 px-3">
             <?php
 
             newMenProduct();
@@ -117,7 +117,7 @@ require_once "./includes/functions.php";
         <!-- Sub Header -->
         <div class="container flex justify-between mt-4 mb-3">
             <h3 class="text-2xl font-[600] font-['Lato']">FOR WOMEN</h3>
-            <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="">View all</a>
+            <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/women.php">View all</a>
         </div>
         <!-- WOMEN PRODUCT -->
         <div class="container flex justify-evenly items-center gap-5 px-3 pb-[3rem] md:flex-wrap">
