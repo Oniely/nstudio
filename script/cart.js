@@ -19,11 +19,10 @@ $(document).ready(() => {
                 },
                 success: (res) => {
                     if (res === "SUCCESS") {
-                        location.reload();
-                    } else if (res === "FAILURE") {
-                        $("#popup-modal").hide();
+                        window.location.replace("/nstudio/views/cart.php");
                     } else {
                         $("#popup-modal").hide();
+                        console.error("Deletion failed:", res);
                     }
                 },
             });

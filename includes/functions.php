@@ -26,22 +26,30 @@ function showAllMenProduct()
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM product_tbl WHERE product_category='MEN'";
+    $sql = "SELECT
+            product_tbl.*,
+            product_item.*
+            FROM
+            product_tbl
+            JOIN product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+            product_tbl.product_category = 'MEN'";
+
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $img = $row['product_image'];
-            $path = "img/product/prod$row[product_id].png";
+            $img = $row['product_image1'];
+            $path = "img/product/prod$row[product_id]$row[id].png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[product_id].png";
+            $product_img = "prod$row[product_id]$row[id].png";
             if ($row['product_new'] != 1):
                 ?>
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -66,7 +74,7 @@ function showAllMenProduct()
                 <div
                     class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -94,22 +102,29 @@ function showAllWomenProduct()
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM product_tbl WHERE product_category='WOMEN'";
+    $sql = "SELECT
+            product_tbl.*,
+            product_item.*
+            FROM
+            product_tbl
+            JOIN product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+            product_tbl.product_category = 'WOMEN'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $img = $row['product_image'];
-            $path = "img/product/prod$row[product_id].png";
+            $img = $row['product_image1'];
+            $path = "img/product/prod$row[product_id]$row[id].png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[product_id].png";
+            $product_img = "prod$row[product_id]$row[id].png";
             if ($row['product_new'] != 1):
                 ?>
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -134,7 +149,7 @@ function showAllWomenProduct()
                 <div
                     class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -161,21 +176,28 @@ function showAllWomenProduct()
 function newMenProduct()
 {
     require "connection.php";
+    $sql = "SELECT
+            product_tbl.*,
+            product_item.*
+            FROM
+            product_tbl
+            JOIN product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+            product_tbl.product_category = 'MEN' AND product_new=1 LIMIT 4";
 
-    $sql = "SELECT * FROM product_tbl WHERE product_category='MEN' AND product_new=1 LIMIT 4";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
-        $img = $row['product_image'];
-        $path = "img/product/prod" . $row['product_id'] . ".png";
+        $img = $row['product_image1'];
+        $path = "img/product/prod" . $row['product_id'] . $row['id'] . ".png";
         blobToImage($img, $path);
 
-        $product_img = "prod" . $row['product_id'] . ".png";
+        $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
         ?>
         <div
             class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
             <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                 <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
             </div>
             <div class="flex flex-col gap-2 px-4 py-3">
@@ -200,20 +222,28 @@ function newWomenProduct()
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM product_tbl WHERE product_category='WOMEN' AND product_new=1 LIMIT 4";
+    $sql = "SELECT
+            product_tbl.*,
+            product_item.*
+            FROM
+            product_tbl
+            JOIN product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+            product_tbl.product_category = 'WOMEN' AND product_new=1 LIMIT 4";
+
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
-        $img = $row['product_image'];
-        $path = "img/product/prod" . $row['product_id'] . ".png";
+        $img = $row['product_image1'];
+        $path = "img/product/prod" . $row['product_id'] . $row['id'] . ".png";
         blobToImage($img, $path);
 
-        $product_img = "prod" . $row['product_id'] . ".png";
+        $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
         ?>
         <div
             class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
             <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                 <img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" />
             </div>
             <div class="flex flex-col gap-2 px-4 py-3">
@@ -299,7 +329,7 @@ function showCartProducts($userID)
                     class="flex justify-between items-start gap-5 w-[min(100%,20rem)]"
                 >
                     <div class="w-32 h-40 shrink-0">
-                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]'" ?>" alt="product">
+                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>" alt="product">
                             <img class="max-w-full h-full object-cover aspect-square object-top" src="<?= "/nstudio/img/product/" . $row['product_item_id'] . "_image1.png" ?>" alt="product">
                         </a>
                     </div>

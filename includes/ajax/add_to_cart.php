@@ -44,7 +44,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
             }
         }
     } else {
-        return;
+        echo "Invalid";
     }
 } else {
     echo "Action is not recognized.";

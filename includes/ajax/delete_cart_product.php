@@ -17,6 +17,8 @@ if (isset($_POST['action']) && $_POST['action'] === "delete_product") {
 
         if ($query->affected_rows > 0) {
             echo "SUCCESS";
+        } else {
+            echo "FAILURE";
         }
     } else {
         echo "FAILURE";

@@ -26,7 +26,7 @@
             </div>
         </li>
         <li>
-            <a class="nav_links" id="NAV_LINK" href="">COMMUNITY</a>
+            <a class="nav_links" id="NAV_LINK" href="">COLLECTION</a>
             <div
                 class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
@@ -98,7 +98,7 @@
         </li>
         <!-- Cart -->
         <li>
-            <a class="relative" href="/nstudio/views/cart.php?id=<?= @$_SESSION['id'] ?>">
+            <a class="relative" href="/nstudio/views/cart.php">
                 <img class="max-w-full h-[1.3rem]" src="/nstudio/img/shopbag.svg" alt="" />
                 <span id="cartNumber"
                     class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">

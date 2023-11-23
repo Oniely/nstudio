@@ -5,7 +5,7 @@ require_once '../includes/session.php';
 require_once "../includes/connection.php";
 require_once "../includes/functions.php";
 
-if (isset($_SESSION["id"]) && $_SESSION["id"] !== "" && isset($_GET['id'])) {
+if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
 } else {
     header('location: /nstudio/login.php');

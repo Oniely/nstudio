@@ -24,6 +24,7 @@ $(document).ready(() => {
                 size: $("input[name='size']:checked").val()
             },
             success: (res) => {
+                if (res === "Invalid") return window.location.replace('/nstudio/login.php');
                 $("#cartNumber").text(res);
                 console.log(res);
             },
