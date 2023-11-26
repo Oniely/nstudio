@@ -25,12 +25,12 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     <!-- Main -->
     <main class="min-h-screen">
         <div class="container max-w-full min-h-screen py-[4rem] px-[4rem] flex flex-row md:flex-col-reverse">
-            <div class="flex flex-col items-center w-fit p-4">
-                <form action="" class="flex flex-col w-[40rem]">
+            <form action="/nstudio/includes/payment.php" method="POST" class="flex flex-col items-center w-fit p-4">
+                <div class="flex flex-col w-[40rem]">
                     <div class="flex flex-col">
                         <h1 class="text-3xl font-medium">Contact</h1>
                         <div class="relative z-0 w-full mb-5 mt-5 group">
-                            <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <input name="email" type="email" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                         </div>
 
@@ -38,7 +38,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                             <h1 class="text-3xl font-medium">Delivery</h1>
 
                             <div class="relative z-0 w-full mb-5 mt-5 group">
-                                <select type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" ">
+                                <select name="country" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
                                     <option value="Philippines" selected>
                                         Philippines
                                     </option>
@@ -48,33 +48,33 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 
                             <div class="flex flex-row gap-8">
                                 <div class="relative z-0 w-full mb-5 mt-3 group">
-                                    <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input name="fname" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Name</label>
                                 </div>
                                 <div class="relative z-0 w-full mb-5 mt-3 group">
-                                    <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input name="lname" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last Name</label>
                                 </div>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group">
-                                <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <input name="street_name" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address / Street Name</label>
                             </div>
 
                             <div class="flex flex-row gap-8">
                                 <div class="relative z-0 w-full mb-5 mt-3 group">
-                                    <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input name="pcode" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Postal code</label>
                                 </div>
                                 <div class="relative z-0 w-full mb-5 mt-3 group">
-                                    <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input name="city" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">City</label>
                                 </div>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group">
-                                <select type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                                <select name="province" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
                                     <option value="" selected disabled hidden>- Select your province -</option>
                                     <option value="ABRA">Abra</option>
                                     <option value="AGUSAN-DEL-NORTE">
@@ -253,24 +253,23 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group">
-                                <input type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <input name="contact_number" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-0 group">
-                                <input type="checkbox" name="save" id="save" />
-                                <label for="save">Save this information for next
-                                    time</label>
+                                <input type="checkbox" name="save" id="save" required />
+                                <label for="save">Save this information for next time</label>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <div class="flex flex-col w-[40rem] mt-5">
                     <h1 class="text-2xl font-medium">Shipping Method</h1>
                     <div class="flex justify-between items-center border px-4 py-4 mt-3 rounded-md">
                         <span>Standard</span>
-                        <span class="before:content['₱_']">140.00</span>
+                        <span class="before:content['₱_']">120.00</span>
                     </div>
                 </div>
 
@@ -278,20 +277,23 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <h1 class="text-2xl font-medium">Payment</h1>
                     <span>All transaction are secure and encrypted.</span>
                     <div>
-                        <input type="radio" />
+                        <input name="payment_method" type="radio" value="CASH ON DELIVERY" required />
                         <label for="">Cash On Delivery</label>
                     </div>
                 </div>
 
                 <div class="flex flex-col w-[40rem] mt-5">
-                    <button class="bg-[#101010] text-white py-4 cursor-pointer">
-                        Pay Now
-                    </button>
+                    <input type="submit" name="pay" class="bg-[#101010] text-white py-4 cursor-pointer text-center" value="Pay Now">
                 </div>
-            </div>
+            </form>
 
             <div class="container max-w-full flex flex-col gap-3">
-                <?php $subtotal = showCheckOutProducts($userID) ?>
+                <?php
+
+                $subtotal = showCheckOutProducts($userID);
+                $_SESSION['total'] = $subtotal + 120;
+
+                ?>
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-row justify-between">
                         <span>Subtotal</span>
@@ -299,11 +301,11 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Shipping</span>
-                        <span class="before:content-['₱_']">140.00</span>
+                        <span class="before:content-['₱_']">120.00</span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Total</span>
-                        <span class="before:content-['₱_']"><?php echo $subtotal + 140 ?></span>
+                        <span class="before:content-['₱_']"><?php echo $subtotal + 120 ?></span>
                     </div>
                 </div>
 
