@@ -343,7 +343,9 @@ function showCheckOutProducts($userID) {
 
     if ($result && $result->num_rows > 0) {
         $subtotal = 0;
+        $product_items = [];
         while($row = $result->fetch_assoc()) {
+            $product_items += [$row['product_item_id'] => ["quantity" => $row['cart_quantity'], "price" => $row['price']]];
             ?>
             <div
                 class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2"
@@ -372,6 +374,7 @@ function showCheckOutProducts($userID) {
             <?php
             $subtotal += $row['price'] * $row['cart_quantity'];
         }
+        $_SESSION['product_items'] = $product_items;
         return $subtotal;
     }
 
@@ -943,3 +946,7 @@ function showLinkCategory($product_category)
         }
     }
 }
+
+/* 
+ * 
+ */
