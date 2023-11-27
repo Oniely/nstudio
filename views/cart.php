@@ -35,7 +35,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <div class="text-2xl text-gray-600 self-start md:pl-6">
                         <?php $cartCount = cartCount($userID) ?>
                         <h1
-                            class="font-[Averia] relative after:content-['(<?= $cartCount ?>)'] after:absolute after:top-[-3px] after:text-sm"
+                            class="relative after:content-['(<?= $cartCount ?>)'] after:absolute after:top-[-3px] after:text-sm"
                         >
                             Your Bag
                         </h1>
@@ -88,7 +88,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     class="flex flex-col gap-5 w-[25rem] md:w-full md:px-10 pt-4"
                 >
                     <div class="text-2xl text-gray-600">
-                        <h1 class="font-[Averia]">Order Summary</h1>
+                        <h1>Order Summary</h1>
                     </div>
                     <div
                         class="flex flex-col gap-2 font-[Lato] text-sm text-gray-600"

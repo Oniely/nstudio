@@ -89,7 +89,7 @@
                         id="user-dropdown">
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <a href="/nstudio/views/dashboard.php"
+                                <a href="/nstudio/views/dashboard/dashboard.php"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                             </li>
                             <li>
