@@ -57,9 +57,9 @@ if (isset($_GET['id'])) {
                 for ($i = 0; $i < count($blobDataArray); $i++) {
                     blobToImage($blobDataArray[$i], $outputPathsArray[$i]);
                 }
-                ?>
+?>
 
-                <?php
+            <?php
             }
         } else {
             $error = "Product is out of Stock.";
@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
             }
             ?>
 
-            <?php
+<?php
         } else {
             $error = "Product is out of Stock.";
         }
@@ -131,15 +131,12 @@ if (isset($_GET['id'])) {
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="w-full h-full p-5">
-        <?php if (@$result && @$result->num_rows > 0): ?>
+        <?php if (@$result && @$result->num_rows > 0) : ?>
             <div class="w-full h-full flex justify-start pt-[3rem]  gap-20">
                 <div class="w-[10rem] flex flex-col">
-                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image1.png" ?>"
-                        alt="">
-                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image2.png" ?>"
-                        alt="">
-                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image3.png" ?>"
-                        alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image2.png" ?>" alt="">
+                    <img class="w-[10rem] cursor-pointer hoverProduct" src="<?= "../img/product/{$id}_image3.png" ?>" alt="">
                 </div>
                 <div class="w-full h-screen">
                     <img class="w-[20rem]" id="showProduct" src="<?= "../img/product/{$id}_image1.png" ?>" alt="">
@@ -151,19 +148,19 @@ if (isset($_GET['id'])) {
                     </h1>
                     <form action="/nstudio/views/product.php/?id=<?= $_SESSION['product_id'] ?>" id="productForm">
                         <!-- Show Colours Dropdown Button -->
+                        <!-- Make it button type like at the product display buttom -->
                         <?php showProductColours($_SESSION['product_id'], $colour_id); ?>
                         <div class="flex justify-center items-center w-max gap-3">
                             <!-- Show Sizes Radio Button Group -->
                             <?php showProductSizes($_SESSION['product_id'], $colour_id); ?>
                         </div>
-                        <button type="submit" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer"
-                            name="addToCartBtn" id="addToCartBtn">
+                        <button type="submit" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer" name="addToCartBtn" id="addToCartBtn">
                             Add to Cart
                         </button>
                     </form>
                 </div>
             </div>
-        <?php else: ?>
+        <?php else : ?>
             <div class="w-full h-screen flex justify-center items-center">
                 <h1 class='text-2xl bg-slate-200 p-8 rounded-lg'>Product is out of stock.</h1>
             </div>

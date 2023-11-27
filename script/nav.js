@@ -53,15 +53,13 @@ $(document).on("click", (e) => {
 });
 
 $('#burger').on('click', () => {
-    const isOpen = $('.line1').hasClass('open');
+    $('#burger_menu').toggleClass('open');
 
-    if (isOpen) {
-        $('.line1, .line3').removeClass('open');
-        $('.line2').removeClass('hide');
-        $('#burger_menu').removeClass('show');
+    if ($('#burger_menu').hasClass('open')) {
+        $('#burger_image').attr('src', '/nstudio/img/x.svg');
+        $('#burger_image').css('height', '1.3rem');
     } else {
-        $('.line1, .line3').addClass('open');
-        $('.line2').addClass('hide');
-        $('#burger_menu').addClass('show');
+        $('#burger_image').attr('src', '/nstudio/img/burger.svg');
+        $('#burger_image').css('height', '1.8rem');
     }
 });
