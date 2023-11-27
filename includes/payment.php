@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     $payment_method = $_POST['payment_method'];
 
     // Logic
-    $sql = "INSERT INTO address VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
     $query = $conn->prepare($sql);
     $query->bind_param("ssssssss", $fname, $lname, $street_name, $pcode, $city, $province, $country, $contact_number);
     $query->execute();
@@ -34,7 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
 
     if (isset($_POST['save'])) {
         if ($query->affected_rows == 1) {
-            $userAddSql = "INSERT INTO user_address (user_id, address_id, is_default) VALUES (?, ?, DEFAULT)";
+            $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
+            $updateQuery = $conn->prepare($updateSql);
+            $updateQuery->bind_param("i", $userID);
+            $updateQuery->execute();
+
+            $userAddSql = "INSERT INTO user_address (user_id, address_id, is_default) VALUES (?, ?, 1)";
             $userAddQuery = $conn->prepare($userAddSql);
 
             $userAddQuery->bind_param("ii", $userID, $addressID);
@@ -42,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
         }
     }
     $pending = "PENDING";
-    $shopSql = "INSERT INTO shop_order VALUES (DEFAULT, ?, DEFAULT, ?, ?, ?, ?)";
+    $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, ?, ?, ?, ?)";
     $shopQuery = $conn->prepare($shopSql);
     $shopQuery->bind_param("isids", $userID, $payment_method, $addressID, $_SESSION['total'], $pending);
     $shopQuery->execute();
@@ -51,11 +56,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
         $orderID = $conn->insert_id;
 
         foreach ($_SESSION["product_items"] as $id => $product) {
-            $orderSql = "INSERT INTO order_line VALUES (DEFAULT, ?, ?, ?, ?)";
+            $orderSql = "INSERT INTO order_line_tbl VALUES (DEFAULT, ?, ?, ?, ?)";
             $orderQuery = $conn->prepare($orderSql);
             $orderQuery->bind_param("iiid", $id, $orderID, $product['quantity'], $product['price']);
             $orderQuery->execute();
+
+            if ($orderQuery->affected_rows == 1) {
+                $productSql = "UPDATE product_item SET quantity = quantity - ? WHERE id = ?";
+                $productQuery = $conn->prepare($productSql);
+                $productQuery->bind_param("ii", $product['quantity'], $id);
+                $productQuery->execute();
+            }
         }
+
+        $deleteCartSql = "DELETE FROM cart_tbl WHERE user_id = ?";
+        $deleteCartQuery = $conn->prepare($deleteCartSql);
+        $deleteCartQuery->bind_param("i", $userID);
+        $deleteCartQuery->execute();
 
         unset($_SESSION["product_items"]);
         echo "<script>alert('Order has been placed!')</script>";
