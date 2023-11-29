@@ -32,7 +32,11 @@ require_once "./includes/auth.php";
                     $passw = $_POST['password'];
 
                     if (loginAuth($username, $passw)) {
-                        header('location: index.php');
+                        if (updateUserStatus($_SESSION['id'], true)){
+                            header('location: index.php');
+                        } else {
+                            echo "<span class='err'>Something went wrong.</span>";
+                        }
                     } else {
                         echo "<span class='err'>Credentials Incorrect.</span>";
                     }

@@ -24,8 +24,12 @@ $(document).ready(() => {
                 size: $("input[name='size']:checked").val()
             },
             success: (res) => {
-                if (res === "Invalid") return window.location.replace('/nstudio/login.php');
+                if (res === "NOT LOGGED IN") return window.location.replace('/nstudio/login.php');
+                if (res === "OUT OF STOCK") return alert("Sorry, this product is out of stock.");
+                if (res === "FULL STOCK") return alert("You have already added the maximum amount of this product to your cart.");
+
                 $("#cartNumber").text(res);
+                alert("Item added to cart");
                 console.log(res);
             },
         });

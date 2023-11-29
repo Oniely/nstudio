@@ -12,4 +12,17 @@ $(document).ready(function () {
             $("#addressModal").toggleClass('hidden flex');
         }
     });
+
+    $('.editBtn').on('click', function(e) {
+        const target = e.currentTarget;
+        let userDetails = target.siblings('#userDetails');
+
+        console.log(userDetails)
+
+        $.ajax({
+            url: "../includes/ajax/edit_address.php",
+            type: "GET",
+            data: {  }
+        })
+    });
 });

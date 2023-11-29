@@ -41,6 +41,7 @@ if (isset($_GET['id'])) {
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $_SESSION['product_id'] = $row['product_id'];
+                $_SESSION['product_item_id'] = $row['id'];
                 $_SESSION["{$row['product_id']}item_id"] = $row['id'];
                 $_SESSION['size_id'] = $row['size_id'];
                 $id = $row['id'];
@@ -57,58 +58,7 @@ if (isset($_GET['id'])) {
                 for ($i = 0; $i < count($blobDataArray); $i++) {
                     blobToImage($blobDataArray[$i], $outputPathsArray[$i]);
                 }
-?>
-
-            <?php
             }
-        } else {
-            $error = "Product is out of Stock.";
-        }
-    } else {
-        $colour_id = "0";
-
-        $sql = "SELECT
-    product_item.id,
-    product_item.product_id,
-    product_item.size_id,
-    product_item.colour_id,
-    product_tbl.product_name name,
-    product_item.product_image1 item_img1,
-    product_item.product_image2 item_img2,
-    product_item.product_image3 item_img3,
-    product_tbl.product_price price
-    FROM
-    product_item
-    JOIN product_tbl ON product_item.product_id = product_tbl.product_id
-    JOIN size ON product_item.size_id = size.id
-    JOIN colour ON product_item.colour_id = colour.id
-    WHERE
-    product_item.product_id = $product_id AND product_item.colour_id";
-
-        $result = $conn->query($sql);
-
-        if ($result && $result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $_SESSION['product_id'] = $row['product_id'];
-            $_SESSION["{$row['product_id']}item_id"] = $row['id'];
-            $_SESSION['size_id'] = $row['size_id'];
-            $id = $row['id'];
-            $name = $row['name'];
-            $price = $row['price'];
-            $directory = "../img/product";
-            $outputPathsArray = array(
-                $directory . '/' . $id . '_image1.png',
-                $directory . '/' . $id . '_image2.png',
-                $directory . '/' . $id . '_image3.png'
-            );
-
-            $blobDataArray = array($row['item_img1'], $row['item_img2'], $row['item_img3']);
-            for ($i = 0; $i < count($blobDataArray); $i++) {
-                blobToImage($blobDataArray[$i], $outputPathsArray[$i]);
-            }
-            ?>
-
-<?php
         } else {
             $error = "Product is out of Stock.";
         }
@@ -146,7 +96,7 @@ if (isset($_GET['id'])) {
                     <h1>
                         <?= $price ?>
                     </h1>
-                    <form action="/nstudio/views/product.php/?id=<?= $_SESSION['product_id'] ?>" id="productForm">
+                    <form action="/nstudio/views/product.php/?id=<?= $_SESSION['product_item_id'] ?>" id="productForm">
                         <!-- Show Colours Dropdown Button -->
                         <!-- Make it button type like at the product display buttom -->
                         <?php showProductColours($_SESSION['product_id'], $colour_id); ?>
@@ -157,6 +107,7 @@ if (isset($_GET['id'])) {
                         <button type="submit" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer" name="addToCartBtn" id="addToCartBtn">
                             Add to Cart
                         </button>
+                        <a class="p-2 px-5 bg-[#101010] text-white" href="<?= "checkout.php?item=$_SESSION[product_item_id]" ?>">Buy Now</a>
                     </form>
                 </div>
             </div>

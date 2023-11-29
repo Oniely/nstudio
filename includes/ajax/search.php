@@ -28,5 +28,5 @@ if (isset($_GET["keywords"])) {
             }
         }
     }
-    echo json_encode($suggestions);
+    echo json_encode(array_unique($suggestions));
 }
