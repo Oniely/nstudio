@@ -21,9 +21,11 @@ function blobToImage($blobData, $outputPath)
         return false;
     }
 }
+
 /* 
  * Show All Men Product
  */
+
 function showAllMenProduct()
 {
     require "connection.php";
@@ -45,10 +47,10 @@ function showAllMenProduct()
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "img/product/prod$row[product_id]$row[id].png";
+            $path = "img/product/prod$row[id].png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[product_id]$row[id].png";
+            $product_img = "prod$row[id].png";
             if ($row['product_new'] != 1) :
 ?>
 
@@ -125,10 +127,10 @@ function showAllWomenProduct()
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "img/product/prod$row[product_id]$row[id].png";
+            $path = "img/product/prod$row[id].png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[product_id]$row[id].png";
+            $product_img = "prod$row[id].png";
             if ($row['product_new'] != 1) :
             ?>
 
@@ -505,7 +507,18 @@ function showSearchProduct($keyword)
 
     $key = "%$keyword%";
 
-    $sql = "SELECT * FROM product_tbl WHERE keywords LIKE ?";
+    $sql = "SELECT
+                product_tbl.*,
+                product_item.*
+            FROM
+                product_tbl
+            JOIN
+                product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+                product_tbl.keywords LIKE ?
+            GROUP BY
+                product_tbl.product_id, product_item.colour_id";
+
     $query = $conn->prepare($sql);
     $query->bind_param('s', $key);
     $query->execute();
@@ -513,17 +526,19 @@ function showSearchProduct($keyword)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $img = $row['product_image'];
-            $path = "../img/product/prod$row[product_id].png";
+            $img = $row['product_image1'];
+            $path = "../img/product/prod$row[id].png";
             blobToImage($img, $path);
+
             $product_id = $row['product_id'];
-            $product_img = "prod$row[product_id].png";
+            $product_img = "prod$row[id].png";
+
             if ($row['product_new'] != 1) :
         ?>
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -547,7 +562,7 @@ function showSearchProduct($keyword)
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -585,33 +600,38 @@ function showSearchProductByType($type_id, $category)
 {
     require "connection.php";
 
-    $sql = "SELECT 
-    product_tbl.product_id, 
-    product_tbl.product_name, 
-    product_tbl.product_price, 
-    product_tbl.product_image, 
-    product_tbl.product_new, 
-    product_type.type_value 
-    FROM product_tbl 
-    JOIN product_type ON product_tbl.product_type_id = product_type.id 
-    WHERE product_tbl.product_type_id = $type_id 
-    AND product_tbl.product_category = $category";
+    $sql = "SELECT
+                product_tbl.*,
+                product_item.*
+            FROM
+                product_tbl
+            JOIN
+                product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+                product_tbl.product_type_id = ? AND product_tbl.product_category = ?
+            GROUP BY
+                product_tbl.product_id, product_item.colour_id";
 
-    $result = $conn->query($sql);
+    $query = $conn->prepare($sql);
+    $query->bind_param("is", $type_id, $category);
+    $query->execute();
+    $result = $query->get_result();
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $img = $row['product_image'];
-            $path = "../img/product/prod$row[product_id].png";
+            $img = $row['product_image1'];
+            $path = "../img/product/prod$row[id].png";
+
             blobToImage($img, $path);
             $product_id = $row['product_id'];
-            $product_img = "prod$row[product_id].png";
+            $product_img = "prod$row[id].png";
+
             if ($row['product_new'] != 1) :
         ?>
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -635,7 +655,7 @@ function showSearchProductByType($type_id, $category)
 
                 <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=0" ?>">→ VIEW</a>
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
@@ -814,82 +834,6 @@ function areSizesAvailable($product_id, $color_id, $size_value)
 }
 
 /* 
- * Show Navbar Links Dynamically on Mobile
- */
-
-function showNavLinkMobile()
-{
-    require "connection.php";
-
-    $sql = "SELECT distinct
-            category_name
-            FROM
-            category_tbl
-            ORDER BY
-            CASE
-                WHEN category_name = 'MEN' THEN 1
-                WHEN category_name = 'WOMEN' THEN 2
-                WHEN category_name = 'COLLECTION' THEN 3
-                ELSE 4
-            END";
-
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-        ?>
-            <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="<?= "/nstudio/$row[category_name].php" ?>">
-                <?= $row['category_name'] ?>
-            </a>
-        <?php
-        }
-    }
-}
-
-/* 
- * Show Navbar Links Dynamically on Desktop
- */
-
-function showNavLinkDesktop()
-{
-    require "connection.php";
-
-    $sql = "SELECT distinct
-            category_name
-            FROM
-            category_tbl
-            ORDER BY
-            CASE
-                WHEN category_name = 'MEN' THEN 1
-                WHEN category_name = 'WOMEN' THEN 2
-                WHEN category_name = 'COLLECTION' THEN 3
-                ELSE 4
-            END";
-
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-        ?>
-            <li>
-                <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/$row[category_name].php" ?>">
-                    <?= $row['category_name'] ?>
-                </a>
-
-                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                    <div class="w-full h-full m-auto flex">
-                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                            <?php showLinkCategory($row['category_name']) ?>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        <?php
-        }
-    }
-}
-
-/* 
  * Showing Extra Link Category via Hover Navbar
  */
 
@@ -910,7 +854,9 @@ function showLinkCategory($product_category)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
         ?>
-            <a class="capitalize" href="/nstudio/views/search.php?type=<?= $row['id'] ?>&category='<?= $row['category'] ?>'"><?= $row['type_value'] ?></a>
+            <a class="  capitalize" href="<?= "/nstudio/views/search.php?type=$row[id]&category=$row[category]" ?>">
+                <?= $row['type_value'] ?>
+            </a>
 <?php
         }
     }

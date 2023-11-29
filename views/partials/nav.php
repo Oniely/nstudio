@@ -1,6 +1,38 @@
-<nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b border-[#101010]" id="main_navbar">
+<nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b-[0.1px] border-[#101010]" id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
-        <?php showNavLinkDesktop() ?>
+        <li>
+            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/men.php" ?>">MEN</a>
+
+            <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                <div class="w-full h-full m-auto flex">
+                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <?php showLinkCategory("MEN") ?>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/women.php" ?>">WOMEN</a>
+
+            <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                <div class="w-full h-full m-auto flex">
+                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <?php showLinkCategory("WOMEN") ?>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/community.php" ?>">COMMUNITY</a>
+
+            <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                <div class="w-full h-full m-auto flex">
+                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <?php showLinkCategory("COMMUNITY") ?>
+                    </div>
+                </div>
+            </div>
+        </li>
     </ul>
 
     <div class="hidden md:flex justify-center items-center gap-8 shrink-0">
@@ -67,11 +99,11 @@
         </li>
         <!-- Account -->
         <?php if (!isset($_SESSION["id"]) || $_SESSION["id"] === "") : ?>
-            <li>
+            <li class="grid place-items-center">
                 <a class="text-[14px] hover:text-[#707070]" href="/nstudio/login.php">SIGN IN</a>
             </li>
         <?php else : ?>
-            <li>
+            <li class="grid place-items-center">
                 <button type="button" class="relative" id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
 

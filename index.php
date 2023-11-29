@@ -21,7 +21,7 @@ require_once "./includes/functions.php";
     <!-- Navbar -->
     <?php require_once './views/partials/nav.php' ?>
     <!-- Hero Section -->
-    <main class="main_hero w-full h-[110vh] flex justify-center items-center pt-[6rem] overflow-hidden"
+    <main class="main_hero w-full h-[110vh] flex justify-center items-center pt-[5rem] overflow-hidden"
         id="hero_section">
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
