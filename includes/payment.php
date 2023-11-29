@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
         $deleteCartQuery->execute();
 
         unset($_SESSION["product_items"]);
-        echo "<script>alert('Order has been placed!')</script>";
+        header('location: /nstudio/views/dashboard/dashboard.php');
     } else {
         echo "<script>alert('Failed to place the order.')</script>";
     }
