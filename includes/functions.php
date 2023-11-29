@@ -535,7 +535,6 @@ function showSearchProduct($keyword)
 
             if ($row['product_new'] != 1) :
         ?>
-
                 <div class="w-[276px] h-auto mb-[1.5rem] relative">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
