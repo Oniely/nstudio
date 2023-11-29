@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
         }
     }
     $pending = "PENDING";
-    $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, ?, ?, ?, ?)";
+    $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?)";
     $shopQuery = $conn->prepare($shopSql);
     $shopQuery->bind_param("isids", $userID, $payment_method, $addressID, $_SESSION['total'], $pending);
     $shopQuery->execute();
@@ -67,6 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
                 $productQuery->bind_param("ii", $product['quantity'], $id);
                 $productQuery->execute();
             }
+        }
+
+        if (isset($_SESSION['BUYNOW']) && $_SESSION['BUYNOW'] == true) {
+            unset($_SESSION["BUYNOW"]);
+            unset($_SESSION["product_items"]);
+            header('location: /nstudio/views/dashboard/dashboard.php');
+            exit();
         }
 
         $deleteCartSql = "DELETE FROM cart_tbl WHERE user_id = ?";

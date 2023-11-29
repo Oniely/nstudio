@@ -1,5 +1,11 @@
 <?php
 
+function dd($value)
+{
+    var_dump("<pre>$value</pre>");
+    die(1);
+}
+
 function hash_password($passw)
 {
     $options = [
@@ -46,12 +52,27 @@ function signUpAuth($fname, $lname, $contact, $username, $password)
 
     $hashedPass = hash_password($password);
 
-    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT)";
     $query = $conn->prepare($insertSql);
     $query->bind_param("sssss", $fname, $lname, $contact, $username, $hashedPass);
     $query->execute();
 
     if ($query->affected_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function updateUserStatus($userID, $status)
+{
+    require "connection.php";
+
+    $status = intval($status);
+    $sql = "UPDATE site_user SET status= $status WHERE id='$userID'";
+    $result = $conn->query($sql);
+
+    if ($result) {
         return true;
     } else {
         return false;
