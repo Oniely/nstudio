@@ -16,12 +16,18 @@ function hash_password($passw)
     return $hashedPassword;
 }
 
-function loginAuth($username, $password)
+function loginAuth($usernameEmail, $password)
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM site_user WHERE username='$username'";
-    $result = $conn->query($sql);
+
+    if (filter_var($usernameEmail, FILTER_VALIDATE_EMAIL)) {
+        $sql = "SELECT * FROM site_user WHERE email='$usernameEmail'";
+        $result = $conn->query($sql);
+    } else {
+        $sql = "SELECT * FROM site_user WHERE username='$usernameEmail'";
+        $result = $conn->query($sql);
+    }
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -39,11 +45,11 @@ function loginAuth($username, $password)
     }
 }
 
-function signUpAuth($fname, $lname, $contact, $username, $password)
+function signUpAuth($fname, $lname, $contact, $username, $email, $password)
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM site_user WHERE username='$username'";
+    $sql = "SELECT * FROM site_user WHERE username='$username' AND email='$email'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
@@ -52,9 +58,9 @@ function signUpAuth($fname, $lname, $contact, $username, $password)
 
     $hashedPass = hash_password($password);
 
-    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT)";
+    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)";
     $query = $conn->prepare($insertSql);
-    $query->bind_param("sssss", $fname, $lname, $contact, $username, $hashedPass);
+    $query->bind_param("ssssss", $fname, $lname, $contact, $username, $email, $hashedPass);
     $query->execute();
 
     if ($query->affected_rows > 0) {
@@ -69,10 +75,24 @@ function updateUserStatus($userID, $status)
     require "connection.php";
 
     $status = intval($status);
-    $sql = "UPDATE site_user SET status= $status WHERE id='$userID'";
+    $sql = "UPDATE site_user SET status=$status, token=DEFAULT WHERE id='$userID'";
     $result = $conn->query($sql);
 
     if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkEmail($email)
+{
+    require "connection.php";
+
+    $sql = "SELECT * FROM site_user WHERE email='$email'";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
         return true;
     } else {
         return false;
