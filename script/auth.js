@@ -21,8 +21,9 @@ function containsOnlyNumbers(inputString) {
     return /^[0-9]+$/.test(inputString);
 }
 
+var isValid = true;
+
 $('#signUpForm').on('submit', (e) => {
-    let isValid = true;
 
     let fnameValue = $('#fname').val().trim();
     if (fnameValue.length < 2) {
@@ -59,6 +60,17 @@ $('#signUpForm').on('submit', (e) => {
         $('#username').siblings('span').hide();
     }
 
+    let emailValue = $('#email').val().trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(emailValue);
+
+    if (!isValidEmail) {
+        $('#email').siblings('span').text("Email must be valid.").show();
+        isValid = false;
+    } else {
+        $('#email').siblings('span').hide();
+    }
+
     let passwordValue = $('#password').val().trim();
     let confirmPass = $('#confirmPass').val().trim();
 
@@ -80,3 +92,41 @@ $('#signUpForm').on('submit', (e) => {
         e.preventDefault();
     }
 });
+
+$('#username').on('input', function () {
+    $.ajax({
+        url: "./includes/ajax/user_auth.php",
+        type: "GET",
+        data: {
+            username: $(this).val().trim()
+        },
+        success: function (res) {
+            if (res == "true") {
+                $('#username').siblings('span').text("Username already taken.").show();
+                isValid = false;
+            } else {
+                $('#username').siblings('span').hide();
+                isValid = true;
+            }
+        }
+    })
+})
+
+$('#email').on('input', function () {
+    $.ajax({
+        url: "./includes/ajax/user_auth.php",
+        type: "GET",
+        data: {
+            email: $(this).val().trim()
+        },
+        success: function (res) {
+            if (res == "true") {
+                $('#email').siblings('span').text("Email already taken.").show();
+                isValid = false;
+            } else {
+                $('#email').siblings('span').hide();
+                isValid = true;
+            }
+        }
+    })
+})
