@@ -18,7 +18,7 @@ function generateOTP($length = 6)
 }
 
 function sendEmail($email)
-{   
+{
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();
@@ -36,7 +36,7 @@ function sendEmail($email)
     $otp = generateOTP();
 
     $mail->Subject = 'Password Recovery';
-    $mail->Body = '<h1>OTP: ' . $otp . '</h1>';
+    $mail->Body = "<h1>OTP: <span class='underline'>$otp</span></h1>";
 
     if ($mail->send()) {
         echo "Successfully Sent to your email.";

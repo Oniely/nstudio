@@ -35,7 +35,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                 $cart_quantity = $row['quantity'];
                 $item_quantity = $row['item_quantity'];
 
-                if (!$cart_quantity >= $item_quantity) {
+                if ($cart_quantity != $item_quantity) {
                     $sql = "UPDATE cart_tbl SET quantity=quantity + 1 WHERE user_id=$userID AND product_item_id=$product_item_id";
                     $result = $conn->query($sql);
 
@@ -49,7 +49,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                             return;
                         }
                     } else {
-                        echo "FULL STOCK";
+                        return;
                     }
                 } else {
                     echo "FULL STOCK";
