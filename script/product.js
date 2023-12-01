@@ -20,10 +20,11 @@ $(document).ready(() => {
             type: "POST",
             data: {
                 action: "add_to_cart",
-                colour: $("#colourOption").val(),
-                size: $("input[name='size']:checked").val()
+                colour: $('#colourContainer').attr("data-colour-id"),
+                size: $("input[name='size']:checked").attr("data-size-id"),
             },
             success: (res) => {
+                if (res === "ERROR") return alert("An error occurred while adding the item to your cart. Please try again later.");
                 if (res === "NOT LOGGED IN") return window.location.replace('/nstudio/login.php');
                 if (res === "OUT OF STOCK") return alert("Sorry, this product is out of stock.");
                 if (res === "FULL STOCK") return alert("You have already added the maximum amount of this product to your cart.");

@@ -802,40 +802,37 @@ function colourButtons($product_id)
  * Show Product Colours in View Product Page
  */
 
-function showProductColours($product_id, $selectedColour)
-{
-    require 'connection.php';
 
-    $sql = "SELECT DISTINCT product_item.product_id, product_item.colour_id, colour.colour_value, colour.hex_code FROM colour JOIN product_item WHERE product_item.product_id = ? AND colour.id = product_item.colour_id";
+function showProductColours($product_id)
+{
+    require "connection.php";
+
+    $sql = "SELECT DISTINCT product_item.product_id, 
+            product_item.colour_id, 
+            colour.colour_value, 
+            colour.hex_code 
+            FROM colour JOIN product_item 
+            WHERE colour.id = product_item.colour_id 
+            AND product_item.product_id = ?";
+
     $query = $conn->prepare($sql);
-    $query->bind_param('i', $product_id);
+    $query->bind_param("i", $product_id);
     $query->execute();
+
     $result = $query->get_result();
 
     if ($result && $result->num_rows > 0) {
     ?>
-        <select name="colourOption" id="colourOption">
+        <div class="flex gap-2">
             <?php
             while ($row = $result->fetch_assoc()) {
-                if ($row['colour_id'] == $selectedColour) :
             ?>
-                    <option data-link='<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>' data-colour-value="<?= $row['colour_value'] ?>" value="<?= $row['colour_id'] ?>" selected>
-                        <?= $row['colour_value'] ?>
-                    </option>
-                <?php
-                else :
-                ?>
-                    <option data-link='<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>' data-colour-value="<?= $row['colour_value'] ?>" value="<?= $row['colour_id'] ?>">
-                        <?= $row['colour_value'] ?>
-                    </option>
+                <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>" class="w-7 h-5 border bg-[<?= $row['hex_code'] ?>]"></a>
             <?php
-                endif;
             }
             ?>
-        </select>
+        </div>
     <?php
-    } else {
-        echo "Item Stock is out of Sizes.";
     }
 }
 
@@ -856,7 +853,7 @@ function showProductSizes($product_id, $colour_id)
             <?php
             while ($row = $result->fetch_assoc()) {
             ?>
-                <input data-size-value="<?= $row['size_value'] ?>" class="hidden" type="radio" id="<?= $row['size_value'] ?>" name="size" <?= areSizesAvailable($product_id, $colour_id, $row['size_value']) ? "" : 'disabled' ?> />
+                <input data-size-id="<?= $row['id'] ?>" class="hidden" type="radio" id="<?= $row['size_value'] ?>" name="size" <?= areSizesAvailable($product_id, $colour_id, $row['size_value']) ? "" : 'disabled' ?> />
                 <label class="w-8 h-8 border border-black rounded-full grid place-items-center" for="<?= $row['size_value'] ?>">
                     <span>
                         <?= $row['size_value'] ?>

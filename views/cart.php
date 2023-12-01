@@ -26,7 +26,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     <!-- Main Section -->
     <main class="min-h-screen">
         <?php if (checkCartProduct($userID)) : ?>
-            <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-0 md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col">
+            <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-0 md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
                 <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 px-14 lg:px-10 md:px-4 w-auto">
                     <div class="text-2xl text-[#505050] font-semibold self-start md:pl-6">
                         <?php $cartCount = cartCount($userID) ?>
@@ -104,6 +104,9 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
             </div>
         <?php endif; ?>
     </main>
+    <div class="min-h-screen">
+
+    </div>
     <!-- Footer Section -->
     <?php require './partials/footer.php' ?>
 </body>
