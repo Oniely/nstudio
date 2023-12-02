@@ -1,7 +1,7 @@
 <nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b-[0.1px] border-[#101010]" id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/men.php" ?>">MEN</a>
+            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
 
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
@@ -12,7 +12,7 @@
             </div>
         </li>
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/women.php" ?>">WOMEN</a>
+            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
 
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
@@ -23,7 +23,7 @@
             </div>
         </li>
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="<?= "/nstudio/community.php" ?>">COMMUNITY</a>
+            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/community.php">COMMUNITY</a>
 
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
@@ -45,10 +45,10 @@
     </div>
 
     <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-slate-100 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="<?= "/nstudio/$row[category_name].php" ?>">HOME</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="<?= "/nstudio/$row[category_name].php" ?>">MEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="<?= "/nstudio/$row[category_name].php" ?>">WOMEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="<?= "/nstudio/$row[category_name].php" ?>">COMMUNITY</a>
+        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/index.php">HOME</a>
+        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/men.php">MEN</a>
+        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/women.php" ?>">WOMEN</a>
+        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/community.php" ?>">COMMUNITY</a>
     </div>
 
     <a href="/nstudio/" class="h-[2.8rem] shrink-0">
@@ -115,10 +115,10 @@
                                 <a href="/nstudio/views/dashboard/dashboard.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                <a href="/nstudio/views/dashboard/profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                <a href="/nstudio/views/dashboard/address.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Address</a>
                             </li>
                             <li>
                                 <a href="/nstudio/includes/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign

@@ -23,6 +23,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
         $userID = $_SESSION['id'];
         if (isset($_SESSION['product_id']) && isset($_POST['size']) && isset($_POST['colour'])) {
             $product_id = $_SESSION['product_id'];
+            $colour_id = $_POST['colour'];
             $size_id = $_POST['size'];
 
             $sql = "SELECT
@@ -35,11 +36,15 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                     JOIN product_item ON cart_tbl.product_item_id = product_item.id
                     WHERE
                     cart_tbl.user_id = $userID
-                    AND product_item.product_id = $product_id
-                    AND product_item.size_id = $size_id
-                    AND product_item.colour_id = $colour_id";
+                    AND product_item.product_id = ?
+                    AND product_item.size_id = ?
+                    AND product_item.colour_id = ?";
 
-            $result = $conn->query($sql);
+            $query = $conn->prepare($sql);
+            $query->bind_param("iii", $product_id, $size_id, $colour_id);
+            $query->execute();
+
+            $result = $query->get_result();
 
             if ($result && $result->num_rows > 0) {
                 $row = $result->fetch_assoc();

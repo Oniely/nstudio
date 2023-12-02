@@ -15,6 +15,9 @@ $(document).ready(() => {
             return false;
         }
 
+        console.log($('#colourContainer').attr("data-colour-id"));
+        console.log($('input[name="size"]:checked').attr("data-size-id"));
+
         $.ajax({
             url: "../includes/ajax/add_to_cart.php",
             type: "POST",

@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full py-6 pb-16">
+    <main class="min-h-screen h-full py-6">
         <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard</p>

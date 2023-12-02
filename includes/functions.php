@@ -914,10 +914,10 @@ function showLinkCategory($product_category)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
         ?>
-            <a class="  capitalize" href="<?= "/nstudio/views/search.php?type=$row[id]&category=$row[category]" ?>">
+            <a class="capitalize" href="<?= "/nstudio/views/search.php?type=$row[id]&category=$row[category]" ?>">
                 <?= $row['type_value'] ?>
             </a>
-<?php
+        <?php
         }
     }
 }
@@ -958,5 +958,52 @@ function addressDefault($userID)
         return $row['address_id'];
     } else {
         return;
+    }
+}
+
+function showUserAddress($userID)
+{
+    require "connection.php";
+
+    $sql = "SELECT * FROM user_address WHERE user_id = ?";
+    $query = $conn->prepare($sql);
+    $query->bind_param('i', $userID);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) :
+            $sql = "SELECT * FROM address_tbl WHERE id = $row[address_id]";
+            $address = $conn->query($sql);
+            $address = $address->fetch_assoc();
+        ?>
+            <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] p-4 text-[15px] gap-3">
+                <div class="font-semibold flex justify-between">
+                    <h1><?= $row['is_default'] == 1 ? 'Default' : "" ?></h1>
+                    <button class="deleteBtn p-1" data-address-id="<?= $address['id'] ?>">
+                        <img class="w-4 h-4 object-cover" src="/nstudio/img/x.svg" alt="x">
+                    </button>
+                </div>
+                <div class="font-medium leading-[1.2rem]">
+                    <p class="overflow-hidden text-ellipsis"><?= $address['fname'] . " " . $address['lname'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['email'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['street_name'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['city'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['postal_code'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['country'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['contact_number'] ?></p>
+                </div>
+                <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
+                    <button class="editBtn w-full h-full py-1 font-medium" data-update-id="" data-address-id="<?= $address['id'] ?>">Edit</button>
+                </div>
+            </div>
+        <?php
+        endwhile;
+    } else {
+        ?>
+        <div class="h-[6rem] flex items-center">
+            <h1>No added address yet.</h1>
+        </div>
+<?php
     }
 }

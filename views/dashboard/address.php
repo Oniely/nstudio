@@ -1,14 +1,95 @@
 <?php
 
-require_once '../../includes/session.php';
-require_once '../../includes/connection.php';
-require_once '../../includes/functions.php';
+require '../../includes/session.php';
+require '../../includes/connection.php';
+require '../../includes/functions.php';
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 } else {
     header("Location: /nstudio/login.php");
 }
+
+$provinceOptions = array(
+    'Abra',
+    'Agusan del Norte',
+    'Agusan del Sur',
+    'Aklan',
+    'Albay',
+    'Antique',
+    'Apayao',
+    'Aurora',
+    'Basilan',
+    'Bataan',
+    'Batanes',
+    'Batangas',
+    'Benguet',
+    'Biliran',
+    'Bohol',
+    'Bukidnon',
+    'Bulacan',
+    'Cagayan',
+    'Camarines Norte',
+    'Camarines Sur',
+    'Camiguin',
+    'Capiz',
+    'Catanduanes',
+    'Cavite',
+    'Cebu',
+    'Cotabato',
+    'Davao del Sur',
+    'Davao Oriental',
+    'Dinagat Islands',
+    'Eastern Samar',
+    'Guimaras',
+    'Ifugao',
+    'Ilocos Norte',
+    'Ilocos Sur',
+    'Iloilo',
+    'Isabela',
+    'Kalinga',
+    'La Union',
+    'Laguna',
+    'Lanao del Norte',
+    'Lanao del Sur',
+    'Leyte',
+    'Maguindanao',
+    'Marinduque',
+    'Masbate',
+    'Metro Manila',
+    'Misamis Occidental',
+    'Misamis Oriental',
+    'Mountain Province',
+    'Negros Occidental',
+    'Negros Oriental',
+    'Northern Samar',
+    'Nueva Ecija',
+    'Nueva Vizcaya',
+    'Occidental Mindoro',
+    'Oriental Mindoro',
+    'Palawan',
+    'Pampanga',
+    'Pangasinan',
+    'Quezon',
+    'Quirino',
+    'Rizal',
+    'Romblon',
+    'Sarangani',
+    'Siquijor',
+    'Sorsogon',
+    'South Cotabato',
+    'Southern Leyte',
+    'Sultan Kudarat',
+    'Sulu',
+    'Surigao del Norte',
+    'Surigao del Sur',
+    'Tarlac',
+    'Tawi-Tawi',
+    'Zambales',
+    'Zamboanga del Norte',
+    'Zamboanga del Sur',
+    'Zamboanga Sibugay'
+);
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +102,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full py-6 pb-16">
+    <main class="min-h-screen h-full py-6">
         <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Address</p>
@@ -44,60 +125,21 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
                             <!-- Address Container -->
                             <div class="w-full h-full flex flex-wrap justify-start items-center gap-10">
                                 <!-- Addresses -->
-                                <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] p-4 text-ellipsis text-[15px] gap-3">
-                                    <div class="font-semibold flex justify-between">
-                                        <h1>Default</h1>
-                                        <button class="p-1">
-                                            <img class="w-4 h-4 object-cover" src="../../img/x.svg" alt="x">
-                                        </button>
-                                    </div>
-                                    <div class="font-medium leading-[1.1rem]">
-                                        <p>Japheth Gonzales</p>
-                                        <p>Wardell UI</p>
-                                        <p>Socorro Woods, Barangay One</p>
-                                        <p>Socorro Woods, Barangay One</p>
-                                        <p>City of Kabankalan 6111</p>
-                                        <p>Croatia</p>
-                                        <p>09123456789</p>
-                                    </div>
-                                    <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
-                                        <button class="editBtn w-full h-full py-1 font-medium">Edit</button>
-                                    </div>
-                                </div>
-                                <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] p-4 text-ellipsis text-[15px] gap-3">
-                                    <div class="font-semibold flex justify-between">
-                                        <h1>Default</h1>
-                                        <button class="p-1">
-                                            <img class="w-4 h-4 object-cover" src="../../img/x.svg" alt="x">
-                                        </button>
-                                    </div>
-                                    <div id="userDetails" class="font-medium leading-[1.1rem]">
-                                        <p>Japheth Gonzales</p>
-                                        <p>Wardell UI</p>
-                                        <p>Socorro Woods, Barangay One</p>
-                                        <p>Socorro Woods, Barangay One</p>
-                                        <p>City of Kabankalan 6111</p>
-                                        <p>Croatia</p>
-                                        <p>09123456789</p>
-                                    </div>
-                                    <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
-                                        <button class="editBtn w-full h-full py-1 font-medium">Edit</button>
-                                    </div>
-                                </div>
+                                <?php showUserAddress($userID) ?>
                             </div>
 
                             <button id="addressBtn" class="uppercase w-[19rem] py-3 px-14 text-center bg-[#101010] text-white hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">ADD NEW ADDRESS</button>
                             <!-- Main modal -->
-                            <div id="addressModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden absolute container top-[3rem] right-0 left-0 z-50 justify-center items-center inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div id="addressModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-scroll overflow-x-hidden absolute container top-[3rem] right-0 left-0 z-50 justify-center items-center inset-0 h-[calc(100%-2rem)] max-h-full">
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                     <!-- Modal content -->
-                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <div class="relative rounded-lg shadow bg-gray-700">
                                         <!-- Modal header -->
-                                        <div class="flex items-center justify-between md:p-4 p-5 border-b rounded-t dark:border-gray-600">
-                                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        <div class="flex items-center justify-between md:p-4 p-5 rounded-t border-gray-600">
+                                            <h3 class="text-lg font-semibold text-white">
                                                 Add New Address
                                             </h3>
-                                            <button type="button" id="closeAddressBtn" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                                            <button type="button" id="closeAddressBtn" class="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-toggle="crud-modal">
                                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                                 </svg>
@@ -105,225 +147,59 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
                                             </button>
                                         </div>
                                         <!-- Modal body -->
-                                        <form class="p-4 md:p-5">
+                                        <form class="p-4 md:p-5" method="POST" action="/nstudio/includes/add_address.php">
                                             <div class="grid gap-4 mb-4 grid-cols-2">
                                                 <div class="col-span-2">
-                                                    <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
-                                                    <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <label for="country" class="block mb-2 text-sm font-medium text-white">Country</label>
+                                                    <select id="country" name="country" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
                                                         <option selected>Philippines</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                                                    <input type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your First Name" required="">
+                                                    <label for="fname" class="block mb-2 text-sm font-medium text-white">First Name</label>
+                                                    <input type="text" name="fname" id="fname" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your First Name" required="">
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                                                    <input type="text" name="lname" id="lname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your Last Name" required="">
+                                                    <label for="lname" class="block mb-2 text-sm font-medium text-white">Last Name</label>
+                                                    <input type="text" name="lname" id="lname" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your Last Name" required="">
                                                 </div>
                                                 <div class="col-span-2">
-                                                    <label for="street_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                                    <input type="text" name="street_name" id="street_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Address / Street Name" required="">
+                                                    <label for="email" class="block mb-2 text-sm font-medium text-white">Email</label>
+                                                    <input type="email" name="email" id="email" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Email Address" required="">
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label for="street_name" class="block mb-2 text-sm font-medium text-white">Address</label>
+                                                    <input type="text" name="street_name" id="street_name" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Address / Street Name" required="">
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="pcode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Postal Code</label>
-                                                    <input type="text" name="pcode" id="pcode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Postal Code / Zip Code" required="">
+                                                    <label for="pcode" class="block mb-2 text-sm font-medium text-white">Postal Code</label>
+                                                    <input type="text" name="pcode" id="pcode" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Postal Code / Zip Code" required="">
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                                                    <input type="text" name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your City" required="">
+                                                    <label for="city" class="block mb-2 text-sm font-medium text-white">City</label>
+                                                    <input type="text" name="city" id="city" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your City" required="">
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
-                                                    <select id="province" name="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        <option class="text-gray-400" value="" selected disabled hidden>Select your province</option>
-                                                        <option value="ABRA">Abra</option>
-                                                        <option value="AGUSAN-DEL-NORTE">
-                                                            Agusan del Norte
-                                                        </option>
-                                                        <option value="AGUSAN-DEL-SUR">
-                                                            Agusan del Sur
-                                                        </option>
-                                                        <option value="AKLAN">Aklan</option>
-                                                        <option value="ALBAY">Albay</option>
-                                                        <option value="ANTIQUE">Antique</option>
-                                                        <option value="APAYAO">Apayao</option>
-                                                        <option value="AURORA">Aurora</option>
-                                                        <option value="BASILAN">Basilan</option>
-                                                        <option value="BATAAN">Bataan</option>
-                                                        <option value="BATANES">Batanes</option>
-                                                        <option value="BATANGAS">
-                                                            Batangas
-                                                        </option>
-                                                        <option value="BENGUET">Benguet</option>
-                                                        <option value="BILIRAN">Biliran</option>
-                                                        <option value="BOHOL">Bohol</option>
-                                                        <option value="BUKIDNON">
-                                                            Bukidnon
-                                                        </option>
-                                                        <option value="BULACAN">Bulacan</option>
-                                                        <option value="CAGAYAN">Cagayan</option>
-                                                        <option value="CAMARINES-NORTE">
-                                                            Camarines Norte
-                                                        </option>
-                                                        <option value="CAMARINES-SUR">
-                                                            Camarines Sur
-                                                        </option>
-                                                        <option value="CAMIGUIN">
-                                                            Camiguin
-                                                        </option>
-                                                        <option value="CAPIZ">Capiz</option>
-                                                        <option value="CATANDUANES">
-                                                            Catanduanes
-                                                        </option>
-                                                        <option value="CAVITE">Cavite</option>
-                                                        <option value="CEBU">Cebu</option>
-                                                        <option value="COTABATO">
-                                                            Cotabato
-                                                        </option>
-                                                        <option value="DAVAO-DE-L-SUR">
-                                                            Davao del Sur
-                                                        </option>
-                                                        <option value="DAVAO-ORIENTAL">
-                                                            Davao Oriental
-                                                        </option>
-                                                        <option value="DINAGAT-ISLANDS">
-                                                            Dinagat Islands
-                                                        </option>
-                                                        <option value="EASTERN-SAMAR">
-                                                            Eastern Samar
-                                                        </option>
-                                                        <option value="GUIMARAS">
-                                                            Guimaras
-                                                        </option>
-                                                        <option value="IFUGAO">Ifugao</option>
-                                                        <option value="ILOCOS-NORTE">
-                                                            Ilocos Norte
-                                                        </option>
-                                                        <option value="ILOCOS-SUR">
-                                                            Ilocos Sur
-                                                        </option>
-                                                        <option value="ILOILO">Iloilo</option>
-                                                        <option value="ISABELA">Isabela</option>
-                                                        <option value="KALINGA">Kalinga</option>
-                                                        <option value="LA-UNION">
-                                                            La Union
-                                                        </option>
-                                                        <option value="LAGUNA">Laguna</option>
-                                                        <option value="LANAO-DEL-NORTE">
-                                                            Lanao del Norte
-                                                        </option>
-                                                        <option value="LANAO-DEL-SUR">
-                                                            Lanao del Sur
-                                                        </option>
-                                                        <option value="LEYTE">Leyte</option>
-                                                        <option value="MAGUINDANAO">
-                                                            Maguindanao
-                                                        </option>
-                                                        <option value="MARINDUQUE">
-                                                            Marinduque
-                                                        </option>
-                                                        <option value="MASBATE">Masbate</option>
-                                                        <option value="METRO-MANILA">
-                                                            Metro Manila
-                                                        </option>
-                                                        <option value="MISAMIS-OCCIDENTAL">
-                                                            Misamis Occidental
-                                                        </option>
-                                                        <option value="MISAMIS-ORIENTAL">
-                                                            Misamis Oriental
-                                                        </option>
-                                                        <option value="MOUNTAIN-PROVINCE">
-                                                            Mountain Province
-                                                        </option>
-                                                        <option value="NEGROS-OCCIDENTAL">
-                                                            Negros Occidental
-                                                        </option>
-                                                        <option value="NEGROS-ORIENTAL">
-                                                            Negros Oriental
-                                                        </option>
-                                                        <option value="NORTHERN-SAMAR">
-                                                            Northern Samar
-                                                        </option>
-                                                        <option value="NUEVA-ECIJA">
-                                                            Nueva Ecija
-                                                        </option>
-                                                        <option value="NUEVA-VIZCAYA">
-                                                            Nueva Vizcaya
-                                                        </option>
-                                                        <option value="OCCIDENTAL-MINDORO">
-                                                            Occidental Mindoro
-                                                        </option>
-                                                        <option value="ORIENTAL-MINDORO">
-                                                            Oriental Mindoro
-                                                        </option>
-                                                        <option value="PALAWAN">Palawan</option>
-                                                        <option value="PAMPANGA">
-                                                            Pampanga
-                                                        </option>
-                                                        <option value="PANGASINAN">
-                                                            Pangasinan
-                                                        </option>
-                                                        <option value="QUEZON">Quezon</option>
-                                                        <option value="QUIRINO">Quirino</option>
-                                                        <option value="RIZAL">Rizal</option>
-                                                        <option value="ROMBLON">Romblon</option>
-                                                        <option value="SARANGANI">
-                                                            Sarangani
-                                                        </option>
-                                                        <option value="SIQUIJOR">
-                                                            Siquijor
-                                                        </option>
-                                                        <option value="SORSOGON">
-                                                            Sorsogon
-                                                        </option>
-                                                        <option value="SOUTH-COTABATO">
-                                                            South Cotabato
-                                                        </option>
-                                                        <option value="SOUTHERN-LEYTE">
-                                                            Southern Leyte
-                                                        </option>
-                                                        <option value="SULTAN-KUDARAT">
-                                                            Sultan Kudarat
-                                                        </option>
-                                                        <option value="SULU">Sulu</option>
-                                                        <option value="SURIGAO-DEL-NORTE">
-                                                            Surigao del Norte
-                                                        </option>
-                                                        <option value="SURIGAO-DEL-SUR">
-                                                            Surigao del Sur
-                                                        </option>
-                                                        <option value="TARLAC">Tarlac</option>
-                                                        <option value="TAWI-TAWI">
-                                                            Tawi-Tawi
-                                                        </option>
-                                                        <option value="ZAMBALES">
-                                                            Zambales
-                                                        </option>
-                                                        <option value="ZAMBOANGA-DEL-NORTE">
-                                                            Zamboanga del Norte
-                                                        </option>
-                                                        <option value="ZAMBOANGA-DEL-SUR">
-                                                            Zamboanga del Sur
-                                                        </option>
-                                                        <option value="ZAMBOANGA-SIBUGAY">
-                                                            Zamboanga Sibugay
-                                                        </option>
+                                                    <label for="province" class="block mb-2 text-sm font-medium text-white">Province</label>
+                                                    <select name="province" id="province" class="g-gray-50 border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" required>
+                                                        <option value="" disabled hidden selected>Select Your Province</option>
+                                                        <?php foreach ($provinceOptions as $pOption) : ?>
+                                                            <option class="text-white" value="<?= $pOption ?>">
+                                                                <?php echo $pOption; ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-span-1">
-                                                    <label for="contact_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Number</label>
-                                                    <input type="text" name="contact_number" id="contact_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your Last Name" required="">
+                                                    <label for="contact_number" class="block mb-2 text-sm font-medium text-white">Contact Number</label>
+                                                    <input type="text" name="contact_number" id="contact_number" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your Last Name" required="">
                                                 </div>
                                                 <div class="flex items-center col-span-2">
-                                                    <input id="defaultAddress" name="defaultAddress" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                    <label for="defaultAddress" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Set as default address</label>
+                                                    <input id="defaultAddress" name="defaultAddress" type="checkbox" value="" class="w-4 h-4 text-blue-600 rounded focus:ring-2 bg-gray-700 border-gray-600 ring-offset-gray-800 focus:ring-blue-600 focus:ring-offset-gray-800">
+                                                    <label for="defaultAddress" class="ms-2 text-sm font-medium text-gray-300">Set as default address</label>
                                                 </div>
                                             </div>
                                             <button type="submit" id="addNewAddressBtn" class="text-white inline-flex items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                </svg>
                                                 Add new address
                                             </button>
                                         </form>
@@ -332,7 +208,33 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
                             </div>
                         </div>
                     </div>
-
+                    <!-- Confirm Delete Address Modal -->
+                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="popup-btn" class="hidden" type="button">
+                        Toggle modal
+                    </button>
+                    <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center items-center w-full h-screen max-h-full">
+                        <div class="relative mt-[10rem] mx-auto w-full max-w-md max-h-full">
+                            <div class="relative rounded-lg shadow bg-gray-700">
+                                <button id="closeBtn" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-hide="popup-modal">
+                                    <svg clas s="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="p-6 text-center">
+                                    <svg class="mx-auto mb-4 w-12 h-12 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <h3 class="mb-5 text-lg font-normal text-gray-400">Are you sure you want to delete this address?</h3>
+                                    <button id="confirmBtn" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                        Yes, I'm sure
+                                    </button>
+                                    <button id="cancelBtn" data-modal-hide="popup-modal" type="button" class="focus:ring-4 focus:outline-none rounded-lg border text-sm font-medium px-5 py-2.5 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600">No,
+                                        cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
