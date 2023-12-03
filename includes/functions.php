@@ -994,7 +994,7 @@ function showUserAddress($userID)
                     <p class="overflow-hidden text-ellipsis"><?= $address['contact_number'] ?></p>
                 </div>
                 <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
-                    <button class="editBtn w-full h-full py-1 font-medium" data-update-id="" data-address-id="<?= $address['id'] ?>">Edit</button>
+                    <button class="editBtn w-full h-full py-1 font-medium" data-address-id="<?= $address['id'] ?>">Edit</button>
                 </div>
             </div>
         <?php

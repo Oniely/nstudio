@@ -147,7 +147,7 @@ $provinceOptions = array(
                                             </button>
                                         </div>
                                         <!-- Modal body -->
-                                        <form class="p-4 md:p-5" method="POST" action="/nstudio/includes/add_address.php">
+                                        <form class="p-4 md:p-5" method="POST">
                                             <div class="grid gap-4 mb-4 grid-cols-2">
                                                 <div class="col-span-2">
                                                     <label for="country" class="block mb-2 text-sm font-medium text-white">Country</label>
@@ -199,7 +199,7 @@ $provinceOptions = array(
                                                     <label for="defaultAddress" class="ms-2 text-sm font-medium text-gray-300">Set as default address</label>
                                                 </div>
                                             </div>
-                                            <button type="submit" id="addNewAddressBtn" class="text-white inline-flex items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            <button type="button" id="addNewAddressBtn" class="text-white inline-flex items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                                 Add new address
                                             </button>
                                         </form>
