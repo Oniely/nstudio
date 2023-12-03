@@ -23,6 +23,7 @@ if (checkAddressDefault($userID)) {
 
         $fname = $row['fname'];
         $lname = $row['lname'];
+        $email = $row['email'];
         $street_name = $row['street_name'];
         $pcode = $row['postal_code'];
         $city = $row['city'];
@@ -133,7 +134,7 @@ $provinceOptions = array(
                     <div class="flex flex-col">
                         <h1 class="text-3xl font-medium">Contact</h1>
                         <div class="relative z-0 w-full mb-5 mt-5 group">
-                            <input name="email" type="email" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <input value="<?= @$email ?>" name="email" type="email" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                         </div>
 
@@ -162,7 +163,7 @@ $provinceOptions = array(
 
                             <div class="relative z-0 w-full mb-5 mt-3 group">
                                 <input value="<?= @$street_name ?>" name="street_name" type="text" class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address / Street Name</label>
+                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">(Address/Street Name/Building/House Number, Subdivision/Village, Barangay, City)</label>
                             </div>
 
                             <div class="flex flex-row gap-8">

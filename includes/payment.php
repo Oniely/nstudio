@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     // Data
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
+    $email = $_POST['email'];
     $street_name = $_POST['street_name'];
     $pcode = $_POST['pcode'];
     $city = $_POST['city'];
@@ -25,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     $payment_method = $_POST['payment_method'];
 
     // Logic
-    $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $query = $conn->prepare($sql);
-    $query->bind_param("ssssssss", $fname, $lname, $street_name, $pcode, $city, $province, $country, $contact_number);
+    $query->bind_param("sssssssss", $fname, $lname, $email, $street_name, $pcode, $city, $province, $country, $contact_number);
     $query->execute();
 
     $addressID = $conn->insert_id;

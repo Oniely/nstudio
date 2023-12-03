@@ -111,21 +111,27 @@ button {
     padding: 0.9rem;
 }
 
-input[type="radio"]:checked+label {
+/* input[type="radio"][name="colour"]:checked+label {
+    background: #505050;
+    color: #fff;
+    border: 1px solid red;
+} */
+
+input[type="radio"][name="size"]:checked+label {
     background: #101010;
     color: #fff;
 }
 
-input[type=radio]:disabled+label {
+input[type=radio][name="size"]:disabled+label {
     background: #cfcfcf;
     color: #101010;
 }
 
-input[type=radio]:disabled+label {
+input[type=radio][name="size"]:disabled+label {
     position: relative;
 }
 
-input[type=radio]:disabled+label::after {
+input[type=radio][name="size"]:disabled+label::after {
     content: "/";
     position: absolute;
     top: 50%;

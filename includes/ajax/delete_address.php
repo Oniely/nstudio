@@ -11,13 +11,13 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     header("Location: /nstudio/login.php");
 }
 
-if (isset($_POST['action']) && $_POST['action'] === "delete_product") {
-    if (isset($_POST['item_id'])) {
-        $product_item_id = $_POST['item_id'];
+if (isset($_POST['action']) && $_POST['action'] === "delete_address") {
+    if (isset($_POST['address_id'])) {
+        $addressID = $_POST['address_id'];
 
-        $sql = "DELETE FROM cart_tbl WHERE user_id=? AND product_item_id=?";
+        $sql = "DELETE FROM user_address WHERE user_id=? AND address_id=?";
         $query = $conn->prepare($sql);
-        $query->bind_param('ii', $userID, $product_item_id);
+        $query->bind_param('ii', $userID, $addressID);
         $query->execute();
 
         if ($query->affected_rows > 0) {
@@ -25,7 +25,5 @@ if (isset($_POST['action']) && $_POST['action'] === "delete_product") {
         } else {
             echo "FAILURE";
         }
-    } else {
-        echo "FAILURE";
     }
 }

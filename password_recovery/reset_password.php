@@ -53,10 +53,10 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_id'] == "") {
 
                 ?>
                 <div class="w-full max-w-[18rem] flex flex-col">
-                    <input class="w-full h-full border border-[#505050] px-[10px] py-3" type="text" name="password" id="password" placeholder="Create new password" />
+                    <input class="w-full h-full border border-[#505050] px-[10px] py-3" type="password" name="password" id="password" placeholder="Create new password" />
                 </div>
                 <div class="w-full max-w-[18rem] flex flex-col">
-                    <input class="w-full h-full border border-[#505050] px-[10px] py-3" type="text" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password" />
+                    <input class="w-full h-full border border-[#505050] px-[10px] py-3" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password" />
                 </div>
                 <button type="submit" name="continue" class="w-[18rem] py-3 bg-[#101010] text-white">Continue</button>
             </form>

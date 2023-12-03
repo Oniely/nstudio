@@ -18,7 +18,7 @@ function generateOTP($length = 6)
 }
 
 function sendEmail($email)
-{   
+{
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();
@@ -35,15 +35,29 @@ function sendEmail($email)
 
     $otp = generateOTP();
 
-    $mail->Subject = 'Password Recovery';
-    $mail->Body = '<h1>OTP: ' . $otp . '</h1>';
+    $mail->Subject = 'Nechma Studio Password Recovery OTP';
+    // prettier-ignore
+    $mail->Body = "
+Dear $email,<br><br>
+
+We hope this message finds you well. If you've requested to recover your Nechma Studio account password, we're here to assist you.<br><br>
+
+Your One-Time Password (OTP) for Nechma Studio is: [$otp]<br><br>
+
+Please use this OTP to securely reset your password and regain access to your account. For security reasons, do not share this OTP with anyone.<br><br>
+
+If you didn't initiate this password recovery or have any concerns, please reach out to our support team immediately at <a href='mailto:nechmastudio@gmail.com'>nechmastudio@gmail.com</a>.<br><br>
+
+Thank you for entrusting Nechma Studio with your fashion choices. We're committed to ensuring a seamless and secure experience for our valued customers.<br><br>
+
+Best regards,<br>
+Nechma Studio Team<br>
+<a href='http://www.nechma-studio.com'>www.nechma-studio.com</a>";
 
     if ($mail->send()) {
-        echo "Successfully Sent to your email.";
         $_SESSION['otp'] = $otp;
         return true;
     } else {
-        echo 'Something went wrong.';
         return false;
     }
 }
