@@ -227,9 +227,12 @@ $provinceOptions = array(
 
             <div class="container max-w-full flex flex-col gap-3">
                 <?php
-                if (isset($_GET['item']) && $_GET['item'] != "") {
+                if (isset($_GET['item']) && $_GET['item'] != "" && isset($_GET['colour']) && isset($_GET['size'])) {
                     $item_id = $_GET['item'];
-                    $subtotal = showBuyNowProduct($item_id);
+                    $colour_id = $_GET['colour'];
+                    $size_id = $_GET['size'];
+
+                    $subtotal = showBuyNowProduct($item_id, $colour_id, $size_id);
                 } else {
                     $subtotal = showCheckOutProducts($userID);
                 }

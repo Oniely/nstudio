@@ -98,7 +98,7 @@ if (isset($_GET['id'])) {
                     <h1>
                         <?= $price ?>
                     </h1>
-                    <form action="/nstudio/views/product.php/?id=<?= $_SESSION['product_item_id'] ?>" id="productForm">
+                    <form id="productForm">
                         <!-- Show Product Colours Button -->
                         <div class="flex justify-center items-center w-max my-2" id="colourContainer" data-colour-id="<?= $colour_id ?>">
                             <?php showProductColours($product_id) ?>
@@ -107,10 +107,12 @@ if (isset($_GET['id'])) {
                             <!-- Show Sizes Radio Button Group -->
                             <?php showProductSizes($_SESSION['product_id'], $colour_id); ?>
                         </div>
-                        <button type="submit" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer" name="addToCartBtn" id="addToCartBtn">
-                            Add to Cart
+                        <button type="submit" value="add" class="bg-purple-400 p-2 text-[#101010] text-center cursor-pointer" name="addToCartBtn" id="addToCartBtn">
+                            Add to Bag
                         </button>
-                        <a class="p-2 px-5 bg-[#101010] text-white" href="<?= "checkout.php?item=$_SESSION[product_item_id]" ?>">Buy Now</a>
+                        <button type="submit" value="buy" data-item-id="<?= $_SESSION['product_item_id'] ?>" class="p-2 px-5 bg-[#101010] text-white">
+                            Buy Now
+                        </button>
                     </form>
                 </div>
             </div>

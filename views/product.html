@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NStudio</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/nstudio/styles/style.css" />
+    <link rel="stylesheet" href="/nstudio/styles/navbar.css" />
+
+    <!-- Scripts -->
+    <script src="../script/product.js" defer></script>
+
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d",
+                    },
+                },
+                screens: {
+                    "2xl": { max: "1535px" },
+                    xl: { max: "1280px" },
+                    lg: { max: "1024px" },
+                    md: { max: "768px" },
+                    sm: { max: "640px" },
+                    xs: { max: "440px" },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="min-h-screen">
+    <nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b border-[#101010]" id="main_navbar">
+        <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
+            <li>
+                <a class="nav_links" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
+
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"></div>
+                        <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="">New Accessories</a>
+                            <a href="">Bags</a>
+                            <a href="">Scarves & Hats</a>
+                            <a href="">Shoes</a>
+                            <a href="">Underwear & Socks</a>
+                            <a href="">All Accessories</a>
+                        </div> -->
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="nav_links" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
+
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"></div>
+                        <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="">New Accessories</a>
+                            <a href="">Bags</a>
+                            <a href="">The Quilted Bag</a>
+                            <a href="">Shoes & Boots</a>
+                            <a href="">Jewellery</a>
+                            <a href="">Scarves, Hats & Gloves</a>
+                            <a href="">Outdoor Layers</a>
+                            <a href="">Belts</a>
+                            <a href="">Underwear & Lingerie</a>
+                            <a href="">Socks & Tights</a>
+                            <a href="">All Accessories</a>
+                        </div> -->
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="nav_links" id="NAV_LINK" href="">COMMUNITY</a>
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="">Our mission</a>
+                            <a href="">COS Full Circle</a>
+                            <a href="">Product Care</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <a href="/nstudio/" class="h-[2.8rem] shrink-0">
+            <img class="max-w-full h-full object-contain" src="../img/nechma_logo.svg" alt="logo" />
+        </a>
+
+        <ul class="flex gap-8 shrink-0 items-center">
+            <!-- Search -->
+            <li class="items-center">
+                <button class="md:hidden flex justify-center items-center" id="searchBtn">
+                    <img class="max-w-full h-[1.3rem]" src="../img/search.svg" alt="" />
+                </button>
+
+                <form id="searchForm" action="" method="GET" class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden">
+                    <div class="w-full max-h-full flex flex-col justify-center items-start px-5">
+                        <div class="w-full flex justify-between items-center">
+                            <input class="w-full h-[3.5rem] text-2xl outline-none border-none" id="search" type="text" placeholder="Search" autocomplete="off" />
+
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" id="searchClose">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-col" id="suggestions"></div>
+                    </div>
+                </form>
+            </li>
+            <!-- Cart -->
+            <li>
+                <a class="relative" href="/nstudio/views/cart.php?id=<?= @$_SESSION['id'] ?>">
+                    <img class="max-w-full h-[1.3rem]" src="../img/shopbag.svg" alt="" />
+                    <span id="cartNumber" class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">1</span>
+                </a>
+            </li>
+            <li>
+                <button type="button" class="relative" id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                    <span class="sr-only">Open user menu</span>
+
+                    <img class="w-[1.5rem]" src="../img/profile.svg" alt="" />
+
+                    <div class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                        <ul class="py-2" aria-labelledby="user-menu-button">
+                            <li>
+                                <a href="/nstudio/views/dashboard.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                            </li>
+                            <li>
+                                <a href="/nstudio/includes/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+
+    <main class="min-h-screen">
+        <div class="parent-container container min-h-screen pt-[2rem] pb-[1rem]">
+            <div class="flex items-center font-medium px-[4rem]">
+                <a class="after:content-['_/'] after:mx-2" href="#">HOME</a>
+                <a class="after:content-['_/'] after:mx-2" href="#">MEN</a>
+                <a href="#">VIEW PRODUCT</a>
+            </div>
+
+            <div class="flex items-start pt-[1rem] px-[4rem] relative">
+                <div class="w-[9rem] flex flex-col sticky top-4">
+                    <img class="max-w-full h-[13rem] object-cover cursor-pointer hoverProduct" id="image1" src="../img/product/11_image1.png" alt="img1" draggable="false">
+                    <img class="max-w-full h-[13rem] object-cover cursor-pointer hoverProduct" id="image2" src="../img/product/11_image2.png" alt="img2" draggable="false">
+                    <img class="max-w-full h-[13rem] object-cover cursor-pointer hoverProduct" id="image3" src="../img/product/11_image3.png" alt="img3" draggable="false">
+                </div>
+                <div class="flex flex-col ml-[4rem]">
+                    <img class="max-w-full h-[34rem] object-cover cursor-pointer hoverProduct" id="image1" src="../img/product/11_image1.png" alt="img1" draggable="false">
+                    <img class="max-w-full h-[34rem] object-cover cursor-pointer hoverProduct" id="image1" src="../img/product/11_image1.png" alt="img1" draggable="false">
+                    <img class="max-w-full h-[34rem] object-cover cursor-pointer hoverProduct" id="image1" src="../img/product/11_image1.png" alt="img1" draggable="false">
+                </div>
+                <div class="flex flex-col justify-start items-start gap-6 h-[32.4rem] sticky top-4 ml-[4rem]">
+                    <div class="flex flex-col text-xl">
+                        <h1>PLEATED-PLACKET DRESS SHIRT - REGULAR</h1>
+                        <p class="font-semibold">$199</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-xs tracking-wider">COLOR</p>
+                        <div class="flex gap-[7px] pl-[2px]" draggable="false">
+                            <a href="#">
+                                <div class="w-5 h-4 bg-[#101010] active:border-[3px] active:border-[#cecece] active:border-double border-[3px] border-[#cecece] border-double"></div>
+                            </a>
+                            <a href="#">
+                                <div class="w-5 h-4 bg-[#c8ea89] active:border-[3px] active:border-[#cecece] active:border-double"></div>
+                            </a>
+                            <a href="#">
+                                <div class="w-5 h-4 bg-[#d40000] active:border-[3px] active:border-[#cecece] active:border-double"></div>
+                            </a>
+                            <a href="#">
+                                <div class="w-5 h-4 bg-[#505050] active:border-[3px] active:border-[#cecece] active:border-double"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-xs tracking-wider">SIZES</p>
+                        <div class="flex flex-wrap justify-between pl-[2px] w-[20rem]">
+                            <!-- div for differenciating radio only -->
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s1">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s1">
+                                    <span>XS</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s2">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s2">
+                                    <span>S</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s3">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s3">
+                                    <span>M</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s4">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s4">
+                                    <span>L</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s5">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s5">
+                                    <span>XL</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+                            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                                <input class="hidden peer" type="radio" name="size" id="s6">
+                                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="s6">
+                                    <span>XXL</span>
+                                </label>
+                                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <button class="text-xs font-medium underline cursor-pointer">FIND YOUR SIZE</button>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <div class="w-[20rem] h-[2.6rem]">
+                            <button class="w-full h-full border border-[#101010] text-center text-[16px] uppercase">Add to bag</button>
+                        </div>
+                        <div class="w-[20rem] h-[2.6rem]">
+                            <button class="w-full h-full border border-[#101010] bg-[#101010] text-white text-center text-[16px] uppercase">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="min-h-screen border-2">
+
+    </section>
+
+    <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-8">
+        <hr />
+        <div class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4">
+            <div class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium">
+                <ul class="md:w-full">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Returns & Funds</a></li>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">Payment</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs Privacy</a></li>
+                    <li><a href="#">Notice Cookie</a></li>
+                    <li><a href="#">Notice Cookie Settings</a></li>
+                </ul>
+                <ul class="md:w-full">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Spotify</a></li>
+                </ul>
+            </div>
+            <div class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2">
+                <div class="md:flex md:gap-[5px] text-lg font-semibold leading-5">
+                    <!-- prettier-ignore -->
+                    <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your
+                        first order.</p>
+                </div>
+                <div class="w-[12rem] md:w-full text-center">
+                    <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3">
+                        SUBSCRIBE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

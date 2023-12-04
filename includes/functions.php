@@ -594,7 +594,7 @@ function showCheckOutProducts($userID)
  * Show Buy Now Product for Checkout
  */
 
-function showBuyNowProduct($product_item_id)
+function showBuyNowProduct($product_item_id, $colour_id, $size_id)
 {
     require 'connection.php';
 
@@ -613,7 +613,9 @@ function showBuyNowProduct($product_item_id)
             INNER JOIN colour ON product_item.colour_id = colour.id
             INNER JOIN size ON product_item.size_id = size.id
             WHERE
-            product_item.id = $product_item_id";
+            product_item.product_id = $product_item_id
+            AND product_item.colour_id = $colour_id
+            AND product_item.size_id = $size_id";
 
     $result = $conn->query($sql);
 
@@ -985,13 +987,13 @@ function showUserAddress($userID)
                     </button>
                 </div>
                 <div class="font-medium leading-[1.2rem]">
-                    <p class="overflow-hidden text-ellipsis"><?= $address['fname'] . " " . $address['lname'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['email'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['street_name'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['city'] . ", " .  $address['province'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['postal_code'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['country'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['contact_number'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['fname'] . " " . $address['lname'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['email'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['street_name'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['city'] . ", " .  $address['province'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['postal_code'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['country'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['contact_number'] ?></p>
                 </div>
                 <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
                     <button class="editBtn w-full h-full py-1 font-medium" data-address-id="<?= $address['id'] ?>">Edit</button>
