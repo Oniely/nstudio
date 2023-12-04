@@ -1,7 +1,12 @@
 $(document).ready(function () {
     $("#addressBtn").on("click", function () {
         $("#addressModal").toggleClass("hidden flex");
-        $("#addNewAddressBtn").text("Add New Address");
+
+        $('#addNewAddressBtn').addClass('inline-flex');
+        $('#addNewAddressBtn').removeClass('hidden');
+
+        $('#updateAddressBtn').addClass('hidden');
+        $('#updateAddressBtn').removeClass('inline-flex');
 
         $("#fname").val("");
         $("#lname").val("");
@@ -11,6 +16,9 @@ $(document).ready(function () {
         $("#city").val("");
         $("#province").val("");
         $("#contact_number").val("");
+        $('#defaultAddress').prop('checked', false);
+
+        $('#fname').focus();
     });
 
     $("#closeAddressBtn").on("click", function () {
@@ -25,83 +33,17 @@ $(document).ready(function () {
         }
     });
 
-    $("#addNewAddressBtn").on("click", function () {
-        let fname = $("#fname").val();
-        let lname = $("#lname").val();
-        let email = $("#email").val();
-        let street_name = $("#street_name").val();
-        let pcode = $("#pcode").val();
-        let city = $('#city').val();
-        let province = $("#province").val();
-        let country = $("#country").val();
-        let contact_number = $("#contact_number").val();
-
-        if (fname === "") {
-            alert("First Name is required.");
-            return;
-        } else if (lname === "") {
-            alert("Last Name is required.");
-            return;
-        } else if (email === "") {
-            alert("Email is required.");
-            return;
-        } else if (street_name === "") {
-            alert("Street Name is required.");
-            return;
-        } else if (pcode === "") {
-            alert("Postal Code is required.");
-            return;
-        }
-        else if (city === "") {
-            alert("City is required.");
-            return;
-        }
-        else if (province === "") {
-            alert("Province is required.");
-            return;
-        } else if (country === "") {
-            alert("Country is required.");
-            return;
-        } else if (contact_number === "") {
-            alert("Contact Number is required.");
-            return;
-        } else {
-            console.log([fname, lname, email, street_name, pcode, province, country, contact_number]);
-        }
-
-        $.ajax({
-            url: "/nstudio/includes/ajax/add_address.php",
-            type: "POST",
-            data: {
-                action: "add_address",
-                fname: fname,
-                lname: lname,
-                email: email,
-                street_name: street_name,
-                pcode: pcode,
-                city: city,
-                province: province,
-                country: country,
-                contact_number: contact_number,
-            },
-            success: (res) => {
-                if (res === "ERROR")
-                    return alert(
-                        "Something went wrong, Please Try Again Later."
-                    );
-
-                if (res === "SUCCESS") {
-                    location.reload();
-                }
-            },
-            error: (err) => {
-                console.error(err);
-            }
-        });
-    });
+    let addressID;
 
     $(".editBtn").on("click", function (e) {
-        const addressID = $(e.currentTarget).attr("data-address-id");
+        addressID = $(e.currentTarget).attr("data-address-id");
+        $('#updateAddressBtn').attr('data-address-id', addressID);
+
+        $('#addNewAddressBtn').removeClass('inline-flex');
+        $('#addNewAddressBtn').addClass('hidden');
+
+        $('#updateAddressBtn').removeClass('hidden');
+        $('#updateAddressBtn').addClass('inline-flex');
 
         $.ajax({
             url: "/nstudio/includes/ajax/edit_address.php",
@@ -130,53 +72,134 @@ $(document).ready(function () {
                 if (address.update) {
                     $("#addNewAddressBtn").text("Update Address");
                 }
-
-                let fname = $("#fname").val();
-                let lname = $("#lname").val();
-                let email = $("#email").val();
-                let street_name = $("#street_name").val();
-                let pcode = $("#pcode").val();
-                let city = $('#city').val();
-                let province = $("#province").val();
-                let country = $("#country").val();
-                let contact_number = $("#contact_number").val();
-
                 $('#fname').focus();
-
-                $('#addNewAddressBtn').on('click', function () {
-                    $.ajax({
-                        url: "/nstudio/includes/ajax/update_address.php",
-                        type: "POST",
-                        data: {
-                            action: "update_address",
-                            address_id: addressID,
-                            fname: fname,
-                            lname: lname,
-                            email: email,
-                            street_name: street_name,
-                            pcode: pcode,
-                            city: city,
-                            province: province,
-                            country: country,
-                            contact_number: contact_number,
-                        },
-                        success: (res) => {
-                            if (res === "ERROR")
-                                return alert(
-                                    "Something went wrong, Please Try Again Later."
-                                );
-
-                            if (res === "SUCCESS") {
-                                location.reload();
-                            }
-                        },
-                    });
-                });
             },
             error: (err) => {
                 console.error(err);
             },
         });
+    });
+});
+
+$('#updateAddressBtn').on('click', function () {
+    let addressID = $('#updateAddressBtn').attr('data-address-id');
+
+    let fname = $("#fname").val();
+    let lname = $("#lname").val();
+    let email = $("#email").val();
+    let street_name = $("#street_name").val();
+    let pcode = $("#pcode").val();
+    let city = $('#city').val();
+    let province = $("#province").val();
+    let country = $("#country").val();
+    let contact_number = $("#contact_number").val();
+
+    console.log([addressID, fname, lname, email, street_name, pcode, city, province, country, contact_number]);
+
+    $.ajax({
+        url: "/nstudio/includes/ajax/update_address.php",
+        type: "POST",
+        data: {
+            action: "update_address",
+            address_id: addressID,
+            fname: fname,
+            lname: lname,
+            email: email,
+            street_name: street_name,
+            pcode: pcode,
+            city: city,
+            province: province,
+            country: country,
+            contact_number: contact_number,
+            default: $("#defaultAddress").is(":checked") ? 1 : 0,
+        },
+        success: (res) => {
+            if (res === "ERROR")
+                return alert(
+                    "Something went wrong, Please Try Again Later."
+                );
+            if (res === "UPDATE FAILED") return alert('Update Failed');
+
+            if (res === "SUCCESS") {
+                location.reload();
+            }
+        },
+    });
+});
+
+$("#addNewAddressBtn").on("click", function (e) {
+    let fname = $("#fname").val();
+    let lname = $("#lname").val();
+    let email = $("#email").val();
+    let street_name = $("#street_name").val();
+    let pcode = $("#pcode").val();
+    let city = $('#city').val();
+    let province = $("#province").val();
+    let country = $("#country").val();
+    let contact_number = $("#contact_number").val();
+
+    console.log([fname, lname, email, street_name, pcode, city, province, country, contact_number]);
+
+    if (fname === "") {
+        alert("First Name is required.");
+        return;
+    } else if (lname === "") {
+        alert("Last Name is required.");
+        return;
+    } else if (email === "") {
+        alert("Email is required.");
+        return;
+    } else if (street_name === "") {
+        alert("Street Name is required.");
+        return;
+    } else if (pcode === "") {
+        alert("Postal Code is required.");
+        return;
+    }
+    else if (city === "") {
+        alert("City is required.");
+        return;
+    }
+    else if (province === "") {
+        alert("Province is required.");
+        return;
+    } else if (country === "") {
+        alert("Country is required.");
+        return;
+    } else if (contact_number === "") {
+        alert("Contact Number is required.");
+        return;
+    }
+
+    $.ajax({
+        url: "/nstudio/includes/ajax/add_address.php",
+        type: "POST",
+        data: {
+            action: "add_address",
+            fname: fname,
+            lname: lname,
+            email: email,
+            street_name: street_name,
+            pcode: pcode,
+            city: city,
+            province: province,
+            country: country,
+            contact_number: contact_number,
+            default: $("#defaultAddress").is(":checked") ? 1 : 0,
+        },
+        success: (res) => {
+            if (res === "ERROR")
+                return alert(
+                    "Something went wrong, Please Try Again Later."
+                );
+
+            if (res === "SUCCESS") {
+                location.reload();
+            }
+        },
+        error: (err) => {
+            console.error(err);
+        }
     });
 });
 

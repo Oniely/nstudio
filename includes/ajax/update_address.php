@@ -21,16 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $province = $_POST['province'];
         $country = $_POST['country'];
         $contact_number = $_POST['contact_number'];
+        $default = $_POST['default'];
 
-        $sql = "UPDATE address_tbl SET fname = ?, lname = ?, email = ?, street_name = ?, pcode = ?, city = ?, province = ?, contact_number = ? WHERE address_id = ?";
+        $sql = "UPDATE address_tbl SET fname = ?, lname = ?, email = ?, street_name = ?, postal_code = ?, city = ?, province = ?, contact_number = ? WHERE id = ?";
         $query = $conn->prepare($sql);
         $query->bind_param("ssssssssi", $fname, $lname, $email, $street_name, $pcode, $city, $province, $contact_number, $addressID);
         $query->execute();
 
         if ($query->affected_rows == 1) {
-            if (isset($_POST['defaultAddress'])) {
-                $default = 1;
-
+            if ($default == 1) {
                 $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
                 $updateQuery = $conn->prepare($updateSql);
                 $updateQuery->bind_param("i", $userID);
@@ -39,20 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $default = 0;
             }
 
-            $sql = "UPDATE user_address SET is_default = ? WHERE user_id = ? AND address_id = ?";
-            $query = $conn->prepare($sql);
-            $query->bind_param("iii", $default, $userID, $addressID);
-            $query->execute();
+            $userAddressSql = "UPDATE user_address SET is_default = $default WHERE user_id = $userID AND address_id = $addressID";
+            $result = $conn->query($userAddressSql);
 
-            if ($query->affected_rows == 1) {
+            if ($result) {
                 echo "SUCCESS";
                 return;
             } else {
-                echo "ERROR";
+                echo "UPDATE FAILED";
                 return;
             }
         } else {
-            echo "ERROR";
+            echo "UPDATE FAILED";
             return;
         }
     } else {

@@ -199,8 +199,11 @@ $provinceOptions = array(
                                                     <label for="defaultAddress" class="ms-2 text-sm font-medium text-gray-300">Set as default address</label>
                                                 </div>
                                             </div>
-                                            <button type="button" id="addNewAddressBtn" class="text-white inline-flex items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            <button type="button" id="addNewAddressBtn" class="inline-flex text-white items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                                 Add new address
+                                            </button>
+                                            <button type="button" id="updateAddressBtn" class="hidden text-white items-center bg-[#1010106b] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                                Update Address
                                             </button>
                                         </form>
                                     </div>

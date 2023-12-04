@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $province = $_POST['province'];
     $country = $_POST['country'];
     $contact_number = $_POST['contact_number'];
+    $default = $_POST['default'];
 
     if (isset($_POST['action']) && $_POST['action'] == "add_address") {
         $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -30,9 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $addressID = $conn->insert_id;
 
         if ($query->affected_rows == 1) {
-            if (isset($_POST['defaultAddress'])) {
-                $default = 1;
-
+            if ($default == 1) {
                 $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
                 $updateQuery = $conn->prepare($updateSql);
                 $updateQuery->bind_param("i", $userID);

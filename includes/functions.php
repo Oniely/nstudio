@@ -988,7 +988,7 @@ function showUserAddress($userID)
                     <p class="overflow-hidden text-ellipsis"><?= $address['fname'] . " " . $address['lname'] ?></p>
                     <p class="overflow-hidden text-ellipsis"><?= $address['email'] ?></p>
                     <p class="overflow-hidden text-ellipsis"><?= $address['street_name'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['city'] ?></p>
+                    <p class="overflow-hidden text-ellipsis"><?= $address['city'] . ", " .  $address['province'] ?></p>
                     <p class="overflow-hidden text-ellipsis"><?= $address['postal_code'] ?></p>
                     <p class="overflow-hidden text-ellipsis"><?= $address['country'] ?></p>
                     <p class="overflow-hidden text-ellipsis"><?= $address['contact_number'] ?></p>
