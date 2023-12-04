@@ -10,24 +10,22 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Data
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $street_name = $_POST['street_name'];
-    $pcode = $_POST['pcode'];
-    $city = $_POST['city'];
-    $province = $_POST['province'];
-    $country = $_POST['country'];
-    $contact_number = $_POST['contact_number'];
+    if (isset($_POST['action']) && $_POST['action'] == "update_address" && isset($_POST['address_id'])) {
+        $addressID = $_POST['address_id'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $email = $_POST['email'];
+        $street_name = $_POST['street_name'];
+        $pcode = $_POST['pcode'];
+        $city = $_POST['city'];
+        $province = $_POST['province'];
+        $country = $_POST['country'];
+        $contact_number = $_POST['contact_number'];
 
-    if (isset($_POST['action']) && $_POST['action'] == "add_address") {
-        $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "UPDATE address_tbl SET fname = ?, lname = ?, email = ?, street_name = ?, pcode = ?, city = ?, province = ?, contact_number = ? WHERE address_id = ?";
         $query = $conn->prepare($sql);
-        $query->bind_param("sssssssss", $fname, $lname, $email, $street_name, $pcode, $city, $province, $country, $contact_number);
+        $query->bind_param("ssssssssi", $fname, $lname, $email, $street_name, $pcode, $city, $province, $contact_number, $addressID);
         $query->execute();
-
-        $addressID = $conn->insert_id;
 
         if ($query->affected_rows == 1) {
             if (isset($_POST['defaultAddress'])) {
@@ -41,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $default = 0;
             }
 
-            $sql = "INSERT INTO user_address VALUES (?, ?, ?)";
+            $sql = "UPDATE user_address SET is_default = ? WHERE user_id = ? AND address_id = ?";
             $query = $conn->prepare($sql);
-            $query->bind_param("iii", $userID, $addressID, $default);
+            $query->bind_param("iii", $default, $userID, $addressID);
             $query->execute();
 
             if ($query->affected_rows == 1) {
@@ -63,5 +61,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 } else {
     echo "ERROR";
-    return;
 }

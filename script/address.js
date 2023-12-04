@@ -31,6 +31,7 @@ $(document).ready(function () {
         let email = $("#email").val();
         let street_name = $("#street_name").val();
         let pcode = $("#pcode").val();
+        let city = $('#city').val();
         let province = $("#province").val();
         let country = $("#country").val();
         let contact_number = $("#contact_number").val();
@@ -50,7 +51,12 @@ $(document).ready(function () {
         } else if (pcode === "") {
             alert("Postal Code is required.");
             return;
-        } else if (province === "") {
+        }
+        else if (city === "") {
+            alert("City is required.");
+            return;
+        }
+        else if (province === "") {
             alert("Province is required.");
             return;
         } else if (country === "") {
@@ -73,6 +79,7 @@ $(document).ready(function () {
                 email: email,
                 street_name: street_name,
                 pcode: pcode,
+                city: city,
                 province: province,
                 country: country,
                 contact_number: contact_number,
@@ -87,16 +94,19 @@ $(document).ready(function () {
                     location.reload();
                 }
             },
+            error: (err) => {
+                console.error(err);
+            }
         });
     });
 
     $(".editBtn").on("click", function (e) {
         const addressID = $(e.currentTarget).attr("data-address-id");
+
         $.ajax({
             url: "/nstudio/includes/ajax/edit_address.php",
             type: "GET",
             data: {
-                action: "edit_address",
                 address_id: addressID,
             },
             success: (res) => {
@@ -126,21 +136,26 @@ $(document).ready(function () {
                 let email = $("#email").val();
                 let street_name = $("#street_name").val();
                 let pcode = $("#pcode").val();
+                let city = $('#city').val();
                 let province = $("#province").val();
                 let country = $("#country").val();
                 let contact_number = $("#contact_number").val();
 
+                $('#fname').focus();
+
                 $('#addNewAddressBtn').on('click', function () {
                     $.ajax({
-                        url: "/nstudio/includes/ajax/add_address.php",
+                        url: "/nstudio/includes/ajax/update_address.php",
                         type: "POST",
                         data: {
                             action: "update_address",
+                            address_id: addressID,
                             fname: fname,
                             lname: lname,
                             email: email,
                             street_name: street_name,
                             pcode: pcode,
+                            city: city,
                             province: province,
                             country: country,
                             contact_number: contact_number,

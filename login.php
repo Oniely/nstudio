@@ -44,7 +44,7 @@ require_once "./includes/auth.php";
                 ?>
                 <div class="w-full max-w-[18rem] flex flex-col">
                     <label class="text-[13px]" for="usernameEmail">Username / Email</label>
-                    <input class="w-full h-full bg-slate-200 px-[10px] py-2" type="text" name="usernameEmail" id="usernameEmail" placeholder="Your Username / Email" />
+                    <input class="w-full h-full bg-slate-200 px-[10px] py-2" type="text" name="usernameEmail" id="usernameEmail" placeholder="Your Username / Email" autofocus />
                 </div>
                 <div class="w-full max-w-[18rem] flex flex-col relative">
                     <label class="text-[13px]" for="password">Password</label>
