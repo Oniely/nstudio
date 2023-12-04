@@ -28,6 +28,9 @@
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <a href="#">About</a>
+                        <a href="#">Mission</a>
+                        <a href="#">Vision</a>
                         <?php showLinkCategory("COMMUNITY") ?>
                     </div>
                 </div>

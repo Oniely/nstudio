@@ -25,13 +25,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     $contact_number = $_POST['contact_number'];
     $payment_method = $_POST['payment_method'];
 
-    // Logic
-    $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $query = $conn->prepare($sql);
-    $query->bind_param("sssssssss", $fname, $lname, $email, $street_name, $pcode, $city, $province, $country, $contact_number);
-    $query->execute();
+    $sql = "SELECT * FROM address_tbl WHERE 
+    fname = '$fname'
+    AND lname = '$lname'
+    AND email = '$email'
+    AND street_name = '$street_name'
+    AND postal_code = '$pcode'
+    AND city = '$city'
+    AND province = '$province'
+    AND country = '$country'
+    AND contact_number = '$contact_number'";
 
-    $addressID = $conn->insert_id;
+    $result = $conn->query($sql);
+
+    $row = $result->fetch_assoc();
+
+    if (!$result) {
+        $sql = "INSERT INTO address_tbl VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = $conn->prepare($sql);
+        $query->bind_param("sssssssss", $fname, $lname, $email, $street_name, $pcode, $city, $province, $country, $contact_number);
+        $query->execute();
+
+        $addressID = $conn->insert_id;
+    }
+
+    if (!isset($addressID)) {
+        $addressID = $row['id'];
+    }
 
     if (isset($_POST['save'])) {
         if ($query->affected_rows == 1) {
