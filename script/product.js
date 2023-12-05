@@ -5,21 +5,16 @@ $(document).ready(() => {
         const action = $(document.activeElement).val();
         const product_item_id = $(document.activeElement).attr('data-item-id');
 
-        var selectBox = $("#colourOption");
-        var radioButtons = $("input[name='size']:checked");
+        var radioButton = $("input[name='size']:checked");
 
-        if (selectBox.val() === "") {
-            alert("Please select a colour for your product.");
-            return false;
-        }
-
-        if (radioButtons.length === 0) {
+        if (radioButton.length == 0) {
             alert("Please choose a size for your product.");
             return false;
         }
 
         console.log($('#colourContainer').attr("data-colour-id"));
         console.log($('input[name="size"]:checked').attr("data-size-id"));
+        console.log(action);
 
         if (action === "add") {
             $.ajax({
@@ -49,22 +44,6 @@ $(document).ready(() => {
             window.location.replace(`/nstudio/views/checkout.php?item=${product_item_id}&colour=${$('#colourContainer').attr("data-colour-id")}&size=${$("input[name='size']:checked").attr("data-size-id")}`)
         }
         return true;
-    });
-});
-
-$(document).ready(() => {
-    $(".hoverProduct").on('click', (e) => {
-        let currentSrc = $(e.target).attr("src");
-        $('#showProduct').attr("src", currentSrc);
-    });
-})
-
-$(document).ready(() => {
-    $('#colourOption').on('change', (e) => {
-        let link = $(e.target).find('option:selected').attr('data-link');
-        if (link !== "") {
-            window.location.replace(link)
-        }
     });
 });
 

@@ -6,6 +6,12 @@ require '../../includes/functions.php';
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
+
+    $sql = "SELECT * FROM site_user WHERE id = $userID";
+    $result = $conn->query($sql);
+
+    $row = $result->fetch_assoc();
+    $profile_img = $row['image_path'];
 } else {
     header("Location: /nstudio/login.php");
 }

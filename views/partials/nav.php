@@ -1,4 +1,4 @@
-<nav class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b-[0.1px] border-[#101010]" id="main_navbar">
+<nav class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem]" id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
         <li>
             <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
@@ -38,7 +38,7 @@
         </li>
     </ul>
 
-    <div class="hidden md:flex justify-center items-center gap-8 shrink-0">
+    <div class="hidden md:flex justify-center items-center gap-8 sm:gap-4 shrink-0">
         <button id="burger" class="hidden md:flex">
             <img id="burger_image" class="max-w-full h-[1.8rem]" src="/nstudio/img/burger.svg" alt="">
         </button>
@@ -47,18 +47,18 @@
         </button>
     </div>
 
-    <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-slate-100 flex flex-col overflow-hidden transition-all delay-300 ease-in-out">
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/index.php">HOME</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/men.php">MEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/women.php" ?>">WOMEN</a>
-        <a class="pl-5 py-3 text-[1.1rem] hover:underline hover:bg-slate-200 font-medium" href="/nstudio/community.php" ?>">COMMUNITY</a>
+    <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-white flex flex-col overflow-hidden transition-all delay-300 ease-in-out border-b border-[#101010]">
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$homeActive == 'active' ? 'underline' : '' ?>" href="/nstudio/index.php">HOME</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$menActive == 'active' ? 'underline' : '' ?>" href="/nstudio/men.php">MEN</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$womenActive == 'active' ? 'underline' : '' ?>" href="/nstudio/women.php">WOMEN</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$communityActive == 'active' ? 'underline' : '' ?>" href="/nstudio/community.php">COMMUNITY</a>
     </div>
 
     <a href="/nstudio/" class="h-[2.8rem] shrink-0">
-        <img class="max-w-full h-full object-contain" src="/nstudio/img/nechma_logo.svg" alt="logo" />
+        <img class="max-w-full h-full object-cover object-center" src="/nstudio/img/nechma_logo.svg" alt="logo" />
     </a>
 
-    <ul class="flex gap-8 shrink-0 items-center">
+    <ul class="flex gap-8 sm:gap-4 shrink-0 items-center">
         <!-- Search -->
         <li class="items-center md:hidden">
             <button class="md:hidden flex justify-center items-center" id="searchBtn">
@@ -110,7 +110,11 @@
                 <button type="button" class="relative" id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
 
-                    <img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="" />
+                    <?php if (@$profile_img) : ?>
+                        <img class="w-[1.6rem] h-[1.6rem] rounded-full" src="<?= $profile_img ?>" alt="Profile">
+                    <?php else : ?>
+                        <img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="Profile" />
+                    <?php endif ?>
 
                     <div class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                         <ul class="py-2" aria-labelledby="user-menu-button">

@@ -7,12 +7,17 @@ require_once '../../includes/functions.php';
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 
-    $sql = "SELECT * FROM site_user WHERE id = '$userID'";
+    $sql = "SELECT * FROM site_user WHERE id = $userID";
     $result = $conn->query($sql);
 
     $row = $result->fetch_assoc();
     $fname = $row['fname'];
     $lname = $row['lname'];
+    $email = $row['email'];
+    $username = $row['username'];
+    $contact_number = $row['contact_number'];
+    $password = $row['password'];
+    $profile_img = $row['image_path'];
 } else {
     header("Location: /nstudio/login.php");
 }

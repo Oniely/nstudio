@@ -58,7 +58,7 @@ function signUpAuth($fname, $lname, $contact, $username, $email, $password)
 
     $hashedPass = hash_password($password);
 
-    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)";
+    $insertSql = "INSERT INTO site_user VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)";
     $query = $conn->prepare($insertSql);
     $query->bind_param("ssssss", $fname, $lname, $contact, $username, $email, $hashedPass);
     $query->execute();
