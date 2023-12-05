@@ -69,5 +69,53 @@ $(document).ready(() => {
 });
 
 $(document).ready(function () {
-    
+    const dBtn1 = $('#dBtn1');
+    const dBtn2 = $('#dBtn2');
+    const dBtn3 = $('#dBtn3');
+
+    const desc1 = $('#desc1');
+    const desc2 = $('#desc2');
+    const desc3 = $('#desc3');
+
+    dBtn1.on('click', () => {
+        dBtn1.addClass('underline')
+        dBtn2.removeClass('underline');
+        dBtn3.removeClass('underline');
+
+        desc1.show();
+        desc2.hide()
+        desc3.hide()
+    });
+
+    dBtn2.on('click', () => {
+        dBtn2.addClass('underline')
+        dBtn1.removeClass('underline');
+        dBtn3.removeClass('underline');
+
+        desc2.show();
+        desc1.hide()
+        desc3.hide()
+    });
+
+    dBtn3.on('click', () => {
+        dBtn3.addClass('underline')
+        dBtn1.removeClass('underline');
+        dBtn2.removeClass('underline');
+
+        desc3.show();
+        desc1.hide()
+        desc2.hide()
+    });
+
+    $("#showSizeModalBtn").on('click', () => {
+        $('#sizeModal').addClass('grid');
+        $('#sizeModal').removeClass('hidden');
+        $('body').css('overflow', 'hidden');
+    })
+
+    $('#closeSizeBtn').on('click', () => {
+        $('#sizeModal').removeClass('grid');
+        $('#sizeModal').addClass('hidden');
+        $('body').css('overflow', 'auto');
+    });
 })
