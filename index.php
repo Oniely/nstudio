@@ -33,17 +33,17 @@ $homeActive = "active";
     <main class="main_hero w-full h-[110vh] sm:h-screen flex justify-center items-center pt-[5rem] overflow-hidden" id="hero_section">
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
-            <div class="absolute top-[0] px-1">
-                <img class="h-[35vh] md:min-h-full md:h-full object-cover" src="./img/nechma_text.svg" alt="text">
+            <div class="absolute md:top-0 top-[0] px-1">
+                <img class="max-w-full h-[minmax(100%,35vh)] object-cover object-center" src="./img/nechma_text.svg" alt="Nechma Studio">
             </div>
             <!-- Hero Image -->
             <div class="w-[min(100%_30rem)] xs:w-full max-w-full sm:h-[85vh] h-[100vh] absolute bottom-[-2.5rem] animate__animated animate__fadeIn delay-400 pointer-events-none select-none">
                 <img class="w-full h-full object-cover" src="./img/nechma_hero.svg" alt="hero" />
             </div>
             <!-- Hero Buttons -->
-            <div class="w-[min(100%,_68rem)] absolute bottom-[8rem] flex justify-between gap-2 items-center px-10 xs:px-[1rem]">
-                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] sm:w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="men.php">FOR MEN</a>
-                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] sm:w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="women.php">FOR WOMEN</a>
+            <div class="w-[min(100%,_68rem)] absolute bottom-[8rem] sm:bottom-[4rem] flex justify-between gap-3 items-center px-10 xs:px-[1rem]">
+                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="men.php">FOR MEN</a>
+                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="women.php">FOR WOMEN</a>
             </div>
         </div>
     </main>
@@ -96,7 +96,7 @@ $homeActive = "active";
             <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/men.php">View all</a>
         </div>
         <!-- MEN PRODUCT -->
-        <div class="container flex md:grid md:grid-cols-2 md:gap-8 place-items-center justify-evenly items-center gap-5 px-3">
+        <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-5 px-3">
             <?php
 
             newMenProduct();
@@ -109,7 +109,7 @@ $homeActive = "active";
             <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/women.php">View all</a>
         </div>
         <!-- WOMEN PRODUCT -->
-        <div class="container flex md:grid md:grid-cols-2 md:gap-8 place-items-center justify-evenly items-center gap-5 px-3 mb-6">
+        <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-5 px-3 mb-6">
             <?php
 
             newWomenProduct();

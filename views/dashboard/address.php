@@ -109,7 +109,7 @@ $provinceOptions = array(
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen h-full py-6">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 overflow-hidden">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Address</p>
                 <h1 class="uppercase text-4xl font-semibold tracking-wider">Your Address</h1>
@@ -136,7 +136,7 @@ $provinceOptions = array(
 
                             <button id="addressBtn" class="uppercase w-[19rem] py-3 px-14 text-center bg-[#101010] text-white hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">ADD NEW ADDRESS</button>
                             <!-- Main modal -->
-                            <div id="addressModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-scroll overflow-x-hidden absolute container top-[3rem] right-0 left-0 z-50 justify-center items-center inset-0 h-[calc(100%-2rem)] max-h-full">
+                            <div id="addressModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-scroll overflow-x-hidden absolute container top-[3rem] right-0 left-0 z-50 justify-center items-center inset-0 h-[calc(100%-2rem)] max-h-full backdrop-blur-sm">
                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                     <!-- Modal content -->
                                     <div class="relative rounded-lg shadow bg-gray-700">
