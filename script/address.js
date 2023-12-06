@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $("#addressBtn").on("click", function () {
         $("#addressModal").toggleClass("hidden flex");
+        $('#modalTitle').text("Add New Address");
 
         $('#addNewAddressBtn').addClass('inline-flex');
         $('#addNewAddressBtn').removeClass('hidden');
@@ -38,6 +39,7 @@ $(document).ready(function () {
     $(".editBtn").on("click", function (e) {
         addressID = $(e.currentTarget).attr("data-address-id");
         $('#updateAddressBtn').attr('data-address-id', addressID);
+        $('#modalTitle').text("Update Address");
 
         $('#addNewAddressBtn').removeClass('inline-flex');
         $('#addNewAddressBtn').addClass('hidden');

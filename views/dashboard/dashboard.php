@@ -33,7 +33,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen h-full py-6">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative overflow-hidden">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard</p>
                 <h1 class="capitalize text-4xl font-semibold tracking-wider">Welcome Back, <span><?= $fname ?></span>!</h1>

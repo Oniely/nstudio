@@ -1,12 +1,11 @@
 <?php
 
-require_once "./includes/session.php";
+require "./includes/session.php";
+require "./includes/auth.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: index.php');
 }
-
-require_once "./includes/auth.php";
 
 ?>
 <!doctype html>
