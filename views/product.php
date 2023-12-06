@@ -1,9 +1,9 @@
 <?php
 
-require_once '../includes/session.php';
+require '../includes/session.php';
 
-require_once "../includes/connection.php";
-require_once "../includes/functions.php";
+require "../includes/connection.php";
+require "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];

@@ -127,16 +127,16 @@ $homeActive = "active";
         </div>
         <div class="flex md:flex-col gap-6">
             <div class="max-w-full h-[35rem] md:mb-[3rem]">
-                <a href="#">
-                    <img class="w-full h-full object-cover" src="img/hero_shop_now (1).svg" alt="img" />
+                <a href="men.php">
+                    <img class="w-full h-full object-cover pointer-events-none select-none" src="img/hero_shop_now (1).svg" alt="img" />
                 </a>
-                <a class="underline text-sm uppercase pl-[1px]" href="#">Shop Now</a>
+                <a class="underline text-sm uppercase pl-[1px]" href="men.php">Shop Now</a>
             </div>
             <div class="max-w-full h-[35rem]">
-                <a href="#">
-                    <img class="w-full h-full object-cover" src="img/hero_shop_now (2).svg " alt="img" />
+                <a href="women.php">
+                    <img class="w-full h-full object-cover pointer-events-none select-none" src="img/hero_shop_now (2).svg " alt="img" />
                 </a>
-                <a class="underline text-sm uppercase pl-[1px]" href="#">Shop Now</a>
+                <a class="underline text-sm uppercase pl-[1px]" href="women.php">Shop Now</a>
             </div>
         </div>
     </section>

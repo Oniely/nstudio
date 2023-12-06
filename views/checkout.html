@@ -1,714 +1,352 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NStudio</title>
-        <!-- Styles -->
-        <link rel="stylesheet" href="/nstudio/styles/style.css" />
-        <link rel="stylesheet" href="/nstudio/styles/navbar.css" />
+<html lang="en" class="scroll-smooth">
 
-        <!-- Scripts -->
-        <script src="/nstudio/script/animation.js" defer></script>
-        <script src="/nstudio/script/magnet.js" defer></script>
-        <script src="/nstudio/script/nav.js" defer></script>
-        <script src="/nstudio/script/search.js" defer></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NStudio</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
 
-        <!-- CDNs -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-            integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-            crossorigin="anonymous"
-        />
-        <!-- Tailwind CSS -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            clifford: "#da373d",
-                        },
-                    },
-                    screens: {
-                        "2xl": { max: "1535px" },
-                        xl: { max: "1280px" },
-                        lg: { max: "1024px" },
-                        md: { max: "768px" },
-                        sm: { max: "640px" },
-                        xs: { max: "440px" },
+    <!-- Scripts -->
+    <script src="../script/animation.js" defer></script>
+    <script src="../script/magnet.js" defer></script>
+    <script src="../script/nav.js" defer></script>
+    <script src="../script/search.js" defer></script>
+    <script src="../script/checkout.js" defer></script>
+
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d",
                     },
                 },
-            };
-        </script>
-    </head>
-    <body class="min-h-screen">
-        <nav
-            class="nav_bar w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] border-b border-[#101010]"
-            id="main_navbar"
-        >
-            <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
-                <li>
-                    <a class="nav_links" id="NAV_LINK" href="/nstudio/men.php"
-                        >MEN</a
-                    >
+                screens: {
+                    "2xl": { max: "1535px" },
+                    xl: { max: "1280px" },
+                    lg: { max: "1024px" },
+                    md: { max: "768px" },
+                    sm: { max: "640px" },
+                    xs: { max: "440px" },
+                },
+            },
+        };
+    </script>
+</head>
 
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            ></div>
-                            <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                            <a href="">New Accessories</a>
-                            <a href="">Bags</a>
-                            <a href="">Scarves & Hats</a>
-                            <a href="">Shoes</a>
-                            <a href="">Underwear & Socks</a>
-                            <a href="">All Accessories</a>
-                        </div> -->
+<body class="min-h-screen">
+    <nav class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem]" id="main_navbar">
+        <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
+            <li>
+                <a class="nav_links uppercase" id="NAV_LINK" href="men.php">MEN</a>
+
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="#">About</a>
+                            <a href="#">Mission</a>
+                            <a href="#">Vision</a>
                         </div>
                     </div>
-                </li>
-                <li>
-                    <a class="nav_links" id="NAV_LINK" href="/nstudio/women.php"
-                        >WOMEN</a
-                    >
+                </div>
+            </li>
+            <li>
+                <a class="nav_links uppercase" id="NAV_LINK" href="women.php">WOMEN</a>
 
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            ></div>
-                            <!-- <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                            <a href="">New Accessories</a>
-                            <a href="">Bags</a>
-                            <a href="">The Quilted Bag</a>
-                            <a href="">Shoes & Boots</a>
-                            <a href="">Jewellery</a>
-                            <a href="">Scarves, Hats & Gloves</a>
-                            <a href="">Outdoor Layers</a>
-                            <a href="">Belts</a>
-                            <a href="">Underwear & Lingerie</a>
-                            <a href="">Socks & Tights</a>
-                            <a href="">All Accessories</a>
-                        </div> -->
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="#">About</a>
+                            <a href="#">Mission</a>
+                            <a href="#">Vision</a>
                         </div>
                     </div>
-                </li>
-                <li>
-                    <a class="nav_links" id="NAV_LINK" href="">COMMUNITY</a>
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            >
-                                <a href="">Our mission</a>
-                                <a href="">COS Full Circle</a>
-                                <a href="">Product Care</a>
-                            </div>
+                </div>
+            </li>
+            <li>
+                <a class="nav_links uppercase" id="NAV_LINK" href="community.php">COMMUNITY</a>
+
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <a href="#">About</a>
+                            <a href="#">Mission</a>
+                            <a href="#">Vision</a>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </li>
+        </ul>
 
-            <a href="/nstudio/" class="h-[2.8rem] shrink-0">
-                <img
-                    class="max-w-full h-full object-contain"
-                    src="../img/nechma_logo.svg"
-                    alt="logo"
-                />
-            </a>
+        <a href="#" class="h-[2.8rem] shrink-0">
+            <img class="max-w-full h-full object-contain" src="../img/nechma_logo.svg" alt="logo" />
+        </a>
 
-            <ul class="flex gap-8 shrink-0 items-center">
-                <!-- Search -->
-                <li class="items-center">
-                    <button
-                        class="md:hidden flex justify-center items-center"
-                        id="searchBtn"
-                    >
-                        <img
-                            class="max-w-full h-[1.3rem]"
-                            src="../img/search.svg"
-                            alt=""
-                        />
-                    </button>
+        <ul class="flex gap-8 shrink-0 items-center">
+            <!-- Search -->
+            <li class="items-center md:hidden">
+                <button class="md:hidden flex justify-center items-center" id="searchBtn">
+                    <img class="max-w-full h-[1.3rem]" src="../img/search.svg" alt="" />
+                </button>
+            </li>
+            <!-- Search Form -->
+            <form id="searchForm" action="" method="GET" class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden">
+                <div class="w-full max-h-full flex flex-col justify-center items-start px-5">
+                    <div class="w-full flex justify-between items-center">
+                        <input class="w-full h-[3.5rem] text-2xl outline-none border-none" id="search" type="text" placeholder="Search" autocomplete="off" />
 
-                    <form
-                        id="searchForm"
-                        action=""
-                        method="GET"
-                        class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden"
-                    >
-                        <div
-                            class="w-full max-h-full flex flex-col justify-center items-start px-5"
-                        >
-                            <div
-                                class="w-full flex justify-between items-center"
-                            >
-                                <input
-                                    class="w-full h-[3.5rem] text-2xl outline-none border-none"
-                                    id="search"
-                                    type="text"
-                                    placeholder="Search"
-                                    autocomplete="off"
-                                />
-
-                                <button
-                                    type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    id="searchClose"
-                                >
-                                    <svg
-                                        class="w-4 h-4"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 14 14"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div class="flex flex-col" id="suggestions"></div>
-                        </div>
-                    </form>
-                </li>
-                <!-- Cart -->
-                <li>
-                    <a
-                        class="relative"
-                        href="/nstudio/views/cart.php?id=<?= @$_SESSION['id'] ?>"
-                    >
-                        <img
-                            class="max-w-full h-[1.3rem]"
-                            src="../img/shopbag.svg"
-                            alt=""
-                        />
-                        <span
-                            id="cartNumber"
-                            class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full"
-                            >1</span
-                        >
-                    </a>
-                </li>
-                <li>
-                    <button
-                        type="button"
-                        class="relative"
-                        id="user-menu-button"
-                        data-dropdown-toggle="user-dropdown"
-                        data-dropdown-placement="bottom"
-                    >
-                        <span class="sr-only">Open user menu</span>
-
-                        <img
-                            class="w-[1.5rem]"
-                            src="../img/profile.svg"
-                            alt=""
-                        />
-
-                        <div
-                            class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                            id="user-dropdown"
-                        >
-                            <ul class="py-2" aria-labelledby="user-menu-button">
-                                <li>
-                                    <a
-                                        href="/nstudio/views/dashboard.php"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                        >Dashboard</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                        >Settings</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                        >Earnings</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/nstudio/includes/logout.php"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                        >Sign out</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
-                </li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-
-        <main class="min-h-screen">
-            <div
-                class="container max-w-full min-h-screen py-[3rem] px-[2rem] flex flex-row md:flex-col-reverse"
-            >
-                <div class="flex flex-col items-center w-fit p-4">
-                    <form action="" class="flex flex-col w-[40rem]">
-                        <div class="flex flex-col">
-                            <h1 class="text-3xl font-medium">Contact</h1>
-                            <div class="relative z-0 w-full mb-5 mt-5 group">
-                                <input
-                                    type="text"
-                                    class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" "
-                                />
-                                <label
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                    >Email address</label
-                                >
-                            </div>
-
-                            <div class="flex flex-col">
-                                <h1 class="text-3xl font-medium">Delivery</h1>
-
-                                <div
-                                    class="relative z-0 w-full mb-5 mt-5 group"
-                                >
-                                    <select
-                                        type="text"
-                                        class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder=" "
-                                    >
-                                        <option value="Philippines" selected>
-                                            Philippines
-                                        </option>
-                                    </select>
-                                    <label
-                                        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                        >Email address</label
-                                    >
-                                </div>
-
-                                <div class="flex flex-row gap-8">
-                                    <div
-                                        class="relative z-0 w-full mb-5 mt-3 group"
-                                    >
-                                        <input
-                                            type="text"
-                                            class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" "
-                                        />
-                                        <label
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >First Name</label
-                                        >
-                                    </div>
-                                    <div
-                                        class="relative z-0 w-full mb-5 mt-3 group"
-                                    >
-                                        <input
-                                            type="text"
-                                            class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" "
-                                        />
-                                        <label
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >Last Name</label
-                                        >
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="relative z-0 w-full mb-5 mt-3 group"
-                                >
-                                    <input
-                                        type="text"
-                                        class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder=" "
-                                    />
-                                    <label
-                                        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                        >Address / Street Name</label
-                                    >
-                                </div>
-
-                                <div class="flex flex-row gap-8">
-                                    <div
-                                        class="relative z-0 w-full mb-5 mt-3 group"
-                                    >
-                                        <input
-                                            type="text"
-                                            class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" "
-                                        />
-                                        <label
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >Postal code</label
-                                        >
-                                    </div>
-                                    <div
-                                        class="relative z-0 w-full mb-5 mt-3 group"
-                                    >
-                                        <input
-                                            type="text"
-                                            class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=" "
-                                        />
-                                        <label
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                            >City</label
-                                        >
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="relative z-0 w-full mb-5 mt-3 group"
-                                >
-                                    <select
-                                        type="text"
-                                        class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        required
-                                    >
-                                        <option
-                                            value=""
-                                            selected
-                                            disabled
-                                            hidden
-                                        ></option>
-                                        <option value="ABRA">Abra</option>
-                                        <option value="AGUSAN-DEL-NORTE">
-                                            Agusan del Norte
-                                        </option>
-                                        <option value="AGUSAN-DEL-SUR">
-                                            Agusan del Sur
-                                        </option>
-                                        <option value="AKLAN">Aklan</option>
-                                        <option value="ALBAY">Albay</option>
-                                        <option value="ANTIQUE">Antique</option>
-                                        <option value="APAYAO">Apayao</option>
-                                        <option value="AURORA">Aurora</option>
-                                        <option value="BASILAN">Basilan</option>
-                                        <option value="BATAAN">Bataan</option>
-                                        <option value="BATANES">Batanes</option>
-                                        <option value="BATANGAS">
-                                            Batangas
-                                        </option>
-                                        <option value="BENGUET">Benguet</option>
-                                        <option value="BILIRAN">Biliran</option>
-                                        <option value="BOHOL">Bohol</option>
-                                        <option value="BUKIDNON">
-                                            Bukidnon
-                                        </option>
-                                        <option value="BULACAN">Bulacan</option>
-                                        <option value="CAGAYAN">Cagayan</option>
-                                        <option value="CAMARINES-NORTE">
-                                            Camarines Norte
-                                        </option>
-                                        <option value="CAMARINES-SUR">
-                                            Camarines Sur
-                                        </option>
-                                        <option value="CAMIGUIN">
-                                            Camiguin
-                                        </option>
-                                        <option value="CAPIZ">Capiz</option>
-                                        <option value="CATANDUANES">
-                                            Catanduanes
-                                        </option>
-                                        <option value="CAVITE">Cavite</option>
-                                        <option value="CEBU">Cebu</option>
-                                        <option value="COTABATO">
-                                            Cotabato
-                                        </option>
-                                        <option value="DAVAO-DE-L-SUR">
-                                            Davao del Sur
-                                        </option>
-                                        <option value="DAVAO-ORIENTAL">
-                                            Davao Oriental
-                                        </option>
-                                        <option value="DINAGAT-ISLANDS">
-                                            Dinagat Islands
-                                        </option>
-                                        <option value="EASTERN-SAMAR">
-                                            Eastern Samar
-                                        </option>
-                                        <option value="GUIMARAS">
-                                            Guimaras
-                                        </option>
-                                        <option value="IFUGAO">Ifugao</option>
-                                        <option value="ILOCOS-NORTE">
-                                            Ilocos Norte
-                                        </option>
-                                        <option value="ILOCOS-SUR">
-                                            Ilocos Sur
-                                        </option>
-                                        <option value="ILOILO">Iloilo</option>
-                                        <option value="ISABELA">Isabela</option>
-                                        <option value="KALINGA">Kalinga</option>
-                                        <option value="LA-UNION">
-                                            La Union
-                                        </option>
-                                        <option value="LAGUNA">Laguna</option>
-                                        <option value="LANAO-DEL-NORTE">
-                                            Lanao del Norte
-                                        </option>
-                                        <option value="LANAO-DEL-SUR">
-                                            Lanao del Sur
-                                        </option>
-                                        <option value="LEYTE">Leyte</option>
-                                        <option value="MAGUINDANAO">
-                                            Maguindanao
-                                        </option>
-                                        <option value="MARINDUQUE">
-                                            Marinduque
-                                        </option>
-                                        <option value="MASBATE">Masbate</option>
-                                        <option value="METRO-MANILA">
-                                            Metro Manila
-                                        </option>
-                                        <option value="MISAMIS-OCCIDENTAL">
-                                            Misamis Occidental
-                                        </option>
-                                        <option value="MISAMIS-ORIENTAL">
-                                            Misamis Oriental
-                                        </option>
-                                        <option value="MOUNTAIN-PROVINCE">
-                                            Mountain Province
-                                        </option>
-                                        <option value="NEGROS-OCCIDENTAL">
-                                            Negros Occidental
-                                        </option>
-                                        <option value="NEGROS-ORIENTAL">
-                                            Negros Oriental
-                                        </option>
-                                        <option value="NORTHERN-SAMAR">
-                                            Northern Samar
-                                        </option>
-                                        <option value="NUEVA-ECIJA">
-                                            Nueva Ecija
-                                        </option>
-                                        <option value="NUEVA-VIZCAYA">
-                                            Nueva Vizcaya
-                                        </option>
-                                        <option value="OCCIDENTAL-MINDORO">
-                                            Occidental Mindoro
-                                        </option>
-                                        <option value="ORIENTAL-MINDORO">
-                                            Oriental Mindoro
-                                        </option>
-                                        <option value="PALAWAN">Palawan</option>
-                                        <option value="PAMPANGA">
-                                            Pampanga
-                                        </option>
-                                        <option value="PANGASINAN">
-                                            Pangasinan
-                                        </option>
-                                        <option value="QUEZON">Quezon</option>
-                                        <option value="QUIRINO">Quirino</option>
-                                        <option value="RIZAL">Rizal</option>
-                                        <option value="ROMBLON">Romblon</option>
-                                        <option value="SARANGANI">
-                                            Sarangani
-                                        </option>
-                                        <option value="SIQUIJOR">
-                                            Siquijor
-                                        </option>
-                                        <option value="SORSOGON">
-                                            Sorsogon
-                                        </option>
-                                        <option value="SOUTH-COTABATO">
-                                            South Cotabato
-                                        </option>
-                                        <option value="SOUTHERN-LEYTE">
-                                            Southern Leyte
-                                        </option>
-                                        <option value="SULTAN-KUDARAT">
-                                            Sultan Kudarat
-                                        </option>
-                                        <option value="SULU">Sulu</option>
-                                        <option value="SURIGAO-DEL-NORTE">
-                                            Surigao del Norte
-                                        </option>
-                                        <option value="SURIGAO-DEL-SUR">
-                                            Surigao del Sur
-                                        </option>
-                                        <option value="TARLAC">Tarlac</option>
-                                        <option value="TAWI-TAWI">
-                                            Tawi-Tawi
-                                        </option>
-                                        <option value="ZAMBALES">
-                                            Zambales
-                                        </option>
-                                        <option value="ZAMBOANGA-DEL-NORTE">
-                                            Zamboanga del Norte
-                                        </option>
-                                        <option value="ZAMBOANGA-DEL-SUR">
-                                            Zamboanga del Sur
-                                        </option>
-                                        <option value="ZAMBOANGA-SIBUGAY">
-                                            Zamboanga Sibugay
-                                        </option>
-                                    </select>
-                                    <label
-                                        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                        >Region</label
-                                    >
-                                </div>
-
-                                <div
-                                    class="relative z-0 w-full mb-5 mt-3 group"
-                                >
-                                    <input
-                                        type="text"
-                                        class="block py-3 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder=" "
-                                    />
-                                    <label
-                                        class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                                        >Phone</label
-                                    >
-                                </div>
-
-                                <div
-                                    class="relative z-0 w-full mb-5 mt-0 group"
-                                >
-                                    <input
-                                        type="checkbox"
-                                        name="save"
-                                        id="save"
-                                    />
-                                    <label for="save"
-                                        >Save this information for next
-                                        time</label
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="flex flex-col w-[40rem] mt-5">
-                        <h1 class="text-2xl font-medium">Shipping Method</h1>
-                        <div
-                            class="flex justify-between items-center border px-4 py-4 mt-3 rounded-md"
-                        >
-                            <span>Standard</span>
-                            <span>140.00</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col w-[40rem] mt-5">
-                        <h1 class="text-2xl font-medium">Payment</h1>
-                        <span>All transaction are secure and encrypted.</span>
-                        <div>
-                            <input type="radio" />
-                            <label for="">Cash On Delivery</label>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col w-[40rem] mt-5">
-                        <button
-                            class="bg-[#101010] text-white py-4 cursor-pointer"
-                        >
-                            Pay Now
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-white rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" id="searchClose">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
                         </button>
+                    </div>
+
+                    <div class="flex flex-col" id="suggestions"></div>
+                </div>
+            </form>
+            <!-- Cart -->
+            <li>
+                <a class="relative" href="/nstudio/views/cart.php">
+                    <img class="max-w-full h-[1.3rem]" src="../img/shopbag.svg" alt="" />
+                    <span id="cartNumber" class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">
+                        1
+                    </span>
+                </a>
+            </li>
+            <!-- Account -->
+            <li class="grid place-items-center">
+                <a class="text-[14px] hover:text-[#707070]" href="/nstudio/login.php">SIGN IN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="min-h-screen">
+        <div class="container max-w-full min-h-screen py-[4rem] md:pt-[1rem] px-[3rem] md:px-[2rem] sm:px-[1rem] flex flex-row md:flex-col-reverse relative">
+            <form action="/nstudio/includes/payment.php" method="POST" class="w-full flex flex-col items-center p-3 pr-5 md:pr-1 md:p-1 md:mt-[2rem]">
+                <div class="flex flex-col w-full">
+                    <div class="flex flex-col">
+                        <h1 class="text-3xl font-medium">Contact</h1>
+                        <div class="relative z-0 w-full mb-5 mt-5 group border rounded">
+                            <input value="<?= @$email ?>" name="email" type="email" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                        </div>
+
+                        <div class="flex flex-col overflow-x-hidden text-ellipsis">
+                            <h1 class="text-3xl font-medium">Delivery</h1>
+
+                            <div class="relative z-0 w-full mb-5 mt-5 group border rounded">
+                                <select name="country" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+                                    <option value="Philippines" selected>
+                                        Philippines
+                                    </option>
+                                </select>
+                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Country/Region</label>
+                            </div>
+
+                            <div class="flex flex-row gap-8">
+                                <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                    <input value="<?= @$fname ?>" name="fname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Name</label>
+                                </div>
+                                <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                    <input value="<?= @$lname ?>" name="lname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last Name</label>
+                                </div>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-5 mt-3 group border rounded text-ellipsis">
+                                <input value="<?= @$street_name ?>" name="street_name" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 whitespace-nowrap overflowx text-ellipsis">(Address/Street Name/Building/House Number, Subdivision/Village, Barangay, City)</label>
+                            </div>
+
+                            <div class="flex flex-row gap-8">
+                                <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                    <input value="<?= @$pcode ?>" name="pcode" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Postal code</label>
+                                </div>
+                                <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                    <input value="<?= @$city ?>" name="city" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">City</label>
+                                </div>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                <select value="<?= @$province ?>" name="province" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                                    <option value="" disabled hidden <?=@$province ? 'selected' : '' ?>>- Select your province -</option>
+                                    <?php foreach ($provinceOptions as $pOption) : ?>
+                                    <option value="<?php echo $pOption; ?>" <?=(isset($province) && $province==$pOption) ? 'selected' : '' ?>>
+                                        <?php echo $pOption; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Province</label>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
+                                <input value="<?= @$contact_number ?>" name="contact_number" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
+                            </div>
+                            <div class="flex items-center ps-4 border border-gray-200 rounded text-[15px]">
+                                <input type="checkbox" name="save" id="save" class="w-4 h-4 text-blue-600 border-gray-300">
+                                <label for="save" class="w-full py-4 ms-2 text-[#101010]">Save this information for next time</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="container max-w-full flex flex-col gap-3">
-                    <div
-                        class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2"
-                    >
-                        <div
-                            class="flex justify-between items-start gap-5 w-[min(100%,30rem)]"
-                        >
-                            <div class="w-28 h-40 shrink-0">
-                                <a href="">
-                                    <img
-                                        class="max-w-full h-full object-cover aspect-square object-top"
-                                        src="../img/product/1_image1.jpg"
-                                        alt="product"
-                                    />
+                <div class="flex flex-col w-full mt-5 text-[15px]">
+                    <h1 class="text-2xl font-medium">Shipping Method</h1>
+                    <div class="flex justify-between items-center border px-4 py-4 mt-3 rounded-md">
+                        <span>Standard</span>
+                        <span class="before:content-['₱']">120.00</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col w-full mt-5 gap-2">
+                    <h1 class="text-2xl font-medium">Payment</h1>
+                    <span>All transaction are secure and encrypted.</span>
+                    <ul class="items-center w-full text-sm font-medium text-white bg-white border border-gray-200 rounded-lg flex text-[15px]">
+                        <li class="w-full border-gray-200 border-b-0 border-r ">
+                            <div class="flex items-center ps-3">
+                                <input id="CASH ON DELIVERY" type="radio" value="CASH ON DELIVERY" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                <label for="CASH ON DELIVERY" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">Cash on Delivery</label>
+                            </div>
+                        </li>
+                        <li class="w-full border-gray-200 border-b-0 border-r ">
+                            <div class="flex items-center ps-3">
+                                <input id="GCASH" type="radio" value="GCASH" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                <label for="GCASH" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">GCash</label>
+                            </div>
+                        </li>
+                        <li class="w-full border-gray-200 border-b-0">
+                            <div class="flex items-center ps-3">
+                                <input id="CREDIT" type="radio" value="CREDIT CARD" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                <label for="CREDIT" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">Credit Card</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- BUTTONS -->
+                <div class="flex flex-col w-full mt-5">
+                    <input type="submit" name="pay" class="bg-[#101010] text-white hover:text-[#101010] hover:bg-white active:bg-[#eee] text-[14px] uppercase h-[2.8rem] rounded border cursor-pointer text-center transition-colors delay-[20ms] ease-linear" value="Pay Now">
+                </div>
+            </form>
+
+            <div id="products" class="container max-w-full h-fit flex flex-col gap-3 sticky md:relative md:mb-[2rem] top-[3rem] right-0 pb-4 transition-all delay-75 ease-linear overflow-hidden max-h-[100vh]">
+                <div class="overflow-hidden transition-all delay-75 ease-linear">
+                    <!-- Product -->
+                    <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
+                        <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
+                            <div class="w-28 h-40 shrink-0 relative">
+                                <a href="#">
+                                    <img class="max-w-full h-full object-cover aspect-square object-top" src="../img/1_image1.jpg" alt="product">
                                 </a>
+                                <span class="absolute -top-1 -right-1 w-5 bg-red-400 font-['Lato'] text-center text-sm rounded-full">
+                                    1
+                                </span>
                             </div>
-                            <div
-                                class="w-full flex flex-col items-start gap-1 text-start text-[14px]"
-                            >
-                                <h3 class="text-[15px]">Product Name</h3>
-                                <p class="text-gray-400">Color | XS</p>
+                            <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
+                                <h3 class="text-[15px]">Check Wool T-Shirt</h3>
+                                <p class="text-gray-400">Black | S</p>
                             </div>
                         </div>
-
                         <div>
-                            <span>145</span>
+                            <span class="before:content-['₱']">100 </span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
+                        <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
+                            <div class="w-28 h-40 shrink-0 relative">
+                                <a href="#">
+                                    <img class="max-w-full h-full object-cover aspect-square object-top" src="../img/1_image1.jpg" alt="product">
+                                </a>
+                                <span class="absolute -top-1 -right-1 w-5 bg-red-400 font-['Lato'] text-center text-sm rounded-full">
+                                    1
+                                </span>
+                            </div>
+                            <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
+                                <h3 class="text-[15px]">Check Wool T-Shirt</h3>
+                                <p class="text-gray-400">Black | S</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="before:content-['₱']">100 </span>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </main>
-
-        <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-8">
-            <hr />
-            <div
-                class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4"
-            >
-                <div
-                    class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium"
-                >
-                    <ul class="md:w-full">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Returns & Funds</a></li>
-                        <li><a href="#">Customer Service</a></li>
-                        <li><a href="#">Payment</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">FAQs Privacy</a></li>
-                        <li><a href="#">Notice Cookie</a></li>
-                        <li><a href="#">Notice Cookie Settings</a></li>
-                    </ul>
-                    <ul class="md:w-full">
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Spotify</a></li>
-                    </ul>
-                </div>
-                <div
-                    class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2"
-                >
-                    <div
-                        class="md:flex md:gap-[5px] text-lg font-semibold leading-5"
-                    >
-                        <!-- prettier-ignore -->
-                        <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your 
-              first order.</p>
+                <!-- COST -->
+                <div class="flex flex-col gap-3">
+                    <div class="flex flex-row justify-between">
+                        <span>Subtotal</span>
+                        <span class="before:content-['₱']">100</span>
                     </div>
-                    <div class="w-[12rem] md:w-full text-center">
-                        <button
-                            class="w-full h-full bg-[#101010] text-white text-[12px] py-3"
-                        >
-                            SUBSCRIBE
-                        </button>
+                    <div class="flex flex-row justify-between">
+                        <span>Shipping</span>
+                        <span class="before:content-['₱']">120.00</span>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span>Total</span>
+                        <span class="before:content-['₱']">220</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </body>
+            <!-- end -->
+            <div class="md:flex sticky top-[3rem] left-0 hidden justify-between items-center w-full h-14 bg-white border-b">
+                <button id="showProducts" class="flex justify-center items-center h-full">
+                    <span class="mr-3 text-sm">Show Order Summary</span>
+                    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/></svg>
+                </button>
+                <h1 class="before:content-['₱']">100</h1>
+            </div>
+        </div>
+    </main>
+
+    <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-[2rem] sm:px-[1rem]">
+        <hr />
+        <div class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4">
+            <div class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium">
+                <ul class="md:w-full">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Returns & Funds</a></li>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">Payment</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs Privacy</a></li>
+                    <li><a href="#">Notice Cookie</a></li>
+                    <li><a href="#">Notice Cookie Settings</a></li>
+                </ul>
+                <ul class="md:w-full">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Spotify</a></li>
+                </ul>
+            </div>
+            <div class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2">
+                <div class="md:flex md:gap-[5px] text-lg font-semibold leading-5">
+                    <!-- prettier-ignore -->
+                    <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your
+                        first order.</p>
+                </div>
+                <div class="w-[12rem] md:w-full text-center">
+                    <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3">
+                        SUBSCRIBE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
 </html>

@@ -1,8 +1,9 @@
 <?php
 
-require_once '../../includes/session.php';
-require_once '../../includes/connection.php';
-require_once '../../includes/functions.php';
+require '../../includes/session.php';
+
+require '../../includes/connection.php';
+require '../../includes/functions.php';
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
@@ -33,7 +34,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen h-full py-6">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative overflow-hidden">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Profile</p>
                 <h1 class="uppercase text-4xl font-semibold tracking-wider">Your Profile</h1>

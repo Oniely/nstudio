@@ -436,7 +436,6 @@ function checkCartProduct($userID)
 
 function showCheckOutProducts($userID)
 {
-
     require 'connection.php';
 
     $sql = "SELECT
@@ -464,9 +463,9 @@ function showCheckOutProducts($userID)
         $subtotal = 0;
         $product_items = [];
         while ($row = $result->fetch_assoc()) {
-            $product_items += [$row['product_item_id'] => ["quantity" => $row['cart_quantity'], "price" => $row['price']]];
+            $product_items[$row['product_item_id']] = ["quantity" => 1, "price" => $row['price']];
         ?>
-            <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
+            <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
                 <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
                     <div class="w-28 h-40 shrink-0 relative">
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
@@ -481,7 +480,7 @@ function showCheckOutProducts($userID)
                 </div>
 
                 <div>
-                    <span class="before:content['₱']"><?= $row['price'] * $row['cart_quantity'] ?> </span>
+                    <span class="before:content-['₱']"><?= $row['price'] * $row['cart_quantity'] ?> </span>
                 </div>
             </div>
         <?php
@@ -524,14 +523,14 @@ function showBuyNowProduct($product_id, $colour_id, $size_id)
     $query->execute();
 
     $result = $query->get_result();
+    $row = $result->fetch_assoc();
 
     if ($result && $result->num_rows > 0) {
         $subtotal = 0;
         $product_items = [];
-        $row = $result->fetch_assoc();
-        $product_items[] = [$row['product_item_id'] => ["quantity" => 1, "price" => $row['price']]];
+        $product_items[$row['product_item_id']] = ["quantity" => 1, "price" => $row['price']];
         ?>
-        <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
+        <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
             <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
                 <div class="w-28 h-40 shrink-0 relative">
                     <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
@@ -546,7 +545,7 @@ function showBuyNowProduct($product_id, $colour_id, $size_id)
             </div>
 
             <div>
-                <span class="before:content['₱']"><?= $row['price'] ?> </span>
+                <span class="before:content-['₱']"><?= $row['price'] ?> </span>
             </div>
         </div>
         <?php
@@ -865,6 +864,22 @@ function addressDefault($userID)
     }
 }
 
+function clearUserAddressDefaults($userID)
+{
+    require "connection.php";
+
+    $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
+    $updateQuery = $conn->prepare($updateSql);
+    $updateQuery->bind_param("i", $userID);
+    $updateQuery->execute();
+
+    if ($updateQuery) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function showUserAddress($userID)
 {
     require "connection.php";
@@ -884,8 +899,8 @@ function showUserAddress($userID)
             <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] hover:shadow-xl hover:bg-[#f7f7f7] p-4 text-[15px] gap-3">
                 <div class="font-semibold flex justify-between">
                     <h1><?= $row['is_default'] == 1 ? 'Default' : "" ?></h1>
-                    <button class="deleteBtn p-1" data-address-id="<?= $address['id'] ?>">
-                        <img class="w-4 h-4 object-cover" src="/nstudio/img/x.svg" alt="x">
+                    <button class="deleteBtn p-1 active:scale-90" data-address-id="<?= $address['id'] ?>">
+                        <img class="w-4 h-4 object-cover pointer-events-none" src="/nstudio/img/x.svg" alt="x">
                     </button>
                 </div>
                 <div class="font-medium leading-[1.2rem]">
@@ -897,8 +912,8 @@ function showUserAddress($userID)
                     <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['country'] ?></p>
                     <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['contact_number'] ?></p>
                 </div>
-                <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
-                    <button class="editBtn w-full h-full py-1 font-medium" data-address-id="<?= $address['id'] ?>">Edit</button>
+                <div class="flex justify-center items-center border border-[#505050] transition-colors delay-75 ease-in-out">
+                    <button class="editBtn w-full h-full py-1 font-medium hover:text-white hover:bg-[#101010] active:bg-[#202020]" data-address-id="<?= $address['id'] ?>">Edit</button>
                 </div>
             </div>
         <?php

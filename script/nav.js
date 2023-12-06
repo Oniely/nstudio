@@ -53,7 +53,7 @@ $(document).on("click", (e) => {
 });
 
 $('#burger').on('click', () => {
-    $('#main_nav').toggleClass('border-transparent');
+    $('#main_navbar').toggleClass('border-transparent');
     $('#burger_menu').toggleClass('open');
     if ($('#burger_menu').hasClass('open')) {
         $('#burger_image').attr('src', '/nstudio/img/x.svg');

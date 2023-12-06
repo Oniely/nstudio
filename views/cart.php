@@ -1,9 +1,9 @@
 <?php
 
-require_once '../includes/session.php';
+require '../includes/session.php';
 
-require_once "../includes/connection.php";
-require_once "../includes/functions.php";
+require "../includes/connection.php";
+require "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -47,24 +47,24 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="popup-btn" class="hidden" type="button">
                         Toggle modal
                     </button>
-                    <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center items-center w-full h-screen max-h-full">
+                    <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center items-center w-full h-screen max-h-full shadow-sm backdrop-blur-sm">
                         <div class="relative mt-[10rem] mx-auto w-full max-w-md max-h-full">
-                            <div class="relative rounded-lg shadow bg-gray-700">
-                                <button id="closeBtn" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-hide="popup-modal">
+                            <div class="relative rounded-lg shadow bg-white border">
+                                <button id="closeBtn" type="button" class="absolute top-3 right-2.5 text-gray-400 hover:text-gray-500 active:text-gray-400 bg-transparent rounded-lg text-sm w-7 h-7 ml-auto inline-flex justify-center items-center hover:bg-white" data-modal-hide="popup-modal">
                                     <svg clas s="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                     </svg>
                                     <span class="sr-only">Close modal</span>
                                 </button>
                                 <div class="p-6 text-center">
-                                    <svg class="mx-auto mb-4 w-12 h-12 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <svg class="mx-auto mb-4 w-12 h-12 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg>
-                                    <h3 class="mb-5 text-lg font-normal text-gray-400">Are you sure you want to delete this product?</h3>
+                                    <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to delete this address?</h3>
                                     <button id="confirmBtn" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                                         Yes, I'm sure
                                     </button>
-                                    <button id="cancelBtn" data-modal-hide="popup-modal" type="button" class="focus:ring-4 focus:outline-none rounded-lg border text-sm font-medium px-5 py-2.5 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600">No,
+                                    <button id="cancelBtn" data-modal-hide="popup-modal" type="button" class="focus:ring-4 focus:outline-none rounded-lg border text-sm font-medium px-5 py-2.5 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-800 focus:ring-gray-600">No,
                                         cancel</button>
                                 </div>
                             </div>

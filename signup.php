@@ -1,10 +1,11 @@
 <?php
 
+require 'includes/session.php';
+require "includes/redirect.php";
+
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: login.php');
 }
-
-require_once "includes/redirect.php";
 
 ?>
 
