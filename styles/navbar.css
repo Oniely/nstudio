@@ -1,12 +1,13 @@
 #burger_menu {
     height: 0;
     visibility: hidden;
-    z-index: 10;
-    transition: 0.3s ease-in-out;
+    opacity: 0;
+
+    transition: 0.2s ease-in-out;
 }
 
-#burger_menu.show {
-    height: fit-content;
+#burger_menu.open {
+    height: 15rem;
     visibility: visible;
     opacity: 1;
 }

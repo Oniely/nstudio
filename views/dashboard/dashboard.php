@@ -7,12 +7,17 @@ require_once '../../includes/functions.php';
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 
-    $sql = "SELECT * FROM site_user WHERE id = '$userID'";
+    $sql = "SELECT * FROM site_user WHERE id = $userID";
     $result = $conn->query($sql);
 
     $row = $result->fetch_assoc();
     $fname = $row['fname'];
     $lname = $row['lname'];
+    $email = $row['email'];
+    $username = $row['username'];
+    $contact_number = $row['contact_number'];
+    $password = $row['password'];
+    $profile_img = $row['image_path'];
 } else {
     header("Location: /nstudio/login.php");
 }
@@ -28,7 +33,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen h-full py-6">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative">
             <div class="pl-[10rem] text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard</p>
                 <h1 class="capitalize text-4xl font-semibold tracking-wider">Welcome Back, <span><?= $fname ?></span>!</h1>

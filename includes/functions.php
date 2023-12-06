@@ -1,9 +1,21 @@
 <?php
 
+include_once "session.php";
+
 function dd($value)
 {
     var_dump("<pre>$value</pre>");
     die(1);
+}
+
+function hash_password($passw)
+{
+    $options = [
+        'cost' => 12
+    ];
+    $hashedPassword = password_hash($passw, PASSWORD_BCRYPT, $options);
+
+    return $hashedPassword;
 }
 
 function blobToImage($blobData, $outputPath)
@@ -49,60 +61,32 @@ function showAllMenProduct()
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "img/product/prod$row[id].png";
+            $path = "img/product/prod" . $row['product_id'] . $row['id'] . ".png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[id].png";
+            $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
-                if ($row['product_new'] != 1) :
 ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
+                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                    <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
+                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
+                    </div>
+                    <div class="flex flex-col gap-2 px-4 py-3">
+                        <div class="overflow-hidden text-[13px] font-medium">
+                            <div class="overflow-hidden">
+                                <h3 class="tracking-widest mb-[2px]">
+                                    <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <?php colourButtons($row['product_id']); ?>
+                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                                <?= $row['product_price'] ?>
+                            </h3>
                         </div>
+                        <?php colourButtons($row['product_id']); ?>
                     </div>
-
-                <?php
-                else :
-                ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
-                                </h3>
-                            </div>
-                            <?php colourButtons($row['product_id']); ?>
-                        </div>
-                    </div>
-
-                <?php
-                endif;
+                </div>
+            <?php
             endif;
         }
     }
@@ -131,60 +115,32 @@ function showAllWomenProduct()
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "img/product/prod$row[id].png";
+            $path = "img/product/prod" . $row['product_id'] . $row['id'] . ".png";
             blobToImage($img, $path);
 
-            $product_img = "prod$row[id].png";
+            $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
-                if ($row['product_new'] != 1) :
-                ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
+            ?>
+                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                    <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
+                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
+                    </div>
+                    <div class="flex flex-col gap-2 px-4 py-3">
+                        <div class="overflow-hidden text-[13px] font-medium">
+                            <div class="overflow-hidden">
+                                <h3 class="tracking-widest mb-[2px]">
+                                    <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <?php colourButtons($row['product_id']); ?>
+                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                                <?= $row['product_price'] ?>
+                            </h3>
                         </div>
+                        <?php colourButtons($row['product_id']); ?>
                     </div>
-
-                <?php
-                else :
-                ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
-                                </h3>
-                            </div>
-                            <?php colourButtons($row['product_id']); ?>
-                        </div>
-                    </div>
-
+                </div>
             <?php
-                endif;
             endif;
         }
     }
@@ -220,7 +176,7 @@ function newMenProduct()
         $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
             ?>
-            <div class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
@@ -275,7 +231,7 @@ function newWomenProduct()
         $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
         ?>
-            <div class="w-[276px] md:w-[230px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:md:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
@@ -329,61 +285,33 @@ function showSearchProduct($keyword)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "../img/product/prod$row[id].png";
+            $path = "../img/product/prod" . $row['product_id'] . $row['id'] . ".png";
             blobToImage($img, $path);
 
-            $product_id = $row['product_id'];
-            $product_img = "prod$row[id].png";
+            $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
 
             if ($row['quantity'] > 0) :
-                if ($row['product_new'] != 1) :
             ?>
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
+                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                    <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
+                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
+                    </div>
+                    <div class="flex flex-col gap-2 px-4 py-3">
+                        <div class="overflow-hidden text-[13px] font-medium">
+                            <div class="overflow-hidden">
+                                <h3 class="tracking-widest mb-[2px]">
+                                    <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <?php colourButtons($product_id); ?>
+                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                                <?= $row['product_price'] ?>
+                            </h3>
                         </div>
+                        <?php colourButtons($row['product_id']); ?>
                     </div>
-
-                <?php
-                else :
-                ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
-                                </h3>
-                            </div>
-                            <?php colourButtons($product_id); ?>
-                        </div>
-                    </div>
-
+                </div>
         <?php
-                endif;
             endif;
         }
     } else {
@@ -423,62 +351,36 @@ function showSearchProductByType($type_id, $category)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $img = $row['product_image1'];
-            $path = "../img/product/prod$row[id].png";
+            $path = "../img/product/prod" . $row['product_id'] . $row['id'] . ".png";
 
             blobToImage($img, $path);
             $product_id = $row['product_id'];
-            $product_img = "prod$row[id].png";
+            $product_img = "prod" . $row['product_id'] . $row['id'] . ".png";
 
             if ($row['quantity'] > 0) :
-                if ($row['product_new'] != 1) :
         ?>
 
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
+                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                    <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
+                        <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
+                        <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
+                    </div>
+                    <div class="flex flex-col gap-2 px-4 py-3">
+                        <div class="overflow-hidden text-[13px] font-medium">
+                            <div class="overflow-hidden">
+                                <h3 class="tracking-widest mb-[2px]">
+                                    <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <?php colourButtons($product_id); ?>
+                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                                <?= $row['product_price'] ?>
+                            </h3>
                         </div>
+                        <?php colourButtons($row['product_id']); ?>
                     </div>
-
-                <?php
-                else :
-                ?>
-
-                    <div class="w-[276px] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:bg-black before:text-white before:text-[10px] before:font-['Lato'] before:p-1 before:px-4 before:font-semibold before:tracking-widest before:z-10">
-                        <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
-                            <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
-                            <img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" />
-                        </div>
-                        <div class="flex flex-col gap-2 px-4 py-3">
-                            <div class="overflow-hidden text-[13px] font-medium">
-                                <div class="overflow-hidden">
-                                    <h3 class="tracking-widest mb-[2px]">
-                                        <?= $row['product_name'] ?>
-                                    </h3>
-                                </div>
-                                <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
-                                    <?= $row['product_price'] ?>
-                                </h3>
-                            </div>
-                            <?php colourButtons($product_id); ?>
-                        </div>
-                    </div>
+                </div>
 
         <?php
-                endif;
             endif;
         }
     } else {
@@ -594,7 +496,7 @@ function showCheckOutProducts($userID)
  * Show Buy Now Product for Checkout
  */
 
-function showBuyNowProduct($product_item_id)
+function showBuyNowProduct($product_id, $colour_id, $size_id)
 {
     require 'connection.php';
 
@@ -613,15 +515,21 @@ function showBuyNowProduct($product_item_id)
             INNER JOIN colour ON product_item.colour_id = colour.id
             INNER JOIN size ON product_item.size_id = size.id
             WHERE
-            product_item.id = $product_item_id";
+            product_item.product_id = ?
+            AND product_item.colour_id = ?
+            AND product_item.size_id = ?";
 
-    $result = $conn->query($sql);
+    $query = $conn->prepare($sql);
+    $query->bind_param('iii', $product_id, $colour_id, $size_id);
+    $query->execute();
+
+    $result = $query->get_result();
 
     if ($result && $result->num_rows > 0) {
         $subtotal = 0;
         $product_items = [];
         $row = $result->fetch_assoc();
-        $product_items += [$row['product_item_id'] => ["quantity" => 1, "price" => $row['price']]];
+        $product_items[] = [$row['product_item_id'] => ["quantity" => 1, "price" => $row['price']]];
         ?>
         <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
             <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
@@ -794,7 +702,7 @@ function colourButtons($product_id)
             }
             ?>
         </div>
-    <?php
+        <?php
     }
 }
 
@@ -803,7 +711,7 @@ function colourButtons($product_id)
  */
 
 
-function showProductColours($product_id)
+function showProductColours($product_id, $colour_id)
 {
     require "connection.php";
 
@@ -822,17 +730,16 @@ function showProductColours($product_id)
     $result = $query->get_result();
 
     if ($result && $result->num_rows > 0) {
-    ?>
-        <div class="flex gap-2">
-            <?php
-            while ($row = $result->fetch_assoc()) {
-            ?>
-                <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>" class="w-7 h-5 border bg-[<?= $row['hex_code'] ?>]"></a>
-            <?php
+        while ($row = $result->fetch_assoc()) {
+            if ($row['hex_code'] == "#FFFFFF" || $row['hex_code'] == '#F5F5F5') {
+                $row['hex_code'] = '#E5E5E5';
             }
-            ?>
-        </div>
-    <?php
+        ?>
+            <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
+                <div class="w-5 h-4 bg-[<?= $row['hex_code'] ?>] active:border-[3px] active:border-[#cecece] active:border-double hover:border-[2px] hover:border-double <?= $row['colour_id'] == $colour_id ? 'border-[3px] border-[#cecece] border-double' : '' ?>"></div>
+            </a>
+        <?php
+        }
     }
 }
 
@@ -848,22 +755,19 @@ function showProductSizes($product_id, $colour_id)
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
-    ?>
-        <div class="flex flex-wrap gap-2">
-            <?php
-            while ($row = $result->fetch_assoc()) {
-            ?>
-                <input data-size-id="<?= $row['id'] ?>" class="hidden" type="radio" id="<?= $row['size_value'] ?>" name="size" <?= areSizesAvailable($product_id, $colour_id, $row['size_value']) ? "" : 'disabled' ?> />
-                <label class="w-8 h-8 border border-black rounded-full grid place-items-center" for="<?= $row['size_value'] ?>">
-                    <span>
-                        <?= $row['size_value'] ?>
-                    </span>
+        while ($row = $result->fetch_assoc()) {
+        ?>
+            <div class="group relative w-10 h-9 border border-black grid place-items-center">
+                <input data-size-id="<?= $row['id'] ?>" class="hidden peer" type="radio" name="size" id="<?= $row['size_value'] ?>" <?= areSizesAvailable($product_id, $colour_id, $row['size_value']) ? "" : 'disabled' ?> />
+                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white hover:bg-[#151515] hover:text-white text-sm uppercase w-full h-full grid place-items-center cursor-pointer relative" for="<?= $row['size_value'] ?>">
+                    <span><?= $row['size_value'] ?></span>
                 </label>
-            <?php
-            }
-            ?>
-        </div>
+                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                </svg>
+            </div>
         <?php
+        }
     }
 }
 
@@ -977,7 +881,7 @@ function showUserAddress($userID)
             $address = $conn->query($sql);
             $address = $address->fetch_assoc();
         ?>
-            <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] p-4 text-[15px] gap-3">
+            <div class="w-[19rem] flex flex-col border-[0.1px] border-[#505050] hover:shadow-xl hover:bg-[#f7f7f7] p-4 text-[15px] gap-3">
                 <div class="font-semibold flex justify-between">
                     <h1><?= $row['is_default'] == 1 ? 'Default' : "" ?></h1>
                     <button class="deleteBtn p-1" data-address-id="<?= $address['id'] ?>">
@@ -985,13 +889,13 @@ function showUserAddress($userID)
                     </button>
                 </div>
                 <div class="font-medium leading-[1.2rem]">
-                    <p class="overflow-hidden text-ellipsis"><?= $address['fname'] . " " . $address['lname'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['email'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['street_name'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['city'] . ", " .  $address['province'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['postal_code'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['country'] ?></p>
-                    <p class="overflow-hidden text-ellipsis"><?= $address['contact_number'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['fname'] . " " . $address['lname'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['email'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['street_name'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['city'] . ", " .  $address['province'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['postal_code'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['country'] ?></p>
+                    <p class="overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['contact_number'] ?></p>
                 </div>
                 <div class="flex justify-center items-center border border-[#505050] hover:text-white hover:bg-[#101010] transition-colors delay-75 ease-in-out">
                     <button class="editBtn w-full h-full py-1 font-medium" data-address-id="<?= $address['id'] ?>">Edit</button>

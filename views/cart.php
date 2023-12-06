@@ -7,6 +7,12 @@ require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
+
+    $sql = "SELECT * FROM site_user WHERE id = $userID";
+    $result = $conn->query($sql);
+
+    $row = $result->fetch_assoc();
+    $profile_img = $row['image_path'];
 } else {
     header('location: /nstudio/login.php');
     exit;
@@ -102,9 +108,6 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
             </div>
         <?php endif; ?>
     </main>
-    <div class="min-h-screen">
-
-    </div>
     <!-- Footer Section -->
     <?php require './partials/footer.php' ?>
 </body>

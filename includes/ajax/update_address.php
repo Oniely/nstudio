@@ -28,26 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $query->bind_param("ssssssssi", $fname, $lname, $email, $street_name, $pcode, $city, $province, $contact_number, $addressID);
         $query->execute();
 
-        if ($query->affected_rows == 1) {
-            if ($default == 1) {
-                $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
-                $updateQuery = $conn->prepare($updateSql);
-                $updateQuery->bind_param("i", $userID);
-                $updateQuery->execute();
-            } else {
-                $default = 0;
-            }
 
-            $userAddressSql = "UPDATE user_address SET is_default = $default WHERE user_id = $userID AND address_id = $addressID";
-            $result = $conn->query($userAddressSql);
+        if ($default == 1) {
+            $updateSql = "UPDATE user_address SET is_default = 0 WHERE user_id = ?";
+            $updateQuery = $conn->prepare($updateSql);
+            $updateQuery->bind_param("i", $userID);
+            $updateQuery->execute();
+        } else {
+            $default = 0;
+        }
 
-            if ($result) {
-                echo "SUCCESS";
-                return;
-            } else {
-                echo "UPDATE FAILED";
-                return;
-            }
+        $userAddressSql = "UPDATE user_address SET is_default = $default WHERE user_id = $userID AND address_id = $addressID";
+        $result = $conn->query($userAddressSql);
+
+        if ($result) {
+            echo "SUCCESS";
+            return;
         } else {
             echo "UPDATE FAILED";
             return;

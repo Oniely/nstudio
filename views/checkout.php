@@ -7,6 +7,12 @@ require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
+
+    $sql = "SELECT * FROM site_user WHERE id = $userID";
+    $result = $conn->query($sql);
+
+    $row = $result->fetch_assoc();
+    $profile_img = $row['image_path'];
 } else {
     header('location: /nstudio/login.php');
     exit;
@@ -227,9 +233,12 @@ $provinceOptions = array(
 
             <div class="container max-w-full flex flex-col gap-3">
                 <?php
-                if (isset($_GET['item']) && $_GET['item'] != "") {
+                if (isset($_GET['item']) && $_GET['item'] != "" && isset($_GET['colour']) && isset($_GET['size'])) {
                     $item_id = $_GET['item'];
-                    $subtotal = showBuyNowProduct($item_id);
+                    $colour_id = $_GET['colour'];
+                    $size_id = $_GET['size'];
+
+                    $subtotal = showBuyNowProduct($item_id, $colour_id, $size_id);
                 } else {
                     $subtotal = showCheckOutProducts($userID);
                 }
