@@ -1,4 +1,4 @@
-<section class="w-full min-h-[40vh] bg-[#F8F6F0] px-8">
+<section class="w-full min-h-[40vh] bg-[#F8F6F0] px-[2rem] sm:px-[1rem]">
     <hr>
     <div class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4">
         <div class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium">
@@ -22,11 +22,11 @@
         <div class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2">
             <div class="md:flex md:gap-[5px] text-lg font-semibold leading-5">
                 <!-- prettier-ignore -->
-                <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your 
-                first order.</p>
+                <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your
+                    first order.</p>
             </div>
             <div class="w-[12rem] md:w-full text-center">
-                <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3">SUBSCRIBE</button>
+                <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3 rounded">SUBSCRIBE</button>
             </div>
         </div>
     </div>

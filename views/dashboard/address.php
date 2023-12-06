@@ -135,7 +135,7 @@ $provinceOptions = array(
                                 <?php showUserAddress($userID) ?>
                             </div>
 
-                            <button id="addressBtn" class="uppercase w-[19rem] py-3 px-14 text-center bg-[#101010] text-white hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">
+                            <button id="addressBtn" class="uppercase w-[19rem] py-3 px-14 text-center bg-[#101010] text-white active:bg-[#eee] hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">
                                 ADD NEW ADDRESS
                             </button>
                             <!-- Main modal -->
