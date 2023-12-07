@@ -126,3 +126,16 @@ button {
 .div2 {
     grid-area: 1 / 4 / 5 / 7;
 }
+
+.overflowYelement {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.overflowYelement::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
