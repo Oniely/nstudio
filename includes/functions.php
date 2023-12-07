@@ -880,6 +880,23 @@ function clearUserAddressDefaults($userID)
     }
 }
 
+function checkUserAddress($userID, $addressID)
+{
+    require "connection.php";
+
+    $sql = "SELECT * FROM user_address WHERE user_id = ? and address_id = ?";
+    $query = $conn->prepare($sql);
+    $query->bind_param('ii', $userID, $addressID);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function showUserAddress($userID)
 {
     require "connection.php";

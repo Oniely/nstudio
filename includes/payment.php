@@ -61,10 +61,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     if (isset($_POST['save'])) {
         if ($query->affected_rows == 1) {
             if (clearUserAddressDefaults($userID)) {
-                $userAddSql = "INSERT INTO user_address (user_id, address_id, is_default) VALUES (?, ?, 1)";
-                $userAddQuery = $conn->prepare($userAddSql);
-                $userAddQuery->bind_param("ii", $userID, $addressID);
-                $userAddQuery->execute();
+                if (checkUserAddress($userID, $addressID)) {
+                    $userAddSql = "UPDATE user_address SET is_default = 1 WHERE user_id = ? AND address_id = ?";
+                    $userAddQuery = $conn->prepare($userAddSql);
+                    $userAddQuery->bind_param("ii", $userID, $addressID);
+                    $userAddQuery->execute();
+                } else {
+                    $userAddSql = "INSERT INTO user_address (user_id, address_id, is_default) VALUES (?, ?, 1)";
+                    $userAddQuery = $conn->prepare($userAddSql);
+                    $userAddQuery->bind_param("ii", $userID, $addressID);
+                    $userAddQuery->execute();
+                }
             } else {
                 echo "<script>alert('Failed to save address.')</script>";
             }
