@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
             WHERE fname = ?
             AND lname = ?
             AND email = ?
-            AND street_name = ?
+            AND street_name LIKE '%' || ? || '%'
             AND postal_code = ?
             AND city = ?
             AND province = ?
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     }
 
     // Assign variables
-    $pending = "PENDING";
+    $to_pay = "TO PAY";
     $total = $_SESSION['total'];
     $ordered_products = $_SESSION["product_items"];
 
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     // INSERT ORDER TO SHOP ORDER TBL
     $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?)";
     $shopQuery = $conn->prepare($shopSql);
-    $shopQuery->bind_param("isids", $userID, $payment_method, $addressID, $total, $pending);
+    $shopQuery->bind_param("isids", $userID, $payment_method, $addressID, $total, $to_pay);
     $shopQuery->execute();
 
     // IF SUCCESSFUL, INSERT ORDER LINE TO ORDER LINE TBL
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
         if (isset($_SESSION['BUYNOW']) && $_SESSION['BUYNOW'] == true) {
             unset($_SESSION["BUYNOW"]);
             unset($_SESSION["product_items"]);
-            header('location: /nstudio/views/dashboard/dashboard.php');
+            header('location: /nstudio/views/dashboard/purchases.php');
             exit();
         } else {
             // ELSE MEANING THE USER CAME FROM CART PAGE SO REMOVE ALL CART ITEMS THAT GOT CHECKOUT
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
             $deleteCartQuery->execute();
 
             unset($_SESSION["product_items"]);
-            header('location: /nstudio/views/dashboard/dashboard.php');
+            header('location: /nstudio/views/dashboard/purchases.php');
             exit();
         }
     } else {

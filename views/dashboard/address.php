@@ -98,44 +98,44 @@ $provinceOptions = array(
     'Zamboanga Sibugay'
 );
 
+$address = true;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
 <?php require '../partials/head.php' ?>
-<script src="../../script/address.js" defer></script>
+<script src="/nstudio/script/address.js" defer></script>
 
 <body class="min-h-screen">
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full py-6 overflow-hidden">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative overflow-hidden">
-            <div class="pl-[10rem] text-[#505050]">
+    <main class="min-h-screen h-full pt-6 md:pb-14 overflow-hidden">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
+            <div class="pl-[10rem] md:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Address</p>
                 <h1 class="uppercase text-4xl font-semibold tracking-wider">Your Address</h1>
+                <div class="md:flex w-full hidden"><?php require 'nav.php' ?></div>
             </div>
 
             <div class="flex items-start w-full">
-                <div class="flex flex-col justify-start items-start gap-1 pt-[3.1rem]">
-                    <h1 class="text-xl font-semibold px-2">Account</h1>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="dashboard.php">Dashboard</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="profile.php">Profile</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100 0 font-medium underline" href="address.php">Address</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="/nstudio/includes/logout.php">Logout</a>
-                </div>
-                <div class="container h-auto pl-10">
+                <!-- Dashboard Nav -->
+                <div class="md:hidden"><?php require 'nav.php' ?></div>
+                <!-- MAIN -->
+                <div class="container h-auto pl-10 md:pl-0">
                     <h1 class="text-2xl py-2 invisible">Your Address</h1>
 
                     <div class="w-full h-auto flex flex-col justify-center items-start gap-10">
                         <div class="w-full h-auto flex flex-col items-start gap-5">
                             <!-- Address Container -->
+                            <h1 class="md:block hidden text-2xl py-2">Addresses</h1>
                             <div class="w-full h-full flex flex-wrap justify-start items-center gap-10">
                                 <!-- Addresses -->
                                 <?php showUserAddress($userID) ?>
                             </div>
 
-                            <button id="addressBtn" class="uppercase w-[19rem] py-3 px-14 text-center bg-[#101010] text-white active:bg-[#eee] hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">
+                            <button id="addressBtn" class="uppercase w-[19rem] md:w-full py-3 px-14 text-center bg-[#101010] text-white active:bg-[#eee] hover:text-[#101010] hover:bg-white text-sm border-solid border border-b transition-colors delay-75 ease-in-out">
                                 ADD NEW ADDRESS
                             </button>
                             <!-- Main modal -->

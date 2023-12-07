@@ -23,6 +23,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     header("Location: /nstudio/login.php");
 }
 
+$profile = true;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,21 +35,18 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full py-6">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] flex flex-col gap-7 relative overflow-hidden">
-            <div class="pl-[10rem] text-[#505050]">
+    <main class="min-h-screen h-full pt-6 md:pb-14">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
+            <div class="pl-[10rem] md:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Profile</p>
                 <h1 class="uppercase text-4xl font-semibold tracking-wider">Your Profile</h1>
+                <div class="md:flex w-full hidden"><?php require 'nav.php' ?></div>
             </div>
             <div class="flex items-start">
-                <div class="flex flex-col justify-start items-start gap-1 pt-[3.1rem]">
-                    <h1 class="text-xl font-semibold px-2">Account</h1>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="dashboard.php">Dashboard</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100 font-medium underline" href="profile.php">Profile</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="address.php">Address</a>
-                    <a class="py-1 text-start px-2 w-[8rem] hover:bg-slate-100" href="/nstudio/includes/logout.php">Logout</a>
-                </div>
-                <form method="POST" class="container h-auto pl-10 grid grid-cols-2 gap-10 pr-[12rem]" enctype="multipart/form-data">
+                <!-- Dashboard Nav -->
+                <div class="md:hidden"><?php require 'nav.php' ?></div>
+                <!-- Main -->
+                <form method="POST" class="container h-auto pl-10 md:pl-0 grid grid-cols-2 gap-10 pr-[12rem]" enctype="multipart/form-data">
                     <div class=" col-span-1">
                         <label for="fname" class="block text-sm font-medium text-gray-700">First Name</label>
                         <input type="text" name="fname" id="fname" value="<?= $fname ?>" class="border w-full py-2 px-2" required>

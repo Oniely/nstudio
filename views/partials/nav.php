@@ -116,19 +116,19 @@
                         <img class="w-[1.5rem]" src="/nstudio/img/profile.svg" alt="Profile" />
                     <?php endif ?>
 
-                    <div class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">
+                    <div class="absolute top-[1.2rem] right-0 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 border rounded-lg shadow" id="user-dropdown">
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <a href="/nstudio/views/dashboard/dashboard.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                                <a href="/nstudio/views/dashboard/profile.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                             </li>
                             <li>
-                                <a href="/nstudio/views/dashboard/profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="/nstudio/views/dashboard/purchases.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Purchases</a>
                             </li>
                             <li>
-                                <a href="/nstudio/views/dashboard/address.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Address</a>
+                                <a href="/nstudio/views/dashboard/address.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Address</a>
                             </li>
                             <li>
-                                <a href="/nstudio/includes/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                                <a href="/nstudio/includes/logout.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
                                     out</a>
                             </li>
                         </ul>
