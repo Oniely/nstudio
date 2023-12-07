@@ -115,8 +115,8 @@ if (isset($_GET['id'])) {
                 </div>
                 <form id="productForm" class="flex flex-col justify-start gap-6 sticky top-12 ml-[4rem] w-[26rem]">
                     <div class="flex flex-col text-xl">
-                        <h1>PLEATED-PLACKET DRESS SHIRT - REGULAR</h1>
-                        <p class="font-semibold">$199</p>
+                        <h1 class="uppercase font-medium"><?= $name ?></h1>
+                        <p class="font-semibold before:content-['₱'] before:font-medium before:mr-[2px]"><?= $price ?></p>
                     </div>
                     <div class="flex flex-col gap-2">
                         <p class="text-xs tracking-wider">COLOR</p>
