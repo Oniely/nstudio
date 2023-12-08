@@ -23,14 +23,12 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    },
                 },
                 screens: {
                     "2xl": { max: "1535px" },
                     xl: { max: "1280px" },
                     lg: { max: "1024px" },
+                    lgt: { max: "920px" },
                     md: { max: "768px" },
                     sm: { max: "640px" },
                     xs: { max: "440px" },

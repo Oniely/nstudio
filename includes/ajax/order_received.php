@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 shop_order_tbl
                 JOIN order_line_tbl ON order_line_tbl.order_id = shop_order_tbl.id
                 WHERE
-                shop_order_tbl.id = ? AND order_status="TO PAY"';
+                shop_order_tbl.id = ? AND order_status = "TO RECEIVE"';
 
         $query = $conn->prepare($sql);
         $query->bind_param('i', $order_id);
@@ -32,24 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) :
-                $cancel = "CANCELLED";
+                $completed = "COMPLETED";
                 $order_id = $row['id'];
                 $product_item_id = $row['product_item_id'];
                 $backQuantity = $row['quantity'];
 
-                $sql = "UPDATE shop_order_tbl SET order_status = ? WHERE id = ?";
-                $sql2 = "UPDATE product_item SET quantity = quantity + ? WHERE id = ?";
+                $sql = "UPDATE shop_order_tbl SET order_status = ?, receive_date = CURRENT_TIMESTAMP WHERE id = ?";
 
                 $query1 = $conn->prepare($sql);
-                $query1->bind_param('si', $cancel, $order_id);
+                $query1->bind_param('si', $completed, $order_id);
 
-                $query2 = $conn->prepare($sql2);
-                $query2->bind_param('ii', $backQuantity, $product_item_id);
 
                 $query1->execute();
-                $query2->execute();
 
-                if ($query1 && $query2) {
+                if ($query1) {
                     echo "SUCCESS";
                 } else {
                     echo "ERROR";
