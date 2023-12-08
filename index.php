@@ -42,8 +42,8 @@ $homeActive = "active";
             </div>
             <!-- Hero Buttons -->
             <div class="w-[min(100%,_68rem)] absolute bottom-[8rem] sm:bottom-[4rem] flex justify-between gap-3 items-center px-10 xs:px-[1rem]">
-                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="men.php">FOR MEN</a>
-                <a class="border-[2px] border-[#211f22] sm:border-[1px] sm:border-[#FFF] sm:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="women.php">FOR WOMEN</a>
+                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="men.php">FOR MEN</a>
+                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="women.php">FOR WOMEN</a>
             </div>
         </div>
     </main>
@@ -57,9 +57,9 @@ $homeActive = "active";
                     </div>
                     <!-- prettier-ignore -->
                     <div class="flex justify-between items-center lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)]">
-                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/product/1_image1.jpg" alt="">
-                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/product/1_image2.jpg" alt="">
-                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)] max-w-full object-cover object-top" src="./img/product/1_image3.jpg" alt="">
+                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/1_image1.jpg" alt="Showcase Image 1">
+                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)]  max-w-full object-cover object-top" src="./img/1_image2.jpg" alt="Showcase Image 2">
+                        <img class="lg:w-[clamp(9rem,0.0000rem+18.7500vw,12rem)] lg:h-[clamp(13rem,1.0000rem+25.0000vw,17rem)] w-[clamp(12rem,8.3077rem+5.7692vw,13.5rem)] h-[clamp(17rem,7.1538rem+15.3846vw,21rem)] max-w-full object-cover object-top" src="./img/1_image3.jpg" alt="Showcase Image 3">
                     </div>
                 </div>
                 <div class="lg:w-[clamp(32rem,23rem+18.75vw,35rem)] lg:h-[clamp(26.5rem,_59.375vw_+_-2rem,36rem)] w-[35rem] h-[clamp(36rem,21.2308rem+23.0769vw,42rem)]">
@@ -75,9 +75,9 @@ $homeActive = "active";
                     <img class="w-full h-full object-cover object-top" src="./img/big_hero.svg" alt="big_hero">
                 </div>
                 <div class="flex justify-between items-center xs:gap-1 xs:w-full xs:h-fit w-[clamp(26rem,43.902vw+13.927rem,35rem)] h-[clamp(14rem,19.512vw+8.634rem,18rem)]">
-                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image1.jpg" alt="1">
-                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image2.jpg" alt="1">
-                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image3.jpg" alt="1">
+                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image1.jpg" alt="Showcase Image1">
+                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image2.jpg" alt="Showcase Image2">
+                    <img class="xs:flex-1 xs:basis-0 xs:w-0 xs:h-[clamp(9.5rem,60vw+-2.5rem,14rem)] w-[clamp(8.4rem,12.683vw+4.912rem,11rem)] h-full object-cover" src="./img/1_image3.jpg" alt="Showcase Image3">
                 </div>
             </div>
         </div>

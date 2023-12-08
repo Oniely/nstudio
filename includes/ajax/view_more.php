@@ -17,10 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $sql = 'SELECT
                 order_line_tbl.*,
                 order_line_tbl.quantity order_quantity,
-                product_item.*
+                product_item.*,
+                shop_order_tbl.order_status
                 FROM
                 order_line_tbl
                 JOIN product_item ON order_line_tbl.product_item_id = product_item.id
+                JOIN shop_order_tbl on shop_order_tbl.id = order_line_tbl.order_id
                 WHERE
                 order_id = ?';
     }
@@ -62,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/topay.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">To Pay</h1>
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['price'] ?></span></p>
                         </div>

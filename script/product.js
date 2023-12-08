@@ -97,4 +97,6 @@ $(document).ready(function () {
         $('#sizeModal').addClass('hidden');
         $('body').css('overflow', 'auto');
     });
-})
+});
+
+// Continue off image slider logic check in chatgpt

@@ -81,7 +81,7 @@ function showAllMenProduct()
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                            <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
@@ -137,7 +137,7 @@ function showAllWomenProduct()
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                            <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
@@ -194,7 +194,7 @@ function newMenProduct()
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
-                        <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                        <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                             <?= $row['product_price'] ?>
                         </h3>
                     </div>
@@ -251,7 +251,7 @@ function newWomenProduct()
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
-                        <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                        <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                             <?= $row['product_price'] ?>
                         </h3>
                     </div>
@@ -314,7 +314,7 @@ function showSearchProduct($keyword)
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                            <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
@@ -384,7 +384,7 @@ function showSearchProductByType($type_id, $category)
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                            <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
@@ -449,7 +449,7 @@ function showSuggestionProduct($product_id, $product_item_id)
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
-                            <h3 class="tracking-widest before:content-['$'] before:mr-[-3px]">
+                            <h3 class="tracking-widest before:content-['₱'] before:mr-[-3px]">
                                 <?= $row['product_price'] ?>
                             </h3>
                         </div>
@@ -618,7 +618,7 @@ function showBuyNowProduct($product_id, $colour_id, $size_id)
                 </div>
             </div>
 
-            <div>../
+            <div>
                 <span class="before:content-['₱']"><?= $row['price'] ?> </span>
             </div>
         </div>
@@ -701,7 +701,7 @@ function showCartProducts($userID)
                         </button>
                     </div>
                     <div class="pl-4">
-                        <p class="before:content-['$'] whitespace-nowrap" data-price-id="<?= $row['product_item_id'] ?>">
+                        <p class="before:content-['₱'] whitespace-nowrap" data-price-id="<?= $row['product_item_id'] ?>">
                             <?= $row['price'] * $row['cart_quantity'] ?>
                         </p>
                     </div>
@@ -1166,8 +1166,8 @@ function showToPayOrder($userID)
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/topay.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">To Pay</h1>
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
@@ -1441,8 +1441,8 @@ function showToShipOrders($userID)
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/toship.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">To Ship</h1>
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
@@ -1538,8 +1538,8 @@ function showToReceiveOrders($userID)
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/toship.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">To Receive</h1>
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
@@ -1635,8 +1635,8 @@ function showCancelledOrders($userID)
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/topay.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">CANCELLED</h1>
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
