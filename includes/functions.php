@@ -766,7 +766,8 @@ function showCartProducts($userID)
                             <h3 class="[word-spacing:2px] text-[15px] uppercase tracking-tight font-medium"><?= $row['product_name'] ?></h3>
                             <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
                             <div class="flex gap-3">
-                                <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
+                                <!-- Left off trying to add edit product on cart like lunya probably ajax -->
+                                <button data-update-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
                                 <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
                             </div>
                             <div class="hidden md:flex justify-center items-center w-14 border mt-10">
@@ -1291,7 +1292,7 @@ function showToPayOrder($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1335,7 +1336,7 @@ function showToPayOrder($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To pay items</h1>
         </div>
         <?php
@@ -1377,7 +1378,7 @@ function showToPayProducts($userID)
             $dateTime = new DateTime($row['receive_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1420,7 +1421,7 @@ function showToPayProducts($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No-To pay items.</h1>
         </div>
         <?php
@@ -1462,7 +1463,7 @@ function showCompletedProducts($userID)
             $dateTime = new DateTime($row['receive_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1513,7 +1514,7 @@ function showCompletedProducts($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No completed items.</h1>
         </div>
         <?php
@@ -1566,7 +1567,7 @@ function showToShipOrders($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1610,7 +1611,7 @@ function showToShipOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To Ship Order</h1>
         </div>
         <?php
@@ -1663,7 +1664,7 @@ function showToReceiveOrders($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1707,7 +1708,7 @@ function showToReceiveOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To Receive Order</h1>
         </div>
         <?php
@@ -1760,7 +1761,7 @@ function showCancelledOrders($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">
@@ -1801,7 +1802,7 @@ function showCancelledOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - Cancelled Order</h1>
         </div>
 <?php

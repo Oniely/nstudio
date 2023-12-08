@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             $colour_id = $item['colour_id'];
             $size_id = $item['size_id'];
 ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
                 <div class="w-full flex items-center gap-2">
                     <div class="h-44 shrink-0">

@@ -35,7 +35,7 @@ $profile = true;
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full pt-6 md:pb-14">
+    <main class="min-h-screen h-full pt-6 pb-10 md:pb-14">
         <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
             <div class="pl-[10rem] md:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Profile</p>
@@ -46,7 +46,7 @@ $profile = true;
                 <!-- Dashboard Nav -->
                 <div class="md:hidden"><?php require 'nav.php' ?></div>
                 <!-- Main -->
-                <form method="POST" class="container h-auto pl-10 md:pl-0 grid grid-cols-2 gap-10 pr-[12rem]" enctype="multipart/form-data">
+                <form method="POST" class="container h-auto pl-10 md:pl-0 grid grid-cols-2 gap-10 pr-[8rem] md:pr-0" enctype="multipart/form-data">
                     <div class=" col-span-1">
                         <label for="fname" class="block text-sm font-medium text-gray-700">First Name</label>
                         <input type="text" name="fname" id="fname" value="<?= $fname ?>" class="border w-full py-2 px-2" required>
@@ -69,14 +69,14 @@ $profile = true;
                     </div>
                     <div class="col-span-1">
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                        <input type="password" name="password" id="password" value="" class="border w-full py-2 px-2" minlength="8" required>
+                        <input type="password" name="password" id="password" value="" class="border w-full py-2 px-2" minlength="8">
                     </div>
                     <div class="col-span-2">
                         <label for="profile_img" class="block text-sm font-medium text-gray-700">Profile Image</label>
                         <input type="file" name="profile_img" id="profile_img" accept="image/png, image/jpeg" class="border w-full py-2 px-2" required>
                     </div>
-                    <div class="col-span-1">
-                        <input class="border border-[#101010] bg-[#101010] text-white hover:bg-white hover:text-[#101010] w-full py-3 transition-colors delay-75 ease-linear cursor-pointer" type="submit" value="Update Profile">
+                    <div class="col-span-1 md:col-span-2">
+                        <input class="border border-[#101010] bg-[#101010] text-white hover:bg-white hover:text-[#101010] w-full py-2.5 transition-colors delay-75 ease-linear cursor-pointer" type="submit" value="Update Profile">
                     </div>
                 </form>
 
@@ -89,7 +89,9 @@ $profile = true;
                     $username = $_POST['username'];
                     $contact_number = $_POST['contact_number'];
                     $newPassword = $_POST['password'];
-                    $hashPass = hash_password($newPassword);
+                    if ($newPassword !== "") {
+                        $hashPass = hash_password($newPassword);
+                    }
 
                     if (isset($_FILES["profile_img"]) && $_FILES["profile_img"]["error"] == UPLOAD_ERR_OK) {
                         $file_name = $_FILES["profile_img"]["name"];
@@ -101,14 +103,25 @@ $profile = true;
                         $destination = $upload_dir . $file_name;
 
                         if (move_uploaded_file($file_temp, "../../img/profile/" . $file_name)) {
-                            $sql = "UPDATE site_user SET 
-                                    fname = ?, lname = ?, 
-                                    email = ?, image_path = ?, 
-                                    username = ?, contact_number = ?, 
-                                    password = ? WHERE id = $userID";
-
+                            if (isset($hashPass)) {
+                                $sql = "UPDATE site_user SET 
+                                        fname = ?, lname = ?, 
+                                        email = ?, image_path = ?, 
+                                        username = ?, contact_number = ?, 
+                                        password = ? WHERE id = $userID";
+                            } else {
+                                $sql = "UPDATE site_user SET 
+                                        fname = ?, lname = ?, 
+                                        email = ?, image_path = ?, 
+                                        username = ?, contact_number = ? 
+                                        WHERE id = $userID";
+                            }
                             $query = $conn->prepare($sql);
-                            $query->bind_param("sssssss", $fname, $lname, $email, $destination, $username, $contact_number, $hashPass);
+                            if (isset($hashPass)) {
+                                $query->bind_param("ssssssss", $fname, $lname, $email, $destination, $username, $contact_number, $hashPass, $userID);
+                            } else {
+                                $query->bind_param("ssssss", $fname, $lname, $email, $destination, $username, $contact_number);
+                            }
                             $query->execute();
 
                             if ($query->affected_rows == 1) {

@@ -253,21 +253,21 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                     <div class="flex px-[1rem]">
-                        <button id="showSizeModalBtn" class="showSizeModalBtn text-xs font-medium underline cursor-pointer">
+                        <button type="button" id=" showSizeModalBtn" class="showSizeModalBtn text-xs font-medium underline cursor-pointer">
                             FIND YOUR SIZE
                         </button>
                     </div>
                     <div class="flex flex-col w-full gap-3 px-[1rem]">
                         <div class="flex gap-3 justify-center text-xs font-medium pl-[1px]">
-                            <button id="dBtn2" class="dBtn2 underline uppercase">
+                            <button type="button" id="dBtn2" class="dBtn2 underline uppercase">
                                 Description
                             </button>
                             <span>-</span>
-                            <button id="dBtn1" class="dBtn1 uppercase">
+                            <button type="button" id="dBtn1" class="dBtn1 uppercase">
                                 Delivery
                             </button>
                             <span>-</span>
-                            <button id="dBtn3" class="dBtn3 uppercase">
+                            <button type="button" id="dBtn3" class="dBtn3 uppercase">
                                 Details
                             </button>
                         </div>
