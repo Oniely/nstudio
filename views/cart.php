@@ -32,8 +32,8 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     <!-- Main Section -->
     <main class="min-h-screen">
         <?php if (checkCartProduct($userID)) : ?>
-            <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-0 md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
-                <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 px-14 lg:px-10 md:px-4 w-auto">
+            <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-[2rem] md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
+                <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 pr-10 md:px-6 w-auto">
                     <div class="text-2xl text-[#505050] font-semibold self-start md:pl-6">
                         <?php $cartCount = cartCount($userID) ?>
                         <h1 class="relative after:content-['(<?= $cartCount ?>)'] after:absolute after:top-[-3px] after:text-sm">
@@ -71,6 +71,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                         </div>
                     </div>
                 </div>
+                
                 <div class="flex flex-col gap-5 w-[25rem] md:w-full md:px-10 pt-4">
                     <div class="text-2xl text-[#505050] font-semibold">
                         <h1>Order Summary</h1>
@@ -89,7 +90,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <div class="flex flex-col gap-2 font-[Lato]">
                         <div class="flex justify-between text-gray-600 font-semibold">
                             <h1>Subtotal</h1>
-                            <span class="before:content-['$'] before:mr-[2px]" id="subtotal"><?= @$subtotal ? @$subtotal : "--" ?></span>
+                            <span class="before:content-['₱'] before:mr-[2px]" id="subtotal"><?= @$subtotal ? @$subtotal : "--" ?></span>
                         </div>
                         <span class="text-xs text-gray-400 leading-4 tracking-wide whitespace-nowrap sm:whitespace-normal">SHIPPING & TAXES CALCULATED AT CHECKOUT</span>
                         <div class="w-full h-10 mt-2">

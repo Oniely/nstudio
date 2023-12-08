@@ -1,6 +1,6 @@
 <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-[2rem] sm:px-[1rem]">
     <hr>
-    <div class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4">
+    <div class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-0 px-8 py-4">
         <div class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium">
             <ul class="md:w-full">
                 <li><a href="#">Contact Us</a></li>

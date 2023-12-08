@@ -77,7 +77,7 @@ function showAllMenProduct()
                     <div class="flex flex-col gap-2 px-4 py-3">
                         <div class="overflow-hidden text-[13px] font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px]">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -133,7 +133,7 @@ function showAllWomenProduct()
                     <div class="flex flex-col gap-2 px-4 py-3">
                         <div class="overflow-hidden text-[13px] font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px]">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -154,9 +154,37 @@ function showAllWomenProduct()
  * Show All Men New Arrival Product
  */
 
+function checkMenProduct()
+{
+    require "connection.php";
+
+    $sql = "SELECT
+                product_tbl.*,
+                product_item.*
+            FROM
+                product_tbl
+            JOIN
+                product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+                product_tbl.product_category = 'MEN' AND product_tbl.product_new = 1
+            GROUP BY
+                product_tbl.product_id, product_item.colour_id
+            ORDER BY
+                RAND()
+            LIMIT 4";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function newMenProduct()
 {
     require "connection.php";
+
     $sql = "SELECT
                 product_tbl.*,
                 product_item.*
@@ -190,7 +218,7 @@ function newMenProduct()
                 <div class="flex flex-col gap-2 px-4 py-3">
                     <div class="overflow-hidden text-[13px] font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px]">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -209,6 +237,33 @@ function newMenProduct()
 /* 
  * Show All Women New Arrival Product
  */
+
+function checkWomenProduct()
+{
+    require "connection.php";
+
+    $sql = "SELECT
+                product_tbl.*,
+                product_item.*
+            FROM
+                product_tbl
+            JOIN
+                product_item ON product_tbl.product_id = product_item.product_id
+            WHERE
+                product_tbl.product_category = 'WOMEN' AND product_tbl.product_new = 1
+            GROUP BY
+                product_tbl.product_id, product_item.colour_id
+            ORDER BY
+                RAND()
+            LIMIT 4";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function newWomenProduct()
 {
@@ -247,7 +302,7 @@ function newWomenProduct()
                 <div class="flex flex-col gap-2 px-4 py-3">
                     <div class="overflow-hidden text-[13px] font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px]">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -310,7 +365,7 @@ function showSearchProduct($keyword)
                     <div class="flex flex-col gap-2 px-4 py-3">
                         <div class="overflow-hidden text-[13px] font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px]">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -380,7 +435,7 @@ function showSearchProductByType($type_id, $category)
                     <div class="flex flex-col gap-2 px-4 py-3">
                         <div class="overflow-hidden text-[13px] font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px]">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -404,12 +459,12 @@ function showSearchProductByType($type_id, $category)
     }
 }
 
-function showSuggestionProduct($product_id, $product_item_id)
+function checkSuggestionProduct($product_id, $product_item_id)
 {
     require 'connection.php';
 
     $sql = "SELECT
-            pi.*, pt.*
+            pi.*, pt.* 
             FROM product_tbl pt
             JOIN product_item pi ON pt.product_id = pi.product_id
             WHERE pt.product_category = (
@@ -419,12 +474,45 @@ function showSuggestionProduct($product_id, $product_item_id)
                 product_tbl
                 WHERE
                 product_id = ?
-            )
+            ) 
             AND pi.id <> ?
+            AND pt.product_id <> ?
             ORDER BY RAND() LIMIT 4";
 
     $query = $conn->prepare($sql);
-    $query->bind_param("ii", $product_id, $product_item_id);
+    $query->bind_param("iii", $product_id, $product_item_id, $product_id);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function showSuggestionProduct($product_id, $product_item_id)
+{
+    require 'connection.php';
+
+    $sql = "SELECT
+            pi.*, pt.* 
+            FROM product_tbl pt
+            JOIN product_item pi ON pt.product_id = pi.product_id
+            WHERE pt.product_category = (
+                SELECT
+                product_category
+                FROM
+                product_tbl
+                WHERE
+                product_id = ?
+            ) 
+            AND pi.id <> ?
+            AND pt.product_id <> ?
+            ORDER BY RAND() LIMIT 4";
+
+    $query = $conn->prepare($sql);
+    $query->bind_param("iii", $product_id, $product_item_id, $product_id);
     $query->execute();
     $result = $query->get_result();
 
@@ -445,7 +533,7 @@ function showSuggestionProduct($product_id, $product_item_id)
                     <div class="flex flex-col gap-2 px-4 py-3">
                         <div class="overflow-hidden text-[13px] font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px]">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -677,7 +765,10 @@ function showCartProducts($userID)
                         <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
                             <h3 class="[word-spacing:2px] text-[15px] uppercase tracking-tight font-medium"><?= $row['product_name'] ?></h3>
                             <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
-                            <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
+                            <div class="flex gap-3">
+                                <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
+                                <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
+                            </div>
                             <div class="hidden md:flex justify-center items-center w-14 border mt-10">
                                 <button class="flex-grow hover:bg-slate-100 text-gray-300 hover:text-gray-500 transition-colors delay-100 minusBtn" data-item-id="<?= $row['product_item_id'] ?>">
                                     -
@@ -818,6 +909,38 @@ function showProductColours($product_id, $colour_id)
     }
 }
 
+function showProductColoursMobile($product_id, $colour_id)
+{
+    require "connection.php";
+
+    $sql = "SELECT DISTINCT product_item.product_id, 
+            product_item.colour_id, 
+            colour.colour_value, 
+            colour.hex_code 
+            FROM colour JOIN product_item 
+            WHERE colour.id = product_item.colour_id 
+            AND product_item.product_id = ?";
+
+    $query = $conn->prepare($sql);
+    $query->bind_param("i", $product_id);
+    $query->execute();
+
+    $result = $query->get_result();
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if ($row['hex_code'] == "#FFFFFF" || $row['hex_code'] == '#F5F5F5') {
+                $row['hex_code'] = '#E5E5E5';
+            }
+        ?>
+            <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
+                <div class="w-8 sm:w-6 h-6 sm:h-5 bg-[<?= $row['hex_code'] ?>] active:border-[3px] active:border-[#cecece] active:border-double <?= $row['colour_id'] == $colour_id ? 'border-[3px] border-[#cecece] border-double' : '' ?>"></div>
+            </a>
+        <?php
+        }
+    }
+}
+
 /* 
  * Show Product Sizes in View Product Page | Radio Buttons
  */
@@ -839,6 +962,30 @@ function showProductSizes($product_id, $colour_id)
                 </label>
                 <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
                     <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.3" />
+                </svg>
+            </div>
+        <?php
+        }
+    }
+}
+
+function showProductSizesMobile($product_id, $colour_id)
+{
+    require "connection.php";
+
+    $sql = "SELECT size.* FROM size";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+        ?>
+            <div class="group relative w-16 sm:w-12 h-12 sm:h-10 border border-black grid place-items-center">
+                <input data-size-id="<?= $row['id'] ?>" class="hidden peer" type="radio" name="size" id="<?= $row['size_value'] ?>" <?= areSizesAvailable($product_id, $colour_id, $row['size_value']) ? "" : 'disabled' ?> />
+                <label class="active:bg-[#303030] active:text-white peer-checked:bg-[#151515] peer-checked:text-white peer-disabled:bg-gray-200 hover:bg-[#151515] hover:text-white text-[15px] uppercase w-full h-full grid place-items-center cursor-pointer relative" for="<?= $row['size_value'] ?>">
+                    <span><?= $row['size_value'] ?></span>
+                </label>
+                <svg class="w-full h-full absolute hidden peer-disabled:block" viewBox="0 0 10 10" preserveAspectRatio="none">
+                    <line x1="0" y1="0" x2="10" y2="10" stroke="black" stroke-width="0.2" />
                 </svg>
             </div>
         <?php
@@ -1339,7 +1486,7 @@ function showCompletedProducts($userID)
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/delivered.svg" alt="delivered">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
                                 <h1 class="font-semibold uppercase text-sm text-[#095d40]">Parcel had been delivered</h1>
                             </div>
                             <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>

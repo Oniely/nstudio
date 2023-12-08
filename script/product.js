@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $("#productForm").submit(function (e) {
+    $(".productForm").submit(function (e) {
         e.preventDefault();
 
         const action = $(document.activeElement).val();
@@ -48,13 +48,13 @@ $(document).ready(() => {
 });
 
 $(document).ready(function () {
-    const dBtn1 = $('#dBtn1');
-    const dBtn2 = $('#dBtn2');
-    const dBtn3 = $('#dBtn3');
+    const dBtn1 = $('.dBtn1');
+    const dBtn2 = $('.dBtn2');
+    const dBtn3 = $('.dBtn3');
 
-    const desc1 = $('#desc1');
-    const desc2 = $('#desc2');
-    const desc3 = $('#desc3');
+    const desc1 = $('.desc1');
+    const desc2 = $('.desc2');
+    const desc3 = $('.desc3');
 
     dBtn1.on('click', () => {
         dBtn1.addClass('underline')
@@ -86,17 +86,23 @@ $(document).ready(function () {
         desc2.hide()
     });
 
-    $("#showSizeModalBtn").on('click', () => {
+    $("#main").on('click', '.showSizeModalBtn', () => {
         $('#sizeModal').addClass('grid');
         $('#sizeModal').removeClass('hidden');
         $('body').css('overflow', 'hidden');
-    })
+    });
 
     $('#closeSizeBtn').on('click', () => {
         $('#sizeModal').removeClass('grid');
         $('#sizeModal').addClass('hidden');
         $('body').css('overflow', 'auto');
     });
-});
 
-// Continue off image slider logic check in chatgpt
+    $(document).on('keydown', (e) => {
+        if (e.key === 'Escape') {
+            $('#sizeModal').removeClass('grid');
+            $('#sizeModal').addClass('hidden');
+            $('body').css('overflow', 'auto');
+        }
+    });
+});

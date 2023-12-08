@@ -39,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $sql = "UPDATE shop_order_tbl SET order_status = ? WHERE id = ?";
                 $sql2 = "UPDATE product_item SET quantity = quantity + ? WHERE id = ?";
-                $sql3 = "UPDATE order_line_tbl SET quantity = 0 WHERE order_id = ?";
 
                 $query1 = $conn->prepare($sql);
                 $query1->bind_param('si', $cancel, $order_id);
@@ -47,14 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $query2 = $conn->prepare($sql2);
                 $query2->bind_param('ii', $backQuantity, $product_item_id);
 
-                $query3 = $conn->prepare($sql3);
-                $query3->bind_param('i', $order_id);
-
                 $query1->execute();
                 $query2->execute();
-                $query3->execute();
 
-                if ($query1 && $query2 && $query3) {
+                if ($query1 && $query2) {
                     echo "SUCCESS";
                 } else {
                     echo "ERROR";

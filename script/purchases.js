@@ -31,13 +31,15 @@ $(document).ready(function () {
     });
     $('#toPayProducts').on('click', '.cancelOrderBtn', function () {
         $('#popup-btn').click();
+        let orderID = $(this).attr('data-order-id');
+        console.log(orderID);
 
-        $("#confirmBtn").on("click", () => {
+        $("#confirmBtn").on('click', function () {
             $.ajax({
                 url: "/nstudio/includes/ajax/cancel_order.php",
                 method: "POST",
                 data: {
-                    orderID: $(this).attr('data-order-id'),
+                    orderID: orderID,
                 },
                 success: function (data) {
                     if (data === "SUCCESS") location.reload();
@@ -105,6 +107,23 @@ $(document).ready(function () {
             method: "GET",
             success: function (data) {
                 $("#toReceiveProducts").html(data);
+            }
+        });
+    });
+    $("#toReceiveProducts").on('click', '.orderReceivedBtn', function () {
+        var orderId = $(this).data('order-id');
+        console.log(orderId)
+        $.ajax({
+            url: "/nstudio/includes/ajax/order_received.php",
+            method: "POST",
+            data: {
+                orderID: orderId,
+            },
+            success: function (data) {
+                if (data === 'SUCCESS') {
+                    location.reload();
+                };
+                if (data === "ERROR") return alert('Something went wrong. Please try again later.');
             }
         });
     });

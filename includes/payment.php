@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     }
 
     // INSERT ORDER TO SHOP ORDER TBL
-    $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?)";
+    $shopSql = "INSERT INTO shop_order_tbl VALUES (DEFAULT, ?, DEFAULT, DEFAULT, DEFAULT, ?, ?, ?, ?)";
     $shopQuery = $conn->prepare($shopSql);
     $shopQuery->bind_param("isids", $userID, $payment_method, $addressID, $total, $to_pay);
     $shopQuery->execute();

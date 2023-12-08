@@ -44,7 +44,7 @@ $(document).ready(() => {
     $("#closeBtn").on("click", () => {
         $("#popup-modal").hide();
     });
-
+    
     function adjustQuantity(product_item_id, action) {
         $.ajax({
             url: "../includes/ajax/cart_quantity.php",
