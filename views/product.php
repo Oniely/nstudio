@@ -347,11 +347,11 @@ if (isset($_GET['id'])) {
                         </h1>
                         <div class="flex flex-col items-end gap-10">
                             <div class="flex gap-1 font-medium">
-                                <button type="button" class="underline">
+                                <button type="button" id="inchesBtn" class="underline">
                                     INCHES
                                 </button>
                                 <span>-</span>
-                                <button type="button">CM</button>
+                                <button type="button" id="cmBtn">CM</button>
                             </div>
                             <div>
                                 <table class="table-fixed border-collapse w-full">
@@ -473,7 +473,7 @@ if (isset($_GET['id'])) {
                                                 54
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="text-center chestInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Chest
                                             </td>
@@ -496,7 +496,30 @@ if (isset($_GET['id'])) {
                                                 37.5"
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="hidden text-center chestCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Chest
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                76cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                80cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                84cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                88cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                92cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                96cm
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center waistInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Waist
                                             </td>
@@ -519,7 +542,30 @@ if (isset($_GET['id'])) {
                                                 33.5"
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="hidden text-center waistCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Waist
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                64cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                68cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                72cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                76cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                80cm
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center armInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Arm Length
                                             </td>
@@ -540,6 +586,29 @@ if (isset($_GET['id'])) {
                                             </td>
                                             <td class="p-2 border-r border-black">
                                                 23.8"
+                                            </td>
+                                        </tr>
+                                        <tr class="hidden text-center armCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Arm Length
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.6cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.6cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.8cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60.2cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60.6cm
                                             </td>
                                         </tr>
                                     </tbody>

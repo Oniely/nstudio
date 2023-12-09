@@ -22,10 +22,10 @@ function loginAuth($usernameEmail, $password)
 
 
     if (filter_var($usernameEmail, FILTER_VALIDATE_EMAIL)) {
-        $sql = "SELECT * FROM site_user WHERE email='$usernameEmail'";
+        $sql = "SELECT * FROM site_user WHERE email = BINARY '$usernameEmail'";
         $result = $conn->query($sql);
     } else {
-        $sql = "SELECT * FROM site_user WHERE username='$usernameEmail'";
+        $sql = "SELECT * FROM site_user WHERE username = BINARY '$usernameEmail'";
         $result = $conn->query($sql);
     }
 

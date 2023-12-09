@@ -105,4 +105,32 @@ $(document).ready(function () {
             $('body').css('overflow', 'auto');
         }
     });
+
+    $('#inchesBtn').on('click', function () {
+        $('#inchesBtn').addClass('underline');
+        $('#cmBtn').removeClass('underline');
+
+        $('.chestInches').removeClass('hidden');
+        $('.chestCm').addClass('hidden');
+
+        $('.waistInches').removeClass('hidden');
+        $('.waistCm').addClass('hidden');
+
+        $('.armInches').removeClass('hidden');
+        $('.armCm').addClass('hidden');
+    })
+
+    $('#cmBtn').on('click', function () {
+        $('#cmBtn').addClass('underline');
+        $('#inchesBtn').removeClass('underline');
+
+        $('.chestInches').removeClass('hidden');
+        $('.chestCm').addClass('hidden');
+
+        $('.waistInches').removeClass('hidden');
+        $('.waistCm').addClass('hidden');
+
+        $('.armInches').removeClass('hidden');
+        $('.armCm').addClass('hidden');
+    });
 });

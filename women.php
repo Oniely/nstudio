@@ -36,7 +36,7 @@ $womenActive = 'active';
                 WOMEN
             </h3>
         </div>
-        <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-3 px-3">
+        <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-3 px-3">
             <?php showAllWomenProduct(); ?>
         </div>
     </main>

@@ -69,15 +69,15 @@ function showAllMenProduct()
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
 ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -125,15 +125,15 @@ function showAllWomenProduct()
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
             ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -210,15 +210,15 @@ function newMenProduct()
         $product_img = "prod" . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
             ?>
-            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
                 </div>
                 <div class="flex flex-col gap-2 px-4 py-3">
-                    <div class="overflow-hidden text-[13px] font-medium">
+                    <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -294,15 +294,15 @@ function newWomenProduct()
         $product_img = "prod" . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
         ?>
-            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
                 </div>
                 <div class="flex flex-col gap-2 px-4 py-3">
-                    <div class="overflow-hidden text-[13px] font-medium">
+                    <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -357,15 +357,15 @@ function showSearchProduct($keyword)
 
             if ($row['quantity'] > 0) :
             ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -427,15 +427,15 @@ function showSearchProductByType($type_id, $category)
             if ($row['quantity'] > 0) :
         ?>
 
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -525,15 +525,15 @@ function showSuggestionProduct($product_id, $product_item_id)
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity']) :
         ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>

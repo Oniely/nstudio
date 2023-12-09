@@ -83,7 +83,7 @@ $homeActive = "active";
         </div>
     </section>
     <!-- New Arival Section -->
-    <?php if (checkMenProduct() && checkWomenProduct()) : ?>
+    <?php if (checkMenProduct() || checkWomenProduct()) : ?>
         <section class="flex flex-col justify-center items-center w-full h-auto px-[4rem] md:px-4 overflow-hidden">
             <!-- Header -->
             <header class="container h-[15rem] grid place-items-center text-center">
@@ -91,32 +91,36 @@ $homeActive = "active";
                     NEW ARRIVAL
                 </h1>
             </header>
-            <!-- Sub Header -->
-            <div class="container flex justify-between mt-4 mb-3">
-                <h3 class="text-2xl font-[600] font-['Lato']">FOR MEN</h3>
-                <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/men.php">View all</a>
-            </div>
-            <!-- MEN PRODUCT -->
-            <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-5 px-3">
-                <?php
+            <?php if (checkMenProduct()) : ?>
+                <!-- Sub Header -->
+                <div class="container flex justify-between mt-4 mb-3">
+                    <h3 class="text-2xl font-[600] font-['Lato']">FOR MEN</h3>
+                    <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/men.php">View all</a>
+                </div>
+                <!-- MEN PRODUCT -->
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center">
+                    <?php
 
-                newMenProduct();
+                    newMenProduct();
 
-                ?>
-            </div>
-            <!-- Sub Header -->
-            <div class="container flex justify-between mt-4 mb-3">
-                <h3 class="text-2xl font-[600] font-['Lato']">FOR WOMEN</h3>
-                <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/women.php">View all</a>
-            </div>
-            <!-- WOMEN PRODUCT -->
-            <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-5 px-3 mb-6">
-                <?php
+                    ?>
+                </div>
+            <?php endif ?>
+            <?php if (checkWomenProduct()) : ?>
+                <!-- Sub Header -->
+                <div class="container flex justify-between mt-4 mb-3">
+                    <h3 class="text-2xl font-[600] font-['Lato']">FOR WOMEN</h3>
+                    <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/women.php">View all</a>
+                </div>
+                <!-- WOMEN PRODUCT -->
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-5 px-3 mb-6">
+                    <?php
 
-                newWomenProduct();
+                    newWomenProduct();
 
-                ?>
-            </div>
+                    ?>
+                </div>
+            <?php endif ?>
         </section>
     <?php endif; ?>
     <section class="container min-h-[125vh] py-[2.5rem] pb-[5rem] px-[4rem] bg-[#252525] text-white flex flex-col gap-10 md:gap-6 md:px-[1.5rem] items-center">
