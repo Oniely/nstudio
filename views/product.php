@@ -1,6 +1,6 @@
 <?php
 
-require '../includes/session.php';
+session_start();
 
 require "../includes/connection.php";
 require "../includes/functions.php";
@@ -31,7 +31,8 @@ if (isset($_GET['id'])) {
                 product_item.product_image1 item_img1,
                 product_item.product_image2 item_img2,
                 product_item.product_image3 item_img3,
-                product_tbl.product_price price
+                product_tbl.product_price price,
+                product_tbl.product_category
                 FROM
                 product_item
                 JOIN product_tbl
@@ -58,6 +59,7 @@ if (isset($_GET['id'])) {
                 $directory = "../img/product";
                 $quantity = $row['quantity'];
                 $description = $row['product_description'];
+                $product_category = $row['product_category'];
 
                 $outputPathsArray = array(
                     $directory . '/' . $id . '_image1.png',
@@ -88,6 +90,14 @@ if (isset($_GET['id'])) {
 <!-- Body -->
 
 <body class="min-h-screen">
+    <!-- Loading Screen -->
+    <section id="loading-screen" class="w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <svg class="w-20 h-20" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+            <path fill="#151515" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+            </path>
+        </svg>
+    </section>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
@@ -97,7 +107,7 @@ if (isset($_GET['id'])) {
             <div class="parent-container container min-h-screen pt-[5rem] pb-[1rem] relative md:hidden">
                 <div class="flex items-center font-semibold px-[4rem] lgt:px-[2rem]">
                     <a class="after:content-['_/'] after:mx-2" href="../index.php">HOME</a>
-                    <a class="after:content-['_/'] after:mx-2" href="../men.php">MEN</a>
+                    <a class="after:content-['_/'] after:mx-2" href="<?= "../$product_category.php" ?>"><?= $product_category ?></a>
                     <a href="#">VIEW PRODUCT</a>
                 </div>
 
@@ -217,7 +227,7 @@ if (isset($_GET['id'])) {
             <div class="parent-container container min-h-screen pt-[4rem] pb-[1rem] relative md:block hidden">
                 <div class="flex items-center text-sm font-medium px-[4rem] md:px-[2rem] sm:px-[1rem]">
                     <a class="after:content-['_/'] after:mx-2" href="#">HOME</a>
-                    <a class="after:content-['_/'] after:mx-2" href="#">MEN</a>
+                    <a class="after:content-['_/'] after:mx-2" href="<?= "../$product_category.php" ?>"><?= $product_category ?></a>
                     <a href="#">VIEW PRODUCT</a>
                 </div>
 
@@ -236,7 +246,7 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col text-3xl sm:text-2xl xs:text-xl px-[1rem]">
+                    <div class="flex flex-col text-3xl sm:text-xl px-[1rem]">
                         <h1 class="uppercase font-medium"><?= $name ?></h1>
                         <p class="font-semibold before:content-['₱'] before:font-medium before:mr-[2px]"><?= $price ?></p>
                     </div>
@@ -624,9 +634,9 @@ if (isset($_GET['id'])) {
             </div>
         <?php endif; ?>
         <?php if (checkSuggestionProduct($product_id, $_SESSION['product_item_id'])) : ?>
-            <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px[1rem]">
-                <h1 class="text-sm">You may also like...</h1>
-                <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-3 pt-6 px-3">
+            <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px-[1rem]">
+                <h1 class="text-sm mb-5">You may also like...</h1>
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
                     <?php showSuggestionProduct($product_id, $_SESSION['product_item_id']) ?>
                 </div>
             </div>

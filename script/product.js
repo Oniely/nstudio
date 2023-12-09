@@ -124,13 +124,13 @@ $(document).ready(function () {
         $('#cmBtn').addClass('underline');
         $('#inchesBtn').removeClass('underline');
 
-        $('.chestInches').removeClass('hidden');
-        $('.chestCm').addClass('hidden');
+        $('.chestInches').addClass('hidden');
+        $('.chestCm').removeClass('hidden');
 
-        $('.waistInches').removeClass('hidden');
-        $('.waistCm').addClass('hidden');
+        $('.waistInches').addClass('hidden');
+        $('.waistCm').removeClass('hidden');
 
-        $('.armInches').removeClass('hidden');
-        $('.armCm').addClass('hidden');
+        $('.armInches').addClass('hidden');
+        $('.armCm').removeClass('hidden');
     });
 });

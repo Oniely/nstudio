@@ -1,6 +1,7 @@
 <?php
 
-require_once '../session.php';
+session_start();
+
 require_once '../connection.php';
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {

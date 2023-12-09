@@ -1,313 +1,52 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NStudio</title>
-        <!-- Styles -->
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="stylesheet" href="styles/navbar.css" />
 
-        <!-- Scripts -->
-        <script src="script/animation.js" defer></script>
-        <script src="script/magnet.js" defer></script>
-        <script src="script/nav.js" defer></script>
-        <script src="script/search.js" defer></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NStudio</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
 
-        <!-- CDNs -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-            integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-            crossorigin="anonymous"
-        />
-        <!-- Tailwind CSS -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            clifford: "#da373d",
-                        },
-                    },
-                    screens: {
-                        "2xl": { max: "1535px" },
-                        xl: { max: "1280px" },
-                        lg: { max: "1024px" },
-                        md: { max: "768px" },
-                        sm: { max: "640px" },
-                        xs: { max: "440px" },
+    <!-- Scripts -->
+    <script src="script/animation.js" defer></script>
+    <script src="script/magnet.js" defer></script>
+    <script src="script/nav.js" defer></script>
+    <script src="script/search.js" defer></script>
+
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d",
                     },
                 },
-            };
-        </script>
+                screens: {
+                    "2xl": { max: "1535px" },
+                    xl: { max: "1280px" },
+                    lg: { max: "1024px" },
+                    md: { max: "768px" },
+                    sm: { max: "640px" },
+                    xs: { max: "440px" },
+                },
+            },
+        };
+    </script>
     </head>
-    <body>
-        <!-- GOOD JUST GOOD -->
-        <nav
-            class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem]"
-            id="main_navbar"
-        >
-            <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
-                <li>
-                    <a class="nav_links uppercase" id="NAV_LINK" href="men.php"
-                        >MEN</a
-                    >
+<section id="loading-screen" class="w-full h-screen fixed top-0 left-0 bg-red-400 grid place-items-center z-[1000]">
+    <svg class="w-20 h-20" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+        <path fill="#151515" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+        </path>
+    </svg>
+</section>
 
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            >
-                                <a href="#">About</a>
-                                <a href="#">Mission</a>
-                                <a href="#">Vision</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a
-                        class="nav_links uppercase"
-                        id="NAV_LINK"
-                        href="women.php"
-                        >WOMEN</a
-                    >
-
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            >
-                                <a href="#">About</a>
-                                <a href="#">Mission</a>
-                                <a href="#">Vision</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a
-                        class="nav_links uppercase"
-                        id="NAV_LINK"
-                        href="community.php"
-                        >COMMUNITY</a
-                    >
-
-                    <div
-                        class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden"
-                    >
-                        <div class="w-full h-full m-auto flex">
-                            <div
-                                class="flex flex-col items-start text-sm w-[18rem] gap-[6px]"
-                            >
-                                <a href="#">About</a>
-                                <a href="#">Mission</a>
-                                <a href="#">Vision</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
-            <a href="#" class="h-[2.8rem] shrink-0">
-                <img
-                    class="max-w-full h-full object-contain"
-                    src="img/nechma_logo.svg"
-                    alt="logo"
-                />
-            </a>
-
-            <ul class="flex gap-8 shrink-0 items-center">
-                <!-- Search -->
-                <li class="items-center md:hidden">
-                    <button
-                        class="md:hidden flex justify-center items-center"
-                        id="searchBtn"
-                    >
-                        <img
-                            class="max-w-full h-[1.3rem]"
-                            src="img/search.svg"
-                            alt=""
-                        />
-                    </button>
-                </li>
-                <!-- Search Form -->
-                <form
-                    id="searchForm"
-                    action=""
-                    method="GET"
-                    class="w-full hidden h-max absolute top-[3rem] left-0 bg-white px-[2rem] py-[0.5rem] overflow-hidden"
-                >
-                    <div
-                        class="w-full max-h-full flex flex-col justify-center items-start px-5"
-                    >
-                        <div class="w-full flex justify-between items-center">
-                            <input
-                                class="w-full h-[3.5rem] text-2xl outline-none border-none"
-                                id="search"
-                                type="text"
-                                placeholder="Search"
-                                autocomplete="off"
-                            />
-
-                            <button
-                                type="button"
-                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-9 h-9 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                id="searchClose"
-                            >
-                                <svg
-                                    class="w-4 h-4"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 14 14"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="flex flex-col" id="suggestions"></div>
-                    </div>
-                </form>
-                <!-- Cart -->
-                <li>
-                    <a class="relative" href="/nstudio/views/cart.php">
-                        <img
-                            class="max-w-full h-[1.3rem]"
-                            src="./img/shopbag.svg"
-                            alt=""
-                        />
-                        <span
-                            id="cartNumber"
-                            class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full"
-                        >
-                            1
-                        </span>
-                    </a>
-                </li>
-                <!-- Account -->
-                <li class="grid place-items-center">
-                    <a
-                        class="text-[14px] hover:text-[#707070]"
-                        href="/nstudio/login.php"
-                        >SIGN IN</a
-                    >
-                </li>
-            </ul>
-        </nav>
-
-        <main class="min-h-screen pt-[3rem]">
-            <div
-                class="container min-h-[125vh] py-[2.5rem] pb-[5rem] px-[4rem] bg-[#252525] text-white flex flex-col gap-10 md:gap-6 md:px-[1.5rem] items-center"
-            >
-                <div class="flex flex-col gap-3 text-center">
-                    <h1 class="uppercase text-2xl whitespace-nowrap">
-                        The Coldest Collection
-                    </h1>
-                    <div class="flex gap-3 md:hidden">
-                        <a
-                            class="border-[1px] border-[#FFF] w-[14rem] sm:w-[14rem] py-[0.5rem] text-[14px] text-center whitespace-nowrap"
-                            href="men.php"
-                            >FOR MEN</a
-                        >
-                        <a
-                            class="border-[1px] border-[#FFF] w-[14rem] sm:w-[14rem] py-[0.5rem] text-[14px] text-center whitespace-nowrap"
-                            href="women.php"
-                            >FOR WOMEN</a
-                        >
-                    </div>
-                </div>
-                <div class="flex md:flex-col gap-6">
-                    <div class="max-w-full h-[35rem] md:mb-[3rem]">
-                        <a href="#">
-                            <img
-                                class="w-full h-full object-cover"
-                                src="img/hero_shop_now (1).svg"
-                                alt="img"
-                            />
-                        </a>
-                        <a class="underline text-sm uppercase pl-[1px]" href="#"
-                            >Shop Now</a
-                        >
-                    </div>
-                    <div class="max-w-full h-[35rem]">
-                        <a href="#">
-                            <img
-                                class="w-full h-full object-cover"
-                                src="img/hero_shop_now (2).svg "
-                                alt="img"
-                            />
-                        </a>
-                        <a class="underline text-sm uppercase pl-[1px]" href="#"
-                            >Shop Now</a
-                        >
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <section class="w-full min-h-[40vh] bg-[#F8F6F0] px-8">
-            <hr />
-            <div
-                class="container h-full flex flex-row md:flex-col-reverse justify-between gap-14 md:gap-4 md:px-2 px-8 py-4"
-            >
-                <div
-                    class="flex gap-5 leading-5 md:leading-6 sm:text-[12px] text-[14px] font-medium"
-                >
-                    <ul class="md:w-full">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Returns & Funds</a></li>
-                        <li><a href="#">Customer Service</a></li>
-                        <li><a href="#">Payment</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">FAQs Privacy</a></li>
-                        <li><a href="#">Notice Cookie</a></li>
-                        <li><a href="#">Notice Cookie Settings</a></li>
-                    </ul>
-                    <ul class="md:w-full">
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Spotify</a></li>
-                    </ul>
-                </div>
-                <div
-                    class="flex md:flex-col md:items-center justify-center items-start md:gap-3 gap-2"
-                >
-                    <div
-                        class="md:flex md:gap-[5px] text-lg font-semibold leading-5"
-                    >
-                        <!-- prettier-ignore -->
-                        <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your 
-                first order.</p>
-                    </div>
-                    <div class="w-[12rem] md:w-full text-center">
-                        <button
-                            class="w-full h-full bg-[#101010] text-white text-[12px] py-3"
-                        >
-                            SUBSCRIBE
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </body>
 </html>

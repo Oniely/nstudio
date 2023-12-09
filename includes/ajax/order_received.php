@@ -1,6 +1,7 @@
 <?php
 
-require "../session.php";
+session_start();
+
 require "../connection.php";
 require "../functions.php";
 
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 shop_order_tbl
                 JOIN order_line_tbl ON order_line_tbl.order_id = shop_order_tbl.id
                 WHERE
-                shop_order_tbl.id = ? AND order_status = "TO RECEIVE"';
+                shop_order_tbl.id = ? AND order_status = "DELIVERED"';
 
         $query = $conn->prepare($sql);
         $query->bind_param('i', $order_id);
@@ -51,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     echo "ERROR";
                 }
             endwhile;
+        } else {
+            echo "ERROR";
         }
     } else {
         echo "ERROR";
