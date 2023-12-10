@@ -42,8 +42,9 @@ $(document).ready(function () {
                     orderID: orderID,
                 },
                 success: function (data) {
-                    if (data === "SUCCESS") location.reload();
-                    if (data === "ERROR") return alert("Something went wrong. Please try again later.");
+                    console.log(data);
+                    if (data == "SUCCESS") return location.reload();
+                    if (data == "ERROR") return alert("Something went wrong. Please try again later.");
                 }
             });
         });

@@ -28,13 +28,9 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <section id="loading-screen" class="w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
-        <svg class="w-20 h-20" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-            <path fill="#151515" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
-            </path>
-        </svg>
-    </section>
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
@@ -80,7 +76,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-5 w-[25rem] md:w-full md:px-10 pt-4">
+                <div class="flex flex-col gap-5 w-[25rem] md:w-full md:px-[2rem] sm:px-[1rem] pt-4">
                     <div class="text-2xl text-[#505050] font-semibold">
                         <h1>Order Summary</h1>
                     </div>

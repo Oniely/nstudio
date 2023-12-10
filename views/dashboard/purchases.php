@@ -34,51 +34,54 @@ $purchases = true;
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <section id="loading-screen" class="w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
-        <svg class="w-20 h-20" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-            <path fill="#151515" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
-            </path>
-        </svg>
-    </section>
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full pt-6 pb-10 md:pb-14">
-        <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
-            <div class="pl-[10rem] md:pl-0 text-[#505050]">
+    <main class="min-h-screen h-full pt-6 pb-10 lgt:pb-14">
+        <div class="container min-h-screen pt-[4rem] px-[4rem] lgt:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
+            <div class="pl-[10rem] lgt:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Purchases</p>
                 <h1 class="capitalize text-4xl font-semibold tracking-wider">Welcome Back, <span><?= $fname ?></span>!</h1>
-                <div class="md:flex w-full hidden"><?php require 'nav.php' ?></div>
+                <div class="lgt:flex w-full hidden"><?php require 'nav.php' ?></div>
             </div>
             <div class="flex items-start">
                 <!-- Dashboard Nav -->
-                <div class="md:hidden"><?php require 'nav.php' ?></div>
+                <div class="lgt:hidden"><?php require 'nav.php' ?></div>
                 <!-- MAIN -->
-                <div class="container h-auto pl-10 md:pl-0">
+                <div class="container h-auto pl-10 lgt:pl-0">
                     <h1 class="text-2xl py-2">Purchase History</h1>
                     <!-- MAIN CONTAINER -->
                     <div class="w-full flex flex-col justify-center items-center border">
                         <!-- BUTTONS -->
-                        <div class="w-full flex h-[3rem] border-b text-[15px]">
-                            <div class="w-full h-full hover:border-b-2 active:border-b border-b-2">
-                                <button id="toPay" class="w-full h-full">To pay</button>
+                        <?php
+                        $payCount = orderCount($userID, 'TO PAY');
+                        $shipCount = orderCount($userID, 'TO SHIP', 'SHIPPED');
+                        $receiveCount = orderCount($userID, 'TO RECEIVE', 'DELIVERED');
+                        $completedCount = orderCount($userID, 'COMPLETED');
+                        $cancelledCount = orderCount($userID, 'CANCELLED');
+                        ?>
+                        <div class="w-full flex h-[3rem] border-b text-[15px] md:text-sm xs:gap-1 xs:px-1">
+                            <div class="w-full h-full hover:border-b-2 active:border-b relative border-b-2">
+                                <button id="toPay" class="w-full h-full relative after:content-[<?= "'$payCount'" ?>] after:absolute md:after:top-0 md:after:right-1 sm:after:right-0 after:top-3 after:right-4 after:flex after:justify-center after:items-center md:after:w-4 md:after:h-4 after:w-5 after:h-5 after:bg-red-400 after:rounded-full after:text-xs">To pay</button>
                             </div>
-                            <div class="w-full h-full hover:border-b-2 active:border-b">
-                                <button id="toShip" class="w-full h-full">To ship</button>
+                            <div class="w-full h-full hover:border-b-2 active:border-b relative">
+                                <button id="toShip" class="w-full h-full relative after:content-[<?= "'$shipCount'" ?>] after:absolute md:after:top-0 md:after:right-1 sm:after:right-0 after:top-3 after:right-4 after:flex after:justify-center after:items-center md:after:w-4 md:after:h-4 after:w-5 after:h-5 after:bg-red-400 after:rounded-full after:text-xs">To ship</button>
                             </div>
-                            <div class="w-full h-full hover:border-b-2 active:border-b">
-                                <button id="toReceive" class="w-full h-full">To receive</button>
+                            <div class="w-full h-full hover:border-b-2 active:border-b relative">
+                                <button id="toReceive" class="w-full h-full relative after:content-[<?= "'$receiveCount'" ?>] after:absolute md:after:top-0 md:after:right-1 sm:after:right-0 after:top-3 after:right-4 after:flex after:justify-center after:items-center md:after:w-4 md:after:h-4 after:w-5 after:h-5 after:bg-red-400 after:rounded-full after:text-xs">To receive</button>
                             </div>
-                            <div class="w-full h-full hover:border-b-2 active:border-b">
-                                <button id="completedBtn" class="w-full h-full">Completed</button>
+                            <div class="w-full h-full hover:border-b-2 active:border-b relative">
+                                <button id="completedBtn" class="w-full h-full relative after:content-[<?= "'$completedCount'" ?>] after:absolute md:after:top-0 md:after:right-1 sm:after:right-0 after:top-3 after:right-4 after:flex after:justify-center after:items-center md:after:w-4 md:after:h-4 after:w-5 after:h-5 after:bg-red-400 after:rounded-full after:text-xs">Completed</button>
                             </div>
-                            <div class="w-full h-full hover:border-b-2 active:border-b">
-                                <button id="cancelledBtn" class="w-full h-full">Cancelled</button>
+                            <div class="w-full h-full hover:border-b-2 active:border-b relative">
+                                <button id="cancelledBtn" class="w-full h-full relative after:content-[<?= "'$cancelledCount'" ?>] after:absolute md:after:top-0 md:after:right-1 sm:after:right-0 after:top-3 after:right-4 after:flex after:justify-center after:items-center md:after:w-4 md:after:h-4 after:w-5 after:h-5 after:bg-red-400 after:rounded-full after:text-xs">Cancelled</button>
                             </div>
                         </div>
                         <!-- Product Container -->
-                        <div id="productContainer" class="w-full h-auto flex gap-10 pt-[3rem] pb-[2rem] px-[3rem] md:px-[2rem] sm:px-[1rem]">
+                        <div id="productContainer" class="w-full h-auto flex gap-10 pt-[3rem] pb-[2rem] px-[3rem] md:px-[1rem] sm:px-2">
                             <!-- To Pay Products -->
                             <div id="toPayProducts" class="flex w-full h-auto flex-col justify-center items-start gap-10">
                                 <!-- Products -->

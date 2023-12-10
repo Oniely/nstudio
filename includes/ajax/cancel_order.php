@@ -9,6 +9,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 } else {
     header("Location: /nstudio/login.php");
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -50,12 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $query1->execute();
                 $query2->execute();
 
-                if ($query1 && $query2) {
-                    echo "SUCCESS";
-                } else {
+                if (!$query1 && !$query2) {
                     echo "ERROR";
+                    exit();
                 }
             endwhile;
+
+            echo "SUCCESS";
+        } else {
+            echo "ERROR";
         }
     } else {
         echo "ERROR";

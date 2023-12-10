@@ -91,13 +91,9 @@ if (isset($_GET['id'])) {
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <section id="loading-screen" class="w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
-        <svg class="w-20 h-20" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-            <path fill="#151515" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
-            </path>
-        </svg>
-    </section>
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
@@ -234,7 +230,7 @@ if (isset($_GET['id'])) {
                 <form id="productForm" class="productForm flex flex-col w-full justify-start gap-6 sticky top-4 py-[2rem]">
                     <div class="flex items-start px-[4rem] md:px-[0]">
                         <div id="#imageSlider" class="flex w-full overflow-auto snap-x snap-mandatory">
-                            <span id="counter" class="absolute top-7 left-7 px-2 bg-gray-600 rounded-xl text-white">1/3</span>
+                            <span id="counter" class="absolute top-[3rem] left-[1rem] px-2 bg-gray-600 rounded-xl text-white md:text-sm sm:text-xs">1/3</span>
                             <div class="w-full shrink-0 snap-start">
                                 <img id="image1" class="max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image1.png" ?>" alt="image1" />
                             </div>

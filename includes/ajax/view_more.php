@@ -51,8 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 ?>
             <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm <?= $row['order_status'] == "CANCELLED" ? 'text-[#ff5555]' : 'text-[#095d40]' ?>"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
                 <div class="w-full flex items-center gap-2">
-                    <div class="h-48 shrink-0">
+                    <div class="h-48 md:h-44 sm:h-40 shrink-0">
                         <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
                             <img class="max-w-full h-full object-cover" src="<?= "/nstudio/img/product/prod$row[product_item_id].png" ?>" alt="image">
                         </a>
@@ -61,23 +70,23 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         <div class="flex flex-col">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h1 class="text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
                                 </div>
-                                <h1 class="text-sm">
+                                <h1 class="text-sm sm:hidden">
                                     <?= $date ?>
                                 </h1>
                             </div>
                             <div class="flex flex-col justify-center items-start">
-                                <h1 class="text-[#505050] text-sm font-semibold uppercase">Variation: <span><?= $colour_value ?> | <?= $size_value ?></span></h1>
-                                <p class="text-[#505050] text-sm font-semibold">Order Quantity: <span class="before:text-xs before:content-['X'] before:mx-[1px]"><?= $row['order_quantity'] ?></span></p>
+                                <h1 class="text-[#505050] text-sm xs:text-xs sm:font-medium font-semibold uppercase">Variation: <span><?= $colour_value ?> | <?= $size_value ?></span></h1>
+                                <p class="text-[#505050] text-sm xs:text-xs sm:font-medium font-semibold">Order Quantity: <span class="before:text-xs before:content-['X'] before:mx-[1px]"><?= $row['order_quantity'] ?></span></p>
                             </div>
                         </div>
-                        <div class="flex justify-between items-end">
-                            <div class="flex gap-2">
+                        <div class="flex justify-between xs:justify-end items-end">
+                            <div class="flex gap-1 sm:hidden">
                                 <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                                <h1 class="font-semibold uppercase text-sm <?= $row['order_status'] == "CANCELLED" ? 'text-[#ff5555]' : 'text-[#095d40]' ?>"><?= $row['order_status'] ?></h1>
                             </div>
-                            <p class="text-xl">SUBTOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['price'] * $row['order_quantity'] ?></span></p>
+                            <p class="text-lg sm:text-base">SUBTOTAL: <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['price'] * $row['order_quantity'] ?></span></p>
                         </div>
                     </div>
                 </div>
