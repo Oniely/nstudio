@@ -115,7 +115,7 @@ $address = true;
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full pt-6 pb-10 md:pb-14 overflow-hidden">
+    <main class="min-h-screen h-full pt-6 pb-10 md:pb-14 overflow-hidden animate__animated fadeIn">
         <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
             <div class="pl-[10rem] md:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Address</p>

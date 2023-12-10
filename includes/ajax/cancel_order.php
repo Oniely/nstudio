@@ -50,13 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $query1->execute();
                 $query2->execute();
-
-                if (!$query1 && !$query2) {
-                    echo "ERROR";
-                    exit();
-                }
             endwhile;
-
             echo "SUCCESS";
         } else {
             echo "ERROR";

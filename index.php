@@ -40,21 +40,21 @@ $images = fetchImagesForShowcase();
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
             <div class="absolute md:top-0 top-[0] px-1">
-                <img class="max-w-full h-[minmax(100%,35vh)] object-cover object-center" src="./img/nechma_text.svg" alt="Nechma Studio">
+                <img class="max-w-full h-[minmax(100%,35vh)] object-cover object-center animate__animated fadeIn" src="./img/nechma_text.svg" alt="Nechma Studio">
             </div>
             <!-- Hero Image -->
-            <div class="w-[min(100%_30rem)] xs:w-full max-w-full sm:h-[85vh] h-[100vh] absolute bottom-[-2.5rem] animate__animated animate__fadeIn delay-400 pointer-events-none select-none">
+            <div class="w-[min(100%_30rem)] xs:w-full max-w-full sm:h-[85vh] h-[100vh] absolute bottom-[-2.5rem] pointer-events-none select-none animate__animated fadeIn">
                 <img class="w-full h-full object-cover" src="./img/nechma_hero.svg" alt="hero" />
             </div>
             <!-- Hero Buttons -->
             <div class="w-[min(100%,_68rem)] absolute bottom-[8rem] sm:bottom-[4rem] flex justify-between gap-3 items-center px-10 xs:px-[1rem]">
-                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="men.php">FOR MEN</a>
-                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated animate__slideInUp" href="women.php">FOR WOMEN</a>
+                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated fadeUp" href="men.php">FOR MEN</a>
+                <a class="border-[2px] border-[#211f22] md:border-[1px] lgt:border-[#FFF] lgt:text-[#FFF] w-[14rem] py-[0.8rem] text-[16px] text-center whitespace-nowrap animate__animated fadeUp" href="women.php">FOR WOMEN</a>
             </div>
         </div>
     </main>
     <!-- Product Showcase Section -->
-    <section class="h-full">
+    <section class="h-full animate__animated fadeIn">
         <div class="container h-full bg-[#252525]">
             <div class="flex md:hidden justify-center items-center w-full py-20 px-10 lg:px-6 gap-5">
                 <div class="lg:w-[clamp(28rem,1.0000rem+56.2500vw,37rem)] w-[clamp(37rem,24.6923rem+19.2308vw,42rem)] flex flex-col justify-between">
@@ -104,7 +104,7 @@ $images = fetchImagesForShowcase();
                     <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/men.php">View all</a>
                 </div>
                 <!-- MEN PRODUCT -->
-                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3 animate__animated fadeIn">
                     <?php
 
                     newMenProduct();
@@ -119,7 +119,7 @@ $images = fetchImagesForShowcase();
                     <a class="text-xl underline decoration-1 font-['Lato'] text-[#505050] font-semibold" href="/nstudio/women.php">View all</a>
                 </div>
                 <!-- WOMEN PRODUCT -->
-                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3 mb-6">
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3 mb-6 animate__animated fadeIn">
                     <?php
 
                     newWomenProduct();
@@ -129,7 +129,7 @@ $images = fetchImagesForShowcase();
             <?php endif ?>
         </section>
     <?php endif; ?>
-    <section class="container h-full py-[2.5rem] pb-[5rem] px-[4rem] bg-[#252525] text-white flex flex-col gap-10 md:gap-6 md:px-[1.5rem] items-center">
+    <section class="container h-full py-[2.5rem] pb-[5rem] px-[4rem] bg-[#252525] text-white flex flex-col gap-10 md:gap-6 md:px-[1.5rem] items-center animate__animated fadeIn">
         <div class="flex flex-col gap-3 text-center">
             <h1 class="uppercase text-2xl whitespace-nowrap">The Coldest Collection</h1>
             <div class="flex gap-3 md:hidden">

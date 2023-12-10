@@ -2,26 +2,26 @@
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
         <li>
             <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
-            <?php if (checkLinkCategory("MEN")): ?>
-            <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                <div class="w-full h-full m-auto flex">
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <?php showLinkCategory("MEN") ?>
+            <?php if (checkLinkCategory("MEN")) : ?>
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <?php showLinkCategory("MEN") ?>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endif; ?>
         </li>
         <li>
             <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
-            <?php if (checkLinkCategory("WOMEN")): ?>
-            <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
-                <div class="w-full h-full m-auto flex">
-                    <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <?php showLinkCategory("WOMEN") ?>
+            <?php if (checkLinkCategory("WOMEN")) : ?>
+                <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
+                    <div class="w-full h-full m-auto flex">
+                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                            <?php showLinkCategory("WOMEN") ?>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endif; ?>
         </li>
         <li>
@@ -29,9 +29,10 @@
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="#">About</a>
-                        <a href="#">Mission</a>
+                        <a href="/nstudio/community.php#about">About</a>
+                        <a href="/nstudio/community.php#mission">Mission</a>
                         <a href="#">Vision</a>
+                        <a href="/nstudio/community.php#our-team">Our Team</a>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,7 @@ require_once "../includes/functions.php";
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen w-full pt-[3rem] px-16 md:px-[1rem]">
+    <main class="min-h-screen w-full pt-[3rem] px-16 md:px-[1rem] animate__animated fadeIn">
         <?php if (checkSearchKey($key) || !empty($type_value)) : ?>
             <div class="container flex justify-start mt-4 mb-3">
                 <h3 class="text-2xl font-[600] font-['Lato'] capitalize">

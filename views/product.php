@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
-    <main class="min-h-screen" id="main">
+    <main class="min-h-screen animate__animated fadeIn" id="main">
         <?php if ($quantity > 0) : ?>
             <!-- DESKTOP -->
             <div class="parent-container container min-h-screen pt-[5rem] pb-[1rem] relative md:hidden">
@@ -229,16 +229,16 @@ if (isset($_GET['id'])) {
 
                 <form id="productForm" class="productForm flex flex-col w-full justify-start gap-6 sticky top-4 py-[2rem]">
                     <div class="flex items-start px-[4rem] md:px-[0]">
-                        <div id="#imageSlider" class="flex w-full overflow-auto snap-x snap-mandatory">
-                            <span id="counter" class="absolute top-[3rem] left-[1rem] px-2 bg-gray-600 rounded-xl text-white md:text-sm sm:text-xs">1/3</span>
-                            <div class="w-full shrink-0 snap-start">
-                                <img id="image1" class="max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image1.png" ?>" alt="image1" />
+                        <div id="imageSlider" class="flex w-full overflow-auto snap-x snap-mandatory">
+                            <span id="counter" class="absolute top-[3rem] md:top-[2.5rem] left-[1rem] md:left-[0.5rem] px-2 bg-gray-600 rounded-xl text-white md:text-sm xs:text-xs">1/3</span>
+                            <div class="w-full shrink-0 snap-start snap-always">
+                                <img id="image1" class="img1 max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image1.png" ?>" alt="image1" />
                             </div>
-                            <div class="w-full shrink-0 snap-start">
-                                <img id="image2" class="max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image2.png" ?>" alt="image2" />
+                            <div class="w-full shrink-0 snap-start snap-always">
+                                <img id="image2" class="img2 max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image2.png" ?>" alt="image2" />
                             </div>
-                            <div class="w-full shrink-0 snap-start">
-                                <img id="image3" class="max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image3.png" ?>" alt="image3" />
+                            <div class="w-full shrink-0 snap-start snap-always">
+                                <img id="image3" class="img3 max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image3.png" ?>" alt="image3" />
                             </div>
                         </div>
                     </div>

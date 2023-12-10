@@ -138,7 +138,7 @@ $provinceOptions = array(
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen">
+    <main class="min-h-screen animate__animated fadeIn">
         <div class="container max-w-full min-h-screen py-[4rem] md:pt-[1rem] px-[3rem] md:px-[2rem] sm:px-[1rem] flex flex-row md:flex-col-reverse relative">
             <form action="/nstudio/includes/payment.php" method="POST" class="w-full flex flex-col items-center p-3 pr-5 md:pr-1 md:p-1 md:mt-[2rem]">
                 <div class="flex flex-col w-full">

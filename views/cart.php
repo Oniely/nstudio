@@ -34,7 +34,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
-    <main class="min-h-screen">
+    <main class="min-h-screen animate__animated fadeIn">
         <?php if (checkCartProduct($userID)) : ?>
             <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-[2rem] md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
                 <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 pr-10 md:px-6 w-auto">

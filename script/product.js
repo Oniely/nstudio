@@ -133,4 +133,18 @@ $(document).ready(function () {
         $('.armInches').addClass('hidden');
         $('.armCm').removeClass('hidden');
     });
+
+    const imageSlider = document.getElementById('imageSlider');
+    const counter = document.getElementById('counter');
+
+    let currentImage = 1;
+    counter.textContent = `${currentImage}/3`;
+
+    $(imageSlider).on('scroll', () => {
+        const scrollLeft = imageSlider.scrollLeft;
+        const imageWidth = imageSlider.clientWidth;
+
+        currentImage = Math.ceil(scrollLeft / imageWidth) + 1;
+        counter.textContent = `${currentImage}/3`;
+    });
 });
