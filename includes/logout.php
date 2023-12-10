@@ -1,8 +1,8 @@
 <?php
 
-require_once "auth.php";
-
 session_start();
+
+require_once "auth.php";
 
 if (updateUserStatus($_SESSION['id'], false)) {
     session_unset();

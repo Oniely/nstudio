@@ -1,6 +1,6 @@
 <?php
 
-require 'includes/session.php';
+session_start();
 require "includes/redirect.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
@@ -16,6 +16,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 <script src="script/auth.js" defer></script>
 
 <body class="min-h-screen py-14">
+    <!-- Main -->
     <main class="w-full h-screen flex justify-center items-center">
         <div class="container max-w-[25rem] border border-[#101010] flex flex-col items-center py-[1.5rem] pb-[2.5rem] shadow-lg">
             <div class="w-[8rem] mb-[1.5rem] md:mb-[1rem]">

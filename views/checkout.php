@@ -1,6 +1,6 @@
 <?php
 
-require '../includes/session.php';
+session_start();
 
 require "../includes/connection.php";
 require "../includes/functions.php";
@@ -131,6 +131,10 @@ $provinceOptions = array(
 <script src="../script/checkout.js" defer></script>
 
 <body>
+    <!-- Loading Screen -->
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main -->
@@ -248,7 +252,7 @@ $provinceOptions = array(
             </form>
 
             <div id="products" class="container max-w-full h-fit flex flex-col gap-3 sticky md:relative md:mb-[2rem] top-[3rem] right-0 pb-4 transition-all delay-75 ease-linear overflow-hidden max-h-[100vh]">
-                <div class="overflow-hidden transition-all delay-75 ease-linear">
+                <div class="overflow-y-auto transition-all delay-75 ease-linear">
                     <!-- Product -->
                     <?php
                     if (isset($_GET['item']) && $_GET['item'] != "" && isset($_GET['colour']) && isset($_GET['size'])) {

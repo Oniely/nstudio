@@ -1,6 +1,6 @@
 <?php
 
-require '../includes/session.php';
+session_start();
 
 require "../includes/connection.php";
 require "../includes/functions.php";
@@ -27,6 +27,10 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 <script src="../script/cart.js" defer></script>
 
 <body class="min-h-screen">
+    <!-- Loading Screen -->
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
@@ -71,8 +75,8 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                         </div>
                     </div>
                 </div>
-                
-                <div class="flex flex-col gap-5 w-[25rem] md:w-full md:px-10 pt-4">
+
+                <div class="flex flex-col gap-5 w-[25rem] md:w-full md:px-[2rem] sm:px-[1rem] pt-4">
                     <div class="text-2xl text-[#505050] font-semibold">
                         <h1>Order Summary</h1>
                     </div>

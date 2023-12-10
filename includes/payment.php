@@ -1,6 +1,7 @@
 <?php
 
-require '../includes/session.php';
+session_start();
+
 require "../includes/connection.php";
 require "../includes/functions.php";
 
@@ -82,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
     $to_pay = "TO PAY";
     $total = $_SESSION['total'];
     $ordered_products = $_SESSION["product_items"];
-
     // Just Checking if quantity is greater is valid
     foreach ($ordered_products as $id => $product) {
         if (!$product['quantity'] > 0) {

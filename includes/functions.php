@@ -1,7 +1,5 @@
 <?php
 
-include_once "session.php";
-
 function dd($value)
 {
     var_dump("<pre>$value</pre>");
@@ -69,15 +67,15 @@ function showAllMenProduct()
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
 ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -125,15 +123,15 @@ function showAllWomenProduct()
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity'] > 0) :
             ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -210,15 +208,15 @@ function newMenProduct()
         $product_img = "prod" . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
             ?>
-            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
                 </div>
                 <div class="flex flex-col gap-2 px-4 py-3">
-                    <div class="overflow-hidden text-[13px] font-medium">
+                    <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -294,15 +292,15 @@ function newWomenProduct()
         $product_img = "prod" . $row['id'] . ".png";
         if ($row['quantity'] > 0) :
         ?>
-            <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
+            <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10">
                 <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                     <a class="magnet-dot" href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                     <a href="<?= "./views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "img/product/$product_img" ?>" alt="product" /></a>
                 </div>
                 <div class="flex flex-col gap-2 px-4 py-3">
-                    <div class="overflow-hidden text-[13px] font-medium">
+                    <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                         <div class="overflow-hidden">
-                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                            <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                 <?= $row['product_name'] ?>
                             </h3>
                         </div>
@@ -357,15 +355,15 @@ function showSearchProduct($keyword)
 
             if ($row['quantity'] > 0) :
             ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -427,15 +425,15 @@ function showSearchProductByType($type_id, $category)
             if ($row['quantity'] > 0) :
         ?>
 
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -495,20 +493,17 @@ function showSuggestionProduct($product_id, $product_item_id)
 {
     require 'connection.php';
 
-    $sql = "SELECT
-            pi.*, pt.* 
+    $sql = "SELECT pi.*, pt.* 
             FROM product_tbl pt
             JOIN product_item pi ON pt.product_id = pi.product_id
             WHERE pt.product_category = (
-                SELECT
-                product_category
-                FROM
-                product_tbl
-                WHERE
-                product_id = ?
+                SELECT product_category
+                FROM product_tbl
+                WHERE product_id = ?
             ) 
             AND pi.id <> ?
-            AND pt.product_id <> ?
+            AND pi.product_id <> ?
+            GROUP BY pi.product_id, pt.product_id
             ORDER BY RAND() LIMIT 4";
 
     $query = $conn->prepare($sql);
@@ -525,15 +520,15 @@ function showSuggestionProduct($product_id, $product_item_id)
             $product_img = "prod" . $row['id'] . ".png";
             if ($row['quantity']) :
         ?>
-                <div class="max-w-full w-[275px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
+                <div class="max-w-full w-[265px] md:w-[calc(100%+1.2rem)] h-auto mb-[1.5rem] relative <?= $row['product_new'] == 1 ? "before:content-['NEW'] before:absolute before:top-[1rem] before:left-[-1.5rem] before:md:top-[0.8rem] before:sm:top-[0.5rem] before:md:left-[-0.5rem] before:bg-[#252525] before:text-white before:text-[10px] before:sm:text-[8px] before:font-['Lato'] before:p-1 before:px-4 before:sm:px-2 before:font-semibold before:tracking-widest before:z-10" : '' ?>">
                     <div class="w-full relative hover:after:transition-all hover:after:delay-75 magnet">
                         <a class="magnet-dot" href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">→ VIEW</a>
                         <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>"><img class="w-full h-full object-cover" src="<?= "/nstudio/img/product/$product_img" ?>" alt="product" /></a>
                     </div>
                     <div class="flex flex-col gap-2 px-4 py-3">
-                        <div class="overflow-hidden text-[13px] font-medium">
+                        <div class="overflow-hidden text-[13px] sm:text-[12px] xs:text-[10px] text-ellipsis font-medium">
                             <div class="overflow-hidden">
-                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap sm:whitespace-normal">
+                                <h3 class="tracking-widest mb-[2px] whitespace-nowrap text-ellipsis overflow-x-hidden">
                                     <?= $row['product_name'] ?>
                                 </h3>
                             </div>
@@ -548,6 +543,41 @@ function showSuggestionProduct($product_id, $product_item_id)
             endif;
         endwhile;
     }
+}
+
+/* 
+ * Showing Showcase Product
+ */
+
+function fetchImagesForShowcase()
+{
+    require "connection.php";
+
+    $sql = "SELECT * 
+            FROM product_item 
+            GROUP BY product_id
+            ORDER BY RAND() LIMIT 4";
+    $result = $conn->query($sql);
+    $imageData = [];
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $outputPath = "./img/product/prod" . $row['id'] . ".png";
+
+            // Convert blob data to image and save
+            $conversionResult = blobToImage($row['product_image1'], $outputPath);
+
+            if ($conversionResult) {
+                // If conversion is successful, store the image path along with product_id and colour_id
+                $imageData[] = [
+                    'image' => $outputPath,
+                    'product_id' => $row['product_id'],
+                    'colour_id' => $row['colour_id'],
+                ];
+            }
+        }
+    }
+    return $imageData;
 }
 
 /* SHOWING OF PRODUCTS END  */
@@ -621,7 +651,7 @@ function showCheckOutProducts($userID)
         $subtotal = 0;
         $product_items = [];
         while ($row = $result->fetch_assoc()) {
-            $product_items[$row['product_item_id']] = ["quantity" => 1, "price" => $row['price']];
+            $product_items[$row['product_item_id']] = ["quantity" => $row['cart_quantity'], "price" => $row['price']];
             ?>
             <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
                 <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
@@ -766,7 +796,8 @@ function showCartProducts($userID)
                             <h3 class="[word-spacing:2px] text-[15px] uppercase tracking-tight font-medium"><?= $row['product_name'] ?></h3>
                             <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
                             <div class="flex gap-3">
-                                <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
+                                <!-- Left off trying to add edit product on cart like lunya probably ajax -->
+                                <button data-update-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
                                 <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
                             </div>
                             <div class="hidden md:flex justify-center items-center w-14 border mt-10">
@@ -1023,6 +1054,27 @@ function areSizesAvailable($product_id, $color_id, $size_value)
  * Showing Extra Link Category via Hover Navbar
  */
 
+function checkLinkCategory($product_category)
+{
+    require "connection.php";
+
+    $sql = "SELECT distinct
+            product_type.*,
+            product_tbl.product_category category
+            FROM
+            product_type
+            JOIN product_tbl ON product_tbl.product_category = '$product_category'
+            AND product_tbl.product_type_id = product_type.id LIMIT 8;";
+
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function showLinkCategory($product_category)
 {
     require "connection.php";
@@ -1245,6 +1297,40 @@ function getOrderItemCount($orderID)
     }
 }
 
+function orderCount($userID, $orderStatus, $orderStatus2 = "")
+{
+    require 'connection.php';
+
+    if ($orderStatus2 == "" || $orderStatus2 == null) {
+        $sql = "SELECT COUNT(*) as count FROM shop_order_tbl WHERE user_id = ? AND order_status = ?";
+        $query = $conn->prepare($sql);
+        $query->bind_param('is', $userID, $orderStatus);
+        $query->execute();
+
+        $result = $query->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc()['count'];
+        } else {
+            return false;
+        }
+    } else {
+        $sql = "SELECT COUNT(*) as count FROM shop_order_tbl WHERE user_id = ? AND order_status = ? || order_status = ?";
+        $query = $conn->prepare($sql);
+        $query->bind_param('iss', $userID, $orderStatus, $orderStatus2);
+        $query->execute();
+
+        $result = $query->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc()['count'];
+        } else {
+            return false;
+        }
+    }
+}
+
+// make this responsive and copy it to all the other order status function
 function showToPayOrder($userID)
 {
     require 'connection.php';
@@ -1291,38 +1377,49 @@ function showToPayOrder($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
                 <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
+                    <div class="h-48 sm:h-44 xs:h-40 shrink-0">
                         <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
                             <img class="max-w-full h-full object-cover" src="<?= $product_img ?>" alt="">
                         </a>
                     </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
+                    <div class="w-full flex flex-col justify-between gap-1 h-full px-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                </div>
+                                <h1 class="text-sm sm:hidden">
+                                    <?= $date ?>
+                                </h1>
                             </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
+                            <div class="flex flex-col justify-center items-start">
+                                <p class="text-[#505050] text-sm sm:font-medium font-semibold">Order Items: <span class="before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col justify-center items-start mb-[6rem]">
-                            <p class="font-['Lato']">Order Items: <span class="text-[1rem] before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <div class="flex justify-between sm:justify-end items-end">
+                            <div class="flex gap-1 sm:hidden">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="">
                                 <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
+                            <p class="text-lg sm:text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
+                <div class="w-full flex justify-end sm:justify-between gap-3 xs:gap-[4px] uppercase">
                     <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
                         <button data-order-id="<?= $row['order_id'] ?>" id="viewMoreBtn" class="viewMoreBtn text-sm w-full h-full">View More</button>
                     </div>
@@ -1335,186 +1432,8 @@ function showToPayOrder($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To pay items</h1>
-        </div>
-        <?php
-    }
-}
-
-function showToPayProducts($userID)
-{
-    require 'connection.php';
-
-    $sql = 'SELECT
-            shop_order_tbl.*,
-            order_line_tbl.*
-            FROM
-            shop_order_tbl
-            JOIN order_line_tbl ON shop_order_tbl.id = order_line_tbl.order_id
-            WHERE
-            shop_order_tbl.user_id = ?
-            AND shop_order_tbl.order_status = "TO PAY"';
-
-    $query = $conn->prepare($sql);
-    $query->bind_param('i', $userID);
-    $query->execute();
-
-    $result = $query->get_result();
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) :
-            $product = getProductColourAndSize($row['product_item_id']);
-            $colour_value = $product['colour_value'];
-            $size_value = $product['size_value'];
-
-            $item = fetchItemAndColorIDs($row['product_item_id']);
-            $product_name = $item['product_name'];
-            $product_id = $item['product_id'];
-            $colour_id = $item['colour_id'];
-            $size_id = $item['size_id'];
-
-            $dateTime = new DateTime($row['receive_date']);
-            $date = $dateTime->format('m-d-Y');
-        ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
-                <!-- Top -->
-                <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
-                        <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
-                            <img class="max-w-full h-full object-cover" src="<?= "/nstudio/img/product/prod$row[product_item_id].png" ?>" alt="">
-                        </a>
-                    </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
-                                <p class="text-[15px] before:content-['₱'] font-semibold"><?= $row['price'] ?> PHP</p>
-                            </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
-                        </div>
-                        <div class="flex flex-col justify-center items-start mb-10">
-                            <h1 class="text-sm font-semibold uppercase">Variation: <span><?= $colour_value ?> | <?= $size_value ?></span></h1>
-                            <p class="before:content-['X'] before:mr-[2px] font-['Lato'] text-sm"><span class="text-[1rem]"><?= $row['quantity'] ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="/nstudio/img/topay.svg" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">To Pay</h1>
-                            </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <button id="cancelOrderBtn" class="text-sm w-full h-full">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        <?php
-        endwhile;
-    } else {
-        ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
-            <h1 class="text-2xl font-medium text-center py-5">No-To pay items.</h1>
-        </div>
-        <?php
-    }
-}
-
-function showCompletedProducts($userID)
-{
-    require "connection.php";
-
-    $sql = 'SELECT
-            shop_order_tbl.*,
-            order_line_tbl.*
-            FROM
-            shop_order_tbl
-            JOIN order_line_tbl ON shop_order_tbl.id = order_line_tbl.order_id
-            WHERE
-            shop_order_tbl.user_id = ?
-            AND shop_order_tbl.order_status = "COMPLETED"';
-
-    $query = $conn->prepare($sql);
-    $query->bind_param('i', $userID);
-    $query->execute();
-
-    $result = $query->get_result();
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) :
-            $product = getProductColourAndSize($row['product_item_id']);
-            $colour_value = $product['colour_value'];
-            $size_value = $product['size_value'];
-
-            $item = fetchItemAndColorIDs($row['product_item_id']);
-            $product_name = $item['product_name'];
-            $product_id = $item['product_id'];
-            $colour_id = $item['colour_id'];
-            $size_id = $item['size_id'];
-
-            $dateTime = new DateTime($row['receive_date']);
-            $date = $dateTime->format('m-d-Y');
-        ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
-                <!-- Top -->
-                <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
-                        <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
-                            <img class="max-w-full h-full object-cover" src="<?= "/nstudio/img/product/prod$row[product_item_id].png" ?>" alt="">
-                        </a>
-                    </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
-                                <p class="text-[15px] before:content-['₱'] font-semibold"><?= $row['price'] ?> PHP</p>
-                            </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
-                        </div>
-                        <div class="flex flex-col justify-center items-start mb-10">
-                            <h1 class="text-sm font-semibold uppercase">Variation: <span><?= $colour_value ?> | <?= $size_value ?></span></h1>
-                            <p class="before:content-['X'] before:mr-[2px] font-['Lato'] text-sm"><span class="text-[1rem]"><?= $row['quantity'] ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]">Parcel had been delivered</h1>
-                            </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <button id="btn" class="text-sm w-full h-full bg-[#101010] text-white">Rate</button>
-                    </div>
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <button id="contactUsBtn" class="contactUsBtn text-sm w-full h-full">Contact Us</button>
-                    </div>
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
-                            <button id="buyAgainBtn" class="text-sm w-full h-full">Buy Again</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <?php
-        endwhile;
-    } else {
-        ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
-            <h1 class="text-2xl font-medium text-center py-5">No completed items.</h1>
         </div>
         <?php
     }
@@ -1534,7 +1453,7 @@ function showToShipOrders($userID)
             JOIN product_item ON order_line_tbl.product_item_id = product_item.id
             WHERE
             shop_order_tbl.user_id = ?
-            AND shop_order_tbl.order_status = "TO SHIP"
+            AND shop_order_tbl.order_status = "TO SHIP" || shop_order_tbl.order_status = "SHIPPED"
             GROUP BY
             shop_order_tbl.id';
 
@@ -1543,6 +1462,21 @@ function showToShipOrders($userID)
     $query->execute();
 
     $result = $query->get_result();
+    $month = [
+        '',
+        'January',
+        'Febuary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) :
@@ -1565,44 +1499,70 @@ function showToShipOrders($userID)
 
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
+
+            $shipDateTime = new DateTime($row['ship_date']);
+            $shipDate = $shipDateTime->format('m-d-Y');
+
+            $shipMonth = $month[$shipDateTime->format('m')];
+            $shipDay = $shipDateTime->format('d');
+            $shipYear = $shipDateTime->format('Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
                 <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
+                    <div class="h-48 sm:h-44 xs:h-40 shrink-0">
                         <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
                             <img class="max-w-full h-full object-cover" src="<?= $product_img ?>" alt="">
                         </a>
                     </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
+                    <div class="w-full flex flex-col justify-between gap-1 h-full px-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                </div>
+                                <h1 class="text-sm sm:hidden">
+                                    <?= $date ?>
+                                </h1>
                             </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
+                            <div class="flex flex-col justify-center items-start">
+                                <p class="text-[#505050] text-sm sm:font-medium font-semibold">Order Items: <span class="before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col justify-center items-start mb-[6rem]">
-                            <p class="font-['Lato']">Order Items: <span class="text-[1rem] before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <div class="flex justify-between sm:justify-end items-end">
+                            <div class="flex gap-1 sm:hidden">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="">
                                 <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
+                            <p class="text-lg sm:text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
-                        <button data-order-id="<?= $row['order_id'] ?>" id="viewMoreBtn" class="viewMoreBtn text-sm w-full h-full">View More</button>
-                    </div>
-                    <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <button id="contactUsBtn" class="contactUsBtn text-sm w-full h-full">Contact Us</button>
+                <div class="w-full flex sm:flex-wrap justify-end sm:justify-between gap-3 uppercase">
+                    <?php if ($row['order_status'] == "SHIPPED") : ?>
+                        <div class="text-[#505050] text-sm uppercase leading-5 font-medium">
+                            <h1 class="text-base">Packed and Ready to Ship</h1>
+                            <p><?= $shipMonth . ' ' . $shipDay . ' ' . $shipYear ?></p>
+                        </div>
+                    <?php endif; ?>
+                    <div class="w-full flex justify-end sm:justify-between gap-3 xs:gap-[4px] uppercase">
+                        <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
+                            <button data-order-id="<?= $row['order_id'] ?>" id="viewMoreBtn" class="viewMoreBtn text-sm w-full h-full">View More</button>
+                        </div>
+                        <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
+                            <a href="mailto:nechmastudio@gmail.com"><button id="contactUsBtn" class="contactUsBtn text-sm w-full h-full">Contact Us</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1610,7 +1570,7 @@ function showToShipOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To Ship Order</h1>
         </div>
         <?php
@@ -1632,6 +1592,7 @@ function showToReceiveOrders($userID)
             WHERE
             shop_order_tbl.user_id = ?
             AND shop_order_tbl.order_status = "TO RECEIVE"
+            OR shop_order_tbl.order_status = "DELIVERED"
             GROUP BY
             shop_order_tbl.id';
 
@@ -1663,43 +1624,54 @@ function showToReceiveOrders($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
                 <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
+                    <div class="h-48 sm:h-44 xs:h-40 shrink-0">
                         <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
                             <img class="max-w-full h-full object-cover" src="<?= $product_img ?>" alt="">
                         </a>
                     </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
+                    <div class="w-full flex flex-col justify-between gap-1 h-full px-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                </div>
+                                <h1 class="text-sm sm:hidden">
+                                    <?= $date ?>
+                                </h1>
                             </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
+                            <div class="flex flex-col justify-center items-start">
+                                <p class="text-[#505050] text-sm sm:font-medium font-semibold">Order Items: <span class="before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
+                            </div>
                         </div>
-                        <div class="flex flex-col justify-center items-start mb-[6rem]">
-                            <p class="font-['Lato']">Order Items: <span class="text-[1rem] before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <div class="flex justify-between sm:justify-end items-end">
+                            <div class="flex gap-1 sm:hidden">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="">
                                 <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
                             </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
+                            <p class="text-lg sm:text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
+                <div class="w-full flex justify-end sm:justify-between gap-3 xs:gap-[4px] uppercase">
                     <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
                         <button data-order-id="<?= $row['order_id'] ?>" id="viewMoreBtn" class="viewMoreBtn text-sm w-full h-full">View More</button>
                     </div>
                     <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
-                        <button data-order-id="<?= $row['order_id'] ?>" id="orderReceivedBtn" class="orderReceivedBtn text-sm w-full h-full">Order Received</button>
+                        <button data-order-id="<?= $row['order_id'] ?>" id="orderReceivedBtn" class="orderReceivedBtn text-sm w-full h-full disabled:bg-slate-300 disabled:hover:cursor-not-allowed" <?= $row['order_status'] == "DELIVERED" ? '' : 'disabled' ?>>Order Received</button>
                     </div>
                 </div>
             </div>
@@ -1707,8 +1679,136 @@ function showToReceiveOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - To Receive Order</h1>
+        </div>
+        <?php
+    }
+}
+
+function showCompletedProducts($userID)
+{
+    require "connection.php";
+
+    $sql = 'SELECT
+            shop_order_tbl.*,
+            order_line_tbl.*,
+            order_line_tbl.quantity order_quantity
+            FROM
+            shop_order_tbl
+            JOIN order_line_tbl ON shop_order_tbl.id = order_line_tbl.order_id
+            WHERE
+            shop_order_tbl.user_id = ?
+            AND shop_order_tbl.order_status = "COMPLETED"';
+
+    $query = $conn->prepare($sql);
+    $query->bind_param('i', $userID);
+    $query->execute();
+
+    $result = $query->get_result();
+    $month = [
+        '',
+        'January',
+        'Febuary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) :
+            // ERROR 
+            $product = getProductColourAndSize($row['product_item_id']);
+            $colour_value = $product['colour_value'];
+            $size_value = $product['size_value'];
+
+            $item = fetchItemAndColorIDs($row['product_item_id']);
+            $product_name = $item['product_name'];
+            $product_id = $item['product_id'];
+            $colour_id = $item['colour_id'];
+            $size_id = $item['size_id'];
+
+            $dateTime = new DateTime($row['receive_date']);
+            $receivedMonth = $month[$dateTime->format('m')];
+            $receivedDay = $dateTime->format('d');
+            $receivedYear = $dateTime->format('Y');
+
+            $orderDatetime = new DateTime($row['order_date']);
+            $date = $orderDatetime->format('m-d-Y');
+        ?>
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
+                <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
+                <div class="w-full flex items-center gap-2">
+                    <div class="h-48 md:h-44 sm:h-40 shrink-0">
+                        <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
+                            <img class="max-w-full h-full object-cover" src="<?= "/nstudio/img/product/prod$row[product_item_id].png" ?>" alt="image">
+                        </a>
+                    </div>
+                    <div class="w-full flex flex-col justify-between gap-1 h-full px-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                </div>
+                                <h1 class="text-sm sm:hidden">
+                                    <?= $date ?>
+                                </h1>
+                            </div>
+                            <div class="flex flex-col justify-center items-start">
+                                <h1 class="text-[#505050] text-sm xs:text-xs sm:font-medium font-semibold uppercase">Variation: <span><?= $colour_value ?> | <?= $size_value ?></span></h1>
+                                <p class="text-[#505050] text-sm xs:text-xs sm:font-medium font-semibold">Order Quantity: <span class="before:text-xs before:content-['X'] before:mx-[1px]"><?= $row['order_quantity'] ?></span></p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between sm:justify-end items-end">
+                            <div class="flex gap-2 sm:hidden">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                            </div>
+                            <p class="text-lg sm:text-base">TOTAL: <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- Bottom -->
+                <div class="w-full flex sm:flex-wrap items-center justify-between gap-3 uppercase">
+                    <div class="text-[#505050] text-sm uppercase leading-5 font-medium">
+                        <h1 class="text-base">Delivered and Received</h1>
+                        <p><?= $receivedMonth . ' ' . $receivedDay . ' ' . $receivedYear ?></p>
+                    </div>
+                    <div class="w-full flex justify-end sm:justify-between gap-3 xs:gap-[4px] uppercase">
+                        <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
+                            <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
+                                <button id="buyAgainBtn" class="text-sm w-full h-full">Buy Again</button>
+                            </a>
+                        </div>
+                        <div class="w-[10rem] h-[2.5rem] border border-[#101010]">
+                            <a href="mailto:nechmastudio@gmail.com"><button id="contactUsBtn" class="contactUsBtn text-sm w-full h-full">Contact Us</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php
+        endwhile;
+    } else {
+        ?>
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
+            <h1 class="text-2xl font-medium text-center py-5">No completed items.</h1>
         </div>
         <?php
     }
@@ -1760,38 +1860,49 @@ function showCancelledOrders($userID)
             $dateTime = new DateTime($row['order_date']);
             $date = $dateTime->format('m-d-Y');
         ?>
-            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+            <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
                 <!-- Top -->
+                <div class="hidden md:flex justify-end sm:justify-between">
+                    <div class="hidden gap-2 sm:flex">
+                        <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
+                        <h1 class="font-semibold uppercase text-sm text-[#ff5555]"><?= $row['order_status'] ?></h1>
+                    </div>
+                    <h1 class="text-sm sm:block hidden self-end">
+                        <?= $date ?>
+                    </h1>
+                </div>
                 <div class="w-full flex items-center gap-2">
-                    <div class="h-44 shrink-0">
+                    <div class="h-48 sm:h-44 xs:h-40 shrink-0">
                         <a href="<?= "/nstudio/views/product.php?id={$product_id}&colour={$colour_id}" ?>">
                             <img class="max-w-full h-full object-cover" src="<?= $product_img ?>" alt="">
                         </a>
                     </div>
-                    <div class="w-full flex flex-col gap-1 h-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h1 class="text-base tracking-[2px] font-semibold capitalize"><?= $product_name ?></h1>
+                    <div class="w-full flex flex-col justify-between gap-1 h-full px-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="sm:text-sm text-base tracking-[1px] font-semibold capitalize"><?= $product_name ?></h1>
+                                </div>
+                                <h1 class="text-sm sm:hidden">
+                                    <?= $date ?>
+                                </h1>
                             </div>
-                            <h1>
-                                <?= $date ?>
-                            </h1>
-                        </div>
-                        <div class="flex flex-col justify-center items-start mb-[6rem]">
-                            <p class="font-['Lato']">Order Items: <span class="text-[1rem] before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div class="flex gap-2">
-                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="delivered">
-                                <h1 class="font-semibold uppercase text-sm text-[#095d40]"><?= $row['order_status'] ?></h1>
+                            <div class="flex flex-col justify-center items-start">
+                                <p class="text-[#505050] text-sm sm:font-medium font-semibold">Order Items: <span class="before:text-xs before:content-['X'] before:mx-[2px]"><?= $orderItemCount ?></span></p>
                             </div>
-                            <p class="text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
+                        </div>
+                        <div class="flex justify-between sm:justify-end items-end">
+                            <div class="flex gap-1 sm:hidden">
+                                <img class="w-5 h-5 object-contain" src="<?= "/nstudio/img/$row[order_status].svg" ?>" alt="">
+                                <h1 class="font-semibold uppercase text-sm text-[#ff5555]"><?= $row['order_status'] ?></h1>
+                            </div>
+                            <p class="text-lg sm:text-base">TOTAL : <span class="font-semibold before:content-['₱'] before:mr-[1px]"><?= $row['order_total'] ?></span></p>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <!-- Bottom -->
-                <div class="w-full flex justify-end gap-3 uppercase">
+                <div class="w-full flex justify-end gap-3 xs:gap-[4px] uppercase">
                     <div class="w-[10rem] h-[2.5rem] border border-[#101010] bg-[#101010] text-white">
                         <button data-order-id="<?= $row['order_id'] ?>" id="viewMoreBtn" class="viewMoreBtn text-sm w-full h-full">View More</button>
                     </div>
@@ -1801,7 +1912,7 @@ function showCancelledOrders($userID)
         endwhile;
     } else {
         ?>
-        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border rounded">
+        <div class="w-full flex flex-col gap-2 h-full py-3 px-4 border">
             <h1 class="text-2xl font-medium text-center py-5">No - Cancelled Order</h1>
         </div>
 <?php

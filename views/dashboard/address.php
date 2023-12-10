@@ -1,6 +1,6 @@
 <?php
 
-require '../../includes/session.php';
+session_start();
 
 require '../../includes/connection.php';
 require '../../includes/functions.php';
@@ -108,10 +108,14 @@ $address = true;
 <script src="/nstudio/script/address.js" defer></script>
 
 <body class="min-h-screen">
+    <!-- Loading Screen -->
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->
-    <main class="min-h-screen h-full pt-6 md:pb-14 overflow-hidden">
+    <main class="min-h-screen h-full pt-6 pb-10 md:pb-14 overflow-hidden">
         <div class="container min-h-screen pt-[4rem] px-[4rem] md:px-[2rem] sm:px-[1rem] flex flex-col gap-7 relative overflow-hidden">
             <div class="pl-[10rem] md:pl-0 text-[#505050]">
                 <p class="uppercase text-sm">Account / Dashboard / Address</p>

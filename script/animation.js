@@ -1,3 +1,11 @@
+let preloader = document.querySelector('.preloader');
+
+window.addEventListener('load', () => {
+    preloader.style.display = 'none';
+    $('.main').fadeIn();
+    $('.main').fadeIn(1000);
+});
+
 const fadeIn = new IntersectionObserver((entries) => {
     // Loop over the entries
     entries.forEach((entry) => {

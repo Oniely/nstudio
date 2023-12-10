@@ -26,7 +26,7 @@
                     first order.</p>
             </div>
             <div class="w-[12rem] md:w-full text-center">
-                <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3 rounded">SUBSCRIBE</button>
+                <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3">SUBSCRIBE</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
-include '../session.php';
+session_start();
+
 include '../redirect.php';
 include '../connection.php';
 

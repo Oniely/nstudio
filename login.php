@@ -1,6 +1,6 @@
 <?php
 
-require "./includes/session.php";
+session_start();
 require "./includes/auth.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
@@ -15,6 +15,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 <script src="script/auth.js" defer></script>
 
 <body class="min-h-screen">
+    <!-- Main -->
     <main class="w-full h-screen flex justify-center items-center px-5">
         <div class="w-[25rem] border border-[#101010] flex flex-col items-center py-[1.5rem] pb-[2.5rem] px-5 shadow-lg">
             <div class="w-[8rem] mb-[1.5rem]">

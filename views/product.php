@@ -1,6 +1,6 @@
 <?php
 
-require '../includes/session.php';
+session_start();
 
 require "../includes/connection.php";
 require "../includes/functions.php";
@@ -31,7 +31,8 @@ if (isset($_GET['id'])) {
                 product_item.product_image1 item_img1,
                 product_item.product_image2 item_img2,
                 product_item.product_image3 item_img3,
-                product_tbl.product_price price
+                product_tbl.product_price price,
+                product_tbl.product_category
                 FROM
                 product_item
                 JOIN product_tbl
@@ -58,6 +59,7 @@ if (isset($_GET['id'])) {
                 $directory = "../img/product";
                 $quantity = $row['quantity'];
                 $description = $row['product_description'];
+                $product_category = $row['product_category'];
 
                 $outputPathsArray = array(
                     $directory . '/' . $id . '_image1.png',
@@ -88,6 +90,10 @@ if (isset($_GET['id'])) {
 <!-- Body -->
 
 <body class="min-h-screen">
+    <!-- Loading Screen -->
+    <div class="preloader w-full h-screen fixed top-0 left-0 bg-white grid place-items-center z-[1000]">
+        <img src="/nstudio/img/Loading-bar.gif" alt="loading">
+    </div>
     <!-- Navbar -->
     <?php require './partials/nav.php' ?>
     <!-- Main Section -->
@@ -97,7 +103,7 @@ if (isset($_GET['id'])) {
             <div class="parent-container container min-h-screen pt-[5rem] pb-[1rem] relative md:hidden">
                 <div class="flex items-center font-semibold px-[4rem] lgt:px-[2rem]">
                     <a class="after:content-['_/'] after:mx-2" href="../index.php">HOME</a>
-                    <a class="after:content-['_/'] after:mx-2" href="../men.php">MEN</a>
+                    <a class="after:content-['_/'] after:mx-2" href="<?= "../$product_category.php" ?>"><?= $product_category ?></a>
                     <a href="#">VIEW PRODUCT</a>
                 </div>
 
@@ -217,14 +223,14 @@ if (isset($_GET['id'])) {
             <div class="parent-container container min-h-screen pt-[4rem] pb-[1rem] relative md:block hidden">
                 <div class="flex items-center text-sm font-medium px-[4rem] md:px-[2rem] sm:px-[1rem]">
                     <a class="after:content-['_/'] after:mx-2" href="#">HOME</a>
-                    <a class="after:content-['_/'] after:mx-2" href="#">MEN</a>
+                    <a class="after:content-['_/'] after:mx-2" href="<?= "../$product_category.php" ?>"><?= $product_category ?></a>
                     <a href="#">VIEW PRODUCT</a>
                 </div>
 
                 <form id="productForm" class="productForm flex flex-col w-full justify-start gap-6 sticky top-4 py-[2rem]">
                     <div class="flex items-start px-[4rem] md:px-[0]">
                         <div id="#imageSlider" class="flex w-full overflow-auto snap-x snap-mandatory">
-                            <span id="counter" class="absolute top-7 left-7 px-2 bg-gray-600 rounded-xl text-white">1/3</span>
+                            <span id="counter" class="absolute top-[3rem] left-[1rem] px-2 bg-gray-600 rounded-xl text-white md:text-sm sm:text-xs">1/3</span>
                             <div class="w-full shrink-0 snap-start">
                                 <img id="image1" class="max-w-full w-full h-full object-cover object-top" src="<?= "../img/product/{$id}_image1.png" ?>" alt="image1" />
                             </div>
@@ -236,7 +242,7 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col text-3xl sm:text-2xl xs:text-xl px-[1rem]">
+                    <div class="flex flex-col text-3xl sm:text-xl px-[1rem]">
                         <h1 class="uppercase font-medium"><?= $name ?></h1>
                         <p class="font-semibold before:content-['₱'] before:font-medium before:mr-[2px]"><?= $price ?></p>
                     </div>
@@ -253,21 +259,21 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                     <div class="flex px-[1rem]">
-                        <button id="showSizeModalBtn" class="showSizeModalBtn text-xs font-medium underline cursor-pointer">
+                        <button type="button" id=" showSizeModalBtn" class="showSizeModalBtn text-xs font-medium underline cursor-pointer">
                             FIND YOUR SIZE
                         </button>
                     </div>
                     <div class="flex flex-col w-full gap-3 px-[1rem]">
                         <div class="flex gap-3 justify-center text-xs font-medium pl-[1px]">
-                            <button id="dBtn2" class="dBtn2 underline uppercase">
+                            <button type="button" id="dBtn2" class="dBtn2 underline uppercase">
                                 Description
                             </button>
                             <span>-</span>
-                            <button id="dBtn1" class="dBtn1 uppercase">
+                            <button type="button" id="dBtn1" class="dBtn1 uppercase">
                                 Delivery
                             </button>
                             <span>-</span>
-                            <button id="dBtn3" class="dBtn3 uppercase">
+                            <button type="button" id="dBtn3" class="dBtn3 uppercase">
                                 Details
                             </button>
                         </div>
@@ -347,11 +353,11 @@ if (isset($_GET['id'])) {
                         </h1>
                         <div class="flex flex-col items-end gap-10">
                             <div class="flex gap-1 font-medium">
-                                <button type="button" class="underline">
+                                <button type="button" id="inchesBtn" class="underline">
                                     INCHES
                                 </button>
                                 <span>-</span>
-                                <button type="button">CM</button>
+                                <button type="button" id="cmBtn">CM</button>
                             </div>
                             <div>
                                 <table class="table-fixed border-collapse w-full">
@@ -473,7 +479,7 @@ if (isset($_GET['id'])) {
                                                 54
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="text-center chestInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Chest
                                             </td>
@@ -496,7 +502,30 @@ if (isset($_GET['id'])) {
                                                 37.5"
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="hidden text-center chestCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Chest
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                76cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                80cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                84cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                88cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                92cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                96cm
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center waistInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Waist
                                             </td>
@@ -519,7 +548,30 @@ if (isset($_GET['id'])) {
                                                 33.5"
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr class="hidden text-center waistCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Waist
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                64cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                68cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                72cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                76cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                80cm
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center armInches">
                                             <td class="p-2 border-r border-black text-start">
                                                 Arm Length
                                             </td>
@@ -542,6 +594,29 @@ if (isset($_GET['id'])) {
                                                 23.8"
                                             </td>
                                         </tr>
+                                        <tr class="hidden text-center armCm">
+                                            <td class="p-2 border-r border-black text-start">
+                                                Arm Length
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.6cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.6cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                59.8cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60.2cm
+                                            </td>
+                                            <td class="p-2 border-r border-black">
+                                                60.6cm
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -555,9 +630,9 @@ if (isset($_GET['id'])) {
             </div>
         <?php endif; ?>
         <?php if (checkSuggestionProduct($product_id, $_SESSION['product_item_id'])) : ?>
-            <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px[1rem]">
-                <h1 class="text-sm">You may also like...</h1>
-                <div class="container flex md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center gap-3 pt-6 px-3">
+            <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px-[1rem]">
+                <h1 class="text-sm mb-5">You may also like...</h1>
+                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
                     <?php showSuggestionProduct($product_id, $_SESSION['product_item_id']) ?>
                 </div>
             </div>
