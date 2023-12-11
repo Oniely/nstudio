@@ -1,0 +1,13 @@
+#burger_menu {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: 0.2s ease-in-out;
+}
+
+#burger_menu.open {
+    height: 15rem;
+    visibility: visible;
+    opacity: 1;
+}
