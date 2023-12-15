@@ -2,8 +2,8 @@
 
 session_start();
 
-include '../redirect.php';
-include '../connection.php';
+require '../redirect.php';
+require '../connection.php';
 
 if (isset($_POST['action']) && isset($_POST['item_id'])) {
     if (isset($_SESSION['id'])) {

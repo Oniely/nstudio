@@ -2,8 +2,8 @@
 
 session_start();
 
-include '../redirect.php';
-include '../connection.php';
+require '../redirect.php';
+require '../connection.php';
 
 if (isset($_GET['username']) && $_GET['username'] != "") {
     $username = $_GET['username'];

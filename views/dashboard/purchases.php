@@ -34,7 +34,7 @@ $purchases = true;
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require_once './partials/loading.php' ?>
+    <?php require '../partials/loading.php' ?>
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->

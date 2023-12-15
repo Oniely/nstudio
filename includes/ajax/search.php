@@ -2,7 +2,7 @@
 
 session_start();
 
-include '../connection.php';
+require '../connection.php';
 
 if (isset($_GET["keywords"])) {
     $keywords = $_GET["keywords"];

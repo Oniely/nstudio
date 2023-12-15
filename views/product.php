@@ -2,8 +2,8 @@
 
 session_start();
 
-require "../includes/connection.php";
-require "../includes/functions.php";
+require_once "../includes/connection.php";
+require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
 <html lang="en" class="scroll-smooth">
 
 <!-- Head -->
-<?php require './partials/head.php' ?>
+<?php require_once './partials/head.php' ?>
 <script src="../script/product.js" defer></script>
 <!-- Body -->
 
@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
     <!-- Loading Screen -->
     <?php require_once './partials/loading.php' ?>
     <!-- Navbar -->
-    <?php require './partials/nav.php' ?>
+    <?php require_once './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="min-h-screen animate__animated fadeIn" id="main">
         <?php if ($quantity > 0) : ?>
@@ -637,7 +637,7 @@ if (isset($_GET['id'])) {
         <?php endif; ?>
     </main>
     <!-- Footer Section -->
-    <?php require './partials/footer.php' ?>
+    <?php require_once './partials/footer.php' ?>
 </body>
 <script>
     if (window.history.replaceState) {

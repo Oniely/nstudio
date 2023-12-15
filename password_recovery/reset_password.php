@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_id'] == "") {
 
 <!DOCTYPE html>
 <html lang="en">
-<?php require '../views/partials/head.php' ?>
+<?php require_once '../views/partials/head.php' ?>
 
 <body class="min-h-screen">
     <main class="w-full h-screen flex justify-center items-center px-5">

@@ -15,7 +15,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = "";
 }
 
-require_once "./includes/functions.php";
+require "./includes/functions.php";
 
 $menActive = 'active';
 
@@ -28,7 +28,7 @@ $menActive = 'active';
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require_once './views/partials/loading.php' ?>
+    <?php require './views/partials/loading.php' ?>
     <!-- Navbar -->
     <?php require './views/partials/nav.php' ?>
     <!-- Main -->

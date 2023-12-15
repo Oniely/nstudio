@@ -2,8 +2,8 @@
 
 session_start();
 
-include '../redirect.php';
-include '../connection.php';
+require '../redirect.php';
+require '../connection.php';
 
 function cartCount($userID)
 {

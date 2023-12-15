@@ -23,7 +23,7 @@
             <div class="md:flex md:gap-[5px] text-lg font-semibold leading-5">
                 <!-- prettier-ignore -->
                 <p class="whitespace-pre md:whitespace-nowrap">Enjoy 10% off your
-                    first order.</p>
+                first order.</p>
             </div>
             <div class="w-[12rem] md:w-full text-center">
                 <button class="w-full h-full bg-[#101010] text-white text-[12px] py-3">SUBSCRIBE</button>

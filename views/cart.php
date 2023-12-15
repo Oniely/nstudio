@@ -2,8 +2,8 @@
 
 session_start();
 
-require "../includes/connection.php";
-require "../includes/functions.php";
+require_once "../includes/connection.php";
+require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -23,14 +23,14 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
-<?php require './partials/head.php' ?>
+<?php require_once './partials/head.php' ?>
 <script src="../script/cart.js" defer></script>
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
     <?php require_once './partials/loading.php' ?>
     <!-- Navbar -->
-    <?php require './partials/nav.php' ?>
+    <?php require_once './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="min-h-screen animate__animated fadeIn">
         <?php if (checkCartProduct($userID)) : ?>
@@ -112,7 +112,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
         <?php endif; ?>
     </main>
     <!-- Footer Section -->
-    <?php require './partials/footer.php' ?>
+    <?php require_once './partials/footer.php' ?>
 </body>
 
 </html>

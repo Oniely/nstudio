@@ -2,8 +2,8 @@
 
 session_start();
 
-require "../includes/connection.php";
-require "../includes/functions.php";
+require_once "../includes/connection.php";
+require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -127,14 +127,14 @@ $provinceOptions = array(
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <!-- Head -->
-<?php require './partials/head.php' ?>
+<?php require_once './partials/head.php' ?>
 <script src="../script/checkout.js" defer></script>
 
 <body>
     <!-- Loading Screen -->
     <?php require_once './partials/loading.php' ?>
     <!-- Navbar -->
-    <?php require './partials/nav.php' ?>
+    <?php require_once './partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen animate__animated fadeIn">
         <div class="container max-w-full min-h-screen py-[4rem] md:pt-[1rem] px-[3rem] md:px-[2rem] sm:px-[1rem] flex flex-row md:flex-col-reverse relative">
@@ -143,7 +143,7 @@ $provinceOptions = array(
                     <div class="flex flex-col">
                         <h1 class="text-3xl font-medium">Contact</h1>
                         <div class="relative z-0 w-full mb-5 mt-5 group border rounded">
-                            <input value="<?= @$email ?>" name="email" type="email" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <input value="<?= @$email ?>" name="email" type="email" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                             <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                         </div>
 
@@ -151,7 +151,7 @@ $provinceOptions = array(
                             <h1 class="text-3xl font-medium">Delivery</h1>
 
                             <div class="relative z-0 w-full mb-5 mt-5 group border rounded">
-                                <select name="country" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+                                <select name="country" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced>
                                     <option value="Philippines" selected>
                                         Philippines
                                     </option>
@@ -161,33 +161,33 @@ $provinceOptions = array(
 
                             <div class="flex flex-row gap-8">
                                 <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                    <input value="<?= @$fname ?>" name="fname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <input value="<?= @$fname ?>" name="fname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Name</label>
                                 </div>
                                 <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                    <input value="<?= @$lname ?>" name="lname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <input value="<?= @$lname ?>" name="lname" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last Name</label>
                                 </div>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group border rounded text-ellipsis">
-                                <input value="<?= @$street_name ?>" name="street_name" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input value="<?= @$street_name ?>" name="street_name" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                 <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 whitespace-nowrap overflowx text-ellipsis">(Address/Street Name/Building/House Number, Subdivision/Village, Barangay, City)</label>
                             </div>
 
                             <div class="flex flex-row gap-8">
                                 <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                    <input value="<?= @$pcode ?>" name="pcode" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <input value="<?= @$pcode ?>" name="pcode" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Postal code</label>
                                 </div>
                                 <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                    <input value="<?= @$city ?>" name="city" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                    <input value="<?= @$city ?>" name="city" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                     <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">City</label>
                                 </div>
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                <select value="<?= @$province ?>" name="province" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                                <select value="<?= @$province ?>" name="province" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" require_onced>
                                     <option value="" disabled hidden <?= @$province ? 'selected' : '' ?>>- Select your province -</option>
                                     <?php foreach ($provinceOptions as $pOption) : ?>
                                         <option value="<?php echo $pOption; ?>" <?= (isset($province) && $province == $pOption) ? 'selected' : '' ?>>
@@ -200,7 +200,7 @@ $provinceOptions = array(
                             </div>
 
                             <div class="relative z-0 w-full mb-5 mt-3 group border rounded">
-                                <input value="<?= @$contact_number ?>" name="contact_number" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input value="<?= @$contact_number ?>" name="contact_number" type="text" class="block py-3 px-1 w-full text-sm text-[#101010] bg-transparent border-0 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " require_onced />
                                 <label class="peer-focus:font-medium absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-6 scale-75 top-3 left-1 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
                             </div>
                             <div class="flex items-center ps-4 border border-gray-200 rounded text-[15px]">
@@ -225,19 +225,19 @@ $provinceOptions = array(
                     <ul class="items-center w-full text-sm font-medium text-white bg-white border border-gray-200 rounded-lg flex text-[15px]">
                         <li class="w-full border-gray-200 border-b-0 border-r ">
                             <div class="flex items-center ps-3">
-                                <input id="CASH ON DELIVERY" type="radio" value="CASH ON DELIVERY" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" required>
+                                <input id="CASH ON DELIVERY" type="radio" value="CASH ON DELIVERY" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" require_onced>
                                 <label for="CASH ON DELIVERY" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">Cash on Delivery</label>
                             </div>
                         </li>
                         <li class="w-full border-gray-200 border-b-0 border-r ">
                             <div class="flex items-center ps-3">
-                                <input id="GCASH" type="radio" value="GCASH" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" required>
+                                <input id="GCASH" type="radio" value="GCASH" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" require_onced>
                                 <label for="GCASH" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">GCash</label>
                             </div>
                         </li>
                         <li class="w-full border-gray-200 border-b-0">
                             <div class="flex items-center ps-3">
-                                <input id="CREDIT" type="radio" value="CREDIT CARD" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" required>
+                                <input id="CREDIT" type="radio" value="CREDIT CARD" name="payment_method" class="w-4 h-4 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" require_onced>
                                 <label for="CREDIT" class="w-full h-full py-4 ms-2 text-[#101010] cursor-pointer">Credit Card</label>
                             </div>
                         </li>
@@ -297,7 +297,7 @@ $provinceOptions = array(
         </div>
     </main>
     <!-- Footer -->
-    <?php require './partials/footer.php' ?>
+    <?php require_once './partials/footer.php' ?>
 </body>
 <script>
     if (window.history.replaceState) {

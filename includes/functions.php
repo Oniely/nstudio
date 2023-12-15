@@ -797,6 +797,7 @@ function showCartProducts($userID)
                             <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
                             <div class="flex gap-3">
                                 <!-- Left off trying to add edit product on cart like lunya probably ajax -->
+                                <button data-product-id="<?= $row['product_id'] ?>" data-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
                                 <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
                             </div>
                             <div class="hidden md:flex justify-center items-center w-14 border mt-10">

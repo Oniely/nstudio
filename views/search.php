@@ -2,7 +2,7 @@
 
 session_start();
 
-require '../includes/connection.php';
+require_once '../includes/connection.php';
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -39,13 +39,13 @@ require_once "../includes/functions.php";
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
-<?php require './partials/head.php' ?>
+<?php require_once './partials/head.php' ?>
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
     <?php require_once './partials/loading.php' ?>
     <!-- Navbar -->
-    <?php require './partials/nav.php' ?>
+    <?php require_once './partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen w-full pt-[3rem] px-16 md:px-[1rem] animate__animated fadeIn">
         <?php if (checkSearchKey($key) || !empty($type_value)) : ?>
@@ -73,7 +73,7 @@ require_once "../includes/functions.php";
         </div>
     </main>
     <!-- Footer -->
-    <?php require './partials/footer.php' ?>
+    <?php require_once './partials/footer.php' ?>
 </body>
 
 </html>

@@ -44,7 +44,7 @@ $(document).ready(() => {
     $("#closeBtn").on("click", () => {
         $("#popup-modal").hide();
     });
-    
+
     function adjustQuantity(product_item_id, action) {
         $.ajax({
             url: "../includes/ajax/cart_quantity.php",
@@ -80,6 +80,27 @@ $(document).ready(() => {
         });
     }
 });
+
+$('.editItem').on('click', e => {
+    let product_id = $(e.target).data('product-id');
+    let product_item_id = $(e.target).data('item-id');
+
+    $.ajax({
+        type: "GET",
+        url: "../includes/ajax/edit_cart.php",
+        data: {
+            product_id: product_id,
+            item_id: product_item_id
+        },
+        success: (res) => {
+            if (res === "SUCCESS") {
+
+            } else {
+                alert('Something went wrong, Please Try Again Later.');
+            }
+        }
+    })
+})
 
 $('.removeItem').on('click', (e) => {
     let product_item_id = $(e.target).data("delete-item-id");
