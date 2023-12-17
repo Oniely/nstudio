@@ -54,24 +54,26 @@ $(document).ready(() => {
                 item_id: product_item_id,
             },
             success: (res) => {
-                let quantityId = `[data-quantity-id='${product_item_id}'`;
-                let priceId = `[data-price-id='${product_item_id}'`;
                 let data = JSON.parse(res);
-
+                console.log(res)
                 if (res === "") {
                     window.location.reload('/nstudio/login.php');
                     return;
                 }
 
                 if (parseInt(data[0]) === 0) {
-                    console.log("Quantity is zero. Triggering click on #popup-btn");
                     $("#popup-btn").click();
                     return;
                 }
+                console.log(product_item_id);
+                $(`[data-quantity-id=${product_item_id}]`).data('quantity-id', data[3])
+                $(`[data-price-id=${product_item_id}]`).data('price-id', data[3]);
 
+                console.log($(`[data-quantity-id=${product_item_id}]`).data('quantity-id'));
+                console.log($(`[data-price-id=${product_item_id}]`).data('price-id'));
 
-                $(quantityId).text(data[0]);
-                $(priceId).text(data[0] * data[1]);
+                $(`[data-quantity-id=${data[3]}]`).text(data[0]);
+                $(`[data-price-id=${data[3]}]`).text(data[0] * data[1]);
                 $('#subtotal').text(data[2].toFixed(2));
             },
             error: (xhr, status, error) => {
@@ -80,45 +82,92 @@ $(document).ready(() => {
         });
     }
 });
+// edit cart
+$(document).ready(function () {
+    $('.cartProduct').on('click', '.doneBtn', function (e) {
+        e.preventDefault();
 
-$('.editItem').on('click', e => {
-    let product_id = $(e.target).data('product-id');
-    let product_item_id = $(e.target).data('item-id');
+        const selectedValueID = $(this).parent().siblings('.editContainer').children('.variation').val();
+        const currentItemID = $(this).closest('.cartProduct').data('item-id');
 
-    $.ajax({
-        type: "GET",
-        url: "../includes/ajax/edit_cart.php",
-        data: {
-            product_id: product_id,
-            item_id: product_item_id
-        },
-        success: (res) => {
-            if (res === "SUCCESS") {
+        console.log([selectedValueID, currentItemID]);
 
-            } else {
-                alert('Something went wrong, Please Try Again Later.');
+        $.ajax({
+            type: "POST",
+            url: "../includes/ajax/edit_cart.php",
+            data: {
+                action: "done",
+                item_id: selectedValueID,
+                currentItemID: currentItemID
+            },
+            success: (res) => {
+                if (res === "SUCCESS") return location.reload();
+                if (res === "ERROR") return alert('Something went wrong, Please Try Again Later.');
+
+                $(this).parent().siblings('.editContainer').html(res);
+                $(this).hide();
+                $(this).siblings('.editItem').show();
+
+                $(this).siblings('.editItem').data('item-id', selectedValueID);
+                $(this).closest('.cartProduct').data('item-id', selectedValueID);
+
+                $(this).closest('.cartProduct').find('.addBtn').data('item-id', selectedValueID);
+                $(this).closest('.cartProduct').find('.minusBtn').data('item-id', selectedValueID);
+
+                $(this).closest('.cartProduct').find('.quantityCount').attr('data-quantity-id', selectedValueID);
+                $(this).closest('.cartProduct').find('.priceCount').attr('data-price-id', selectedValueID);
             }
-        }
-    })
-})
-
-$('.removeItem').on('click', (e) => {
-    let product_item_id = $(e.target).data("delete-item-id");
-    $.ajax({
-        type: "POST",
-        url: "../includes/ajax/delete_cart_product.php",
-        data: {
-            action: "delete_product",
-            item_id: product_item_id,
-        },
-        success: (res) => {
-            if (res === "SUCCESS") {
-                location.reload();
-            } else if (res === "FAILURE") {
-                return;
-            } else {
-                return;
-            }
-        },
+        })
     });
-});
+
+    $('.cartProduct').on('click', '.editItem', function (e) {
+        e.preventDefault();
+
+        let product_id = $(e.target).data('product-id');
+        let product_item_id = $(e.target).data('item-id');
+        let colour_value = $(e.target).data('colour-value');
+
+        console.log(product_item_id);
+
+        $.ajax({
+            type: "GET",
+            url: "../includes/ajax/edit_cart.php",
+            data: {
+                action: "edit",
+                product_id: product_id,
+                item_id: product_item_id,
+                colour_value: colour_value
+            },
+            success: (res) => {
+                if (res === "ERROR") return alert('Something went wrong, Please Try Again Later.');
+
+                $(e.target).parent().siblings('.editContainer').html(res);
+                $(e.target).hide();
+                $(e.target).siblings('.doneBtn').show();
+            }
+        })
+    });
+
+    $('.removeItem').on('click', (e) => {
+        e.preventDefault();
+
+        let product_item_id = $(e.target).data("delete-item-id");
+        $.ajax({
+            type: "POST",
+            url: "../includes/ajax/delete_cart_product.php",
+            data: {
+                action: "delete_product",
+                item_id: product_item_id,
+            },
+            success: (res) => {
+                if (res === "SUCCESS") {
+                    location.reload();
+                } else if (res === "FAILURE") {
+                    return;
+                } else {
+                    return;
+                }
+            },
+        });
+    });
+})

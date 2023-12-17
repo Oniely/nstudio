@@ -67,7 +67,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                     echo "FULL STOCK";
                 }
             } else {
-                $sql = "SELECT * FROM product_item WHERE product_id=$product_id AND size_id=$size_id";
+                $sql = "SELECT * FROM product_item WHERE product_id=$product_id AND size_id=$size_id AND colour_id=$colour_id";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $product_item_id = $row['id'];

@@ -785,7 +785,7 @@ function showCartProducts($userID)
         while ($row = $result->fetch_assoc()) {
             if ($row['quantity'] > 0) :
         ?>
-                <div class="flex justify-between items-start w-full min-w-[50vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
+                <div data-item-id="<?= $row['id'] ?>" class="cartProduct flex justify-between items-start w-full min-w-[50vw] md:min-w-[min(100%,30rem)] border-b py-3 font-['Lato'] pr-2">
                     <div class="flex justify-between items-start gap-5 w-[min(100%,20rem)]">
                         <div class="w-32 h-40 shrink-0">
                             <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>" alt="product">
@@ -794,10 +794,12 @@ function showCartProducts($userID)
                         </div>
                         <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
                             <h3 class="[word-spacing:2px] text-[15px] uppercase tracking-tight font-medium"><?= $row['product_name'] ?></h3>
-                            <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
+                            <div class="editContainer">
+                                <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
+                            </div>
                             <div class="flex gap-3">
-                                <!-- Left off trying to add edit product on cart like lunya probably ajax -->
-                                <button data-product-id="<?= $row['product_id'] ?>" data-item-id="<?= $row['product_item_id'] ?>" class="underline editItem">Edit</button>
+                                <button class="hidden underline doneBtn">Done</button>
+                                <button data-product-id="<?= $row['product_id'] ?>" data-item-id="<?= $row['product_item_id'] ?>" data-colour-value="<?= $row['colour_value'] ?>" class="underline editItem">Edit</button>
                                 <button data-delete-item-id="<?= $row['product_item_id'] ?>" class="underline removeItem">Remove</button>
                             </div>
                             <div class="hidden md:flex justify-center items-center w-14 border mt-10">
@@ -823,9 +825,9 @@ function showCartProducts($userID)
                         </button>
                     </div>
                     <div class="pl-4">
-                        <p class="before:content-['₱'] whitespace-nowrap" data-price-id="<?= $row['product_item_id'] ?>">
+                        <span class="before:content-['₱'] whitespace-nowrap priceCount" data-price-id="<?= $row['product_item_id'] ?>">
                             <?= $row['price'] * $row['cart_quantity'] ?>
-                        </p>
+                        </span>
                     </div>
                 </div>
         <?php

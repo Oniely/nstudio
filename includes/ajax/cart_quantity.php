@@ -35,7 +35,8 @@ if (isset($_POST['action']) && isset($_POST['item_id'])) {
             }
 
             $sql = "SELECT
-                    product_tbl.product_price
+                    product_tbl.product_price,
+                    product_item.id
                     FROM
                     product_item
                     JOIN product_tbl ON product_item.product_id = product_tbl.product_id
@@ -45,10 +46,10 @@ if (isset($_POST['action']) && isset($_POST['item_id'])) {
             $query = $conn->prepare($sql);
             $query->bind_param('i', $product_item_id);
             $query->execute();
-            $result = $query->get_result()->fetch_row();
+            $result = $query->get_result()->fetch_assoc();
 
             if ($quantity === 0) {
-                echo json_encode([$quantity, $result[0], calculateSubtotal($userID)]);
+                echo json_encode([$quantity, $result['product_price'], calculateSubtotal($userID), $result['id']]);
                 exit();
             }
 
@@ -57,7 +58,7 @@ if (isset($_POST['action']) && isset($_POST['item_id'])) {
             $update_sql->execute();
 
             if ($update_sql->affected_rows > 0) {
-                echo json_encode([$quantity, $result[0], calculateSubtotal($userID)]);
+                echo json_encode([$quantity, $result['product_price'], calculateSubtotal($userID), $result['id']]);
             } else {
                 return;
             }
