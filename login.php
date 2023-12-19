@@ -57,7 +57,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <input class="w-full bg-[#101010] py-2 mb-2  text-white font-semibold cursor-pointer" type="submit" name="submit" value="Log In">
                     <span class="underline text-[12px] font-semibold">Don't have an account yet? <a class="text-blue-800" href="signup.php">Sign Up</a></span>
                 </div>
-                <div class="w-full max-w-[18rem] flex flex-col items-center text-center text-[0.8rem] font-semibold gap-1">
+                <!-- <div class="w-full max-w-[18rem] flex flex-col items-center text-center text-[0.8rem] font-semibold gap-1">
                     <a class="w-full flex justify-start items-center pl-[3.3rem] gap-4 py-2 hover:bg-[#101010] hover:text-white transition" href="">
                         <i class="fab fa-facebook text-[1.2rem]"></i>
                         <span class="underline">Sign in with Facebook</span>
@@ -66,7 +66,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                         <i class="fab fa-google text-[1.2rem]"></i>
                         <span class="underline">Sign in with Google</span>
                     </a>
-                </div>
+                </div> -->
             </form>
         </div>
     </main>

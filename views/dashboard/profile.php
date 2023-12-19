@@ -33,7 +33,7 @@ $profile = true;
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require '../partials/loading.php' ?>
+    <?php include '../partials/loading.php' ?>
     <!-- Navbar -->
     <?php require '../partials/nav.php' ?>
     <!-- Main -->

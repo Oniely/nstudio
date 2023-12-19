@@ -1504,8 +1504,9 @@ function showToShipOrders($userID)
 
             $shipDateTime = new DateTime($row['ship_date']);
             $shipDate = $shipDateTime->format('m-d-Y');
+            $monthNumber = (int)$shipDateTime->format('m');
 
-            $shipMonth = $month[$shipDateTime->format('m')];
+            $shipMonth = $month[$monthNumber];
             $shipDay = $shipDateTime->format('d');
             $shipYear = $shipDateTime->format('Y');
         ?>
@@ -1738,7 +1739,9 @@ function showCompletedProducts($userID)
             $size_id = $item['size_id'];
 
             $dateTime = new DateTime($row['receive_date']);
-            $receivedMonth = $month[$dateTime->format('m')];
+            $monthNumber = (int)$dateTime->format('m');
+
+            $receivedMonth = $month[$monthNumber];
             $receivedDay = $dateTime->format('d');
             $receivedYear = $dateTime->format('Y');
 
