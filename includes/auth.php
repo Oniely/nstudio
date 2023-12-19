@@ -49,7 +49,7 @@ function signUpAuth($fname, $lname, $contact, $username, $email, $password)
 {
     require "connection.php";
 
-    $sql = "SELECT * FROM site_user WHERE username='$username' AND email='$email'";
+    $sql = "SELECT * FROM site_user WHERE username='$username' OR email='$email'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {

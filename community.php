@@ -42,10 +42,15 @@ $communityActive = "active";
                 </h1>
             </div>
             <!-- First Section -->
-            <div id="mission" class="w-full h-full flex md:flex-col-reverse justify-center items-center gap-[5rem] py-[3rem]">
+            <div id="mission vision" class="w-full h-full flex md:flex-col-reverse justify-center items-center gap-[5rem] py-[3rem]">
                 <div class="flex flex-col justify-between gap-[5.5rem] md:gap-[3rem] w-[min(20rem,100%)]">
                     <!-- prettier-ignore -->
-                    <p class="whitespace-pre-line text-sm font-medium text-justify break-words">At Nstudio, we are more than just an e-commerce platform; we are the result of a passionate and dedicated team's commitment to revolutionize your shopping experience. As the brains behind the brand, we take pride in crafting an online haven for fashion enthusiasts where convenience and style seamlessly converge.</p>
+                    <div class="flex flex-col gap-5 w-[min(20rem,100%)]">
+                        <h1 class="text-4xl font-semibold uppercase text-center">Our Vision</h1>
+                        <!-- prettier-ignore -->
+                        <p class="whitespace-pre-line text-sm font-medium text-justify break-words">At Nstudio, we are more than just an e-commerce platform; we are the result of a passionate and dedicated team's commitment to revolutionize your shopping experience. As the brains behind the brand, we take pride in crafting an online haven for fashion enthusiasts where convenience and style seamlessly converge.</p>
+                    </div>
+
                     <div class="flex flex-col gap-5 w-[min(20rem,100%)]">
                         <h1 class="text-4xl font-semibold uppercase text-center">Our Mission</h1>
                         <!-- prettier-ignore -->

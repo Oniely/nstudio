@@ -1087,7 +1087,7 @@ function showLinkCategory($product_category)
             FROM
             product_type
             JOIN product_tbl ON product_tbl.product_category = '$product_category'
-            AND product_tbl.product_type_id = product_type.id LIMIT 8;";
+            AND product_tbl.product_type_id = product_type.id";
 
     $result = $conn->query($sql);
 
