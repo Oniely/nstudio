@@ -5,7 +5,7 @@
             <?php if (checkLinkCategory("MEN")) : ?>
                 <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                     <div class="w-full h-full m-auto flex">
-                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <div class="flex flex-col flex-wrap items-start text-sm w-[18rem] gap-[6px]">
                             <?php showLinkCategory("MEN") ?>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
             <?php if (checkLinkCategory("WOMEN")) : ?>
                 <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                     <div class="w-full h-full m-auto flex">
-                        <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
+                        <div class="flex flex-col flex-wrap items-start text-sm w-[18rem] gap-[6px]">
                             <?php showLinkCategory("WOMEN") ?>
                         </div>
                     </div>
@@ -30,6 +30,7 @@
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
                         <a href="/nstudio/community.php#about">About</a>
+                        <a href="/nstudio/community.php#vision">Vision</a>
                         <a href="/nstudio/community.php#mission">Mission</a>
                         <a href="/nstudio/community.php#our-team">Our Team</a>
                     </div>
