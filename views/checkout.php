@@ -132,7 +132,7 @@ $provinceOptions = array(
 
 <body>
     <!-- Loading Screen -->
-    <?php require_once './partials/loading.php' ?>
+    <?php include './partials/loading.php' ?>
     <!-- Navbar -->
     <?php require_once './partials/nav.php' ?>
     <!-- Main -->

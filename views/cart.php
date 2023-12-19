@@ -28,7 +28,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require_once './partials/loading.php' ?>
+    <?php include './partials/loading.php' ?>
     <!-- Navbar -->
     <?php require_once './partials/nav.php' ?>
     <!-- Main Section -->

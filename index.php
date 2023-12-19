@@ -30,7 +30,7 @@ $images = fetchImagesForShowcase();
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require './views/partials/loading.php' ?>
+    <?php include './views/partials/loading.php' ?>
     <!-- Navbar -->
     <?php require './views/partials/nav.php' ?>
     <!-- Hero Section -->

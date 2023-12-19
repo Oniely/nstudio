@@ -74,6 +74,7 @@ if (isset($_GET['id'])) {
             }
         } else {
             $error = "Product is out of Stock.";
+            $quantity = 0;
         }
     }
 } else {
@@ -91,7 +92,7 @@ if (isset($_GET['id'])) {
 
 <body class="min-h-screen">
     <!-- Loading Screen -->
-    <?php require_once './partials/loading.php' ?>
+    <?php include './partials/loading.php' ?>
     <!-- Navbar -->
     <?php require_once './partials/nav.php' ?>
     <!-- Main Section -->
@@ -627,13 +628,15 @@ if (isset($_GET['id'])) {
                 <h1 class="text-2xl text-[#101010] bg-gray-200 p-10 px-24 rounded-lg">No Stock Available.</h1>
             </div>
         <?php endif; ?>
-        <?php if (checkSuggestionProduct($product_id, $_SESSION['product_item_id'])) : ?>
-            <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px-[1rem]">
-                <h1 class="text-sm mb-5">You may also like...</h1>
-                <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
-                    <?php showSuggestionProduct($product_id, $_SESSION['product_item_id']) ?>
+        <?php if ($quantity > 0) : ?>
+            <?php if (checkSuggestionProduct($product_id, $_SESSION['product_item_id'])) : ?>
+                <div class="min-h-screen border pt-[1.8rem] px-[4rem] md:px-[3rem] sm:px-[1rem]">
+                    <h1 class="text-sm mb-5">You may also like...</h1>
+                    <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
+                        <?php showSuggestionProduct($product_id, $_SESSION['product_item_id']) ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         <?php endif; ?>
     </main>
     <!-- Footer Section -->

@@ -28,7 +28,7 @@ $communityActive = "active";
 
 <body>
     <!-- Loading Screen -->
-    <?php require './views/partials/loading.php' ?>
+    <?php include './views/partials/loading.php' ?>
     <!-- Navbar -->
     <?php require './views/partials/nav.php' ?>
     <!-- Main -->
