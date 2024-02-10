@@ -879,7 +879,7 @@ function colourButtons($product_id)
     $sql = "SELECT DISTINCT product_item.product_id, 
             product_item.colour_id, 
             colour.colour_value, 
-            colour.hex_code 
+            colour.hex_code
             FROM colour JOIN product_item 
             WHERE colour.id = product_item.colour_id 
             AND product_item.product_id = ?";
@@ -968,7 +968,7 @@ function showProductColoursMobile($product_id, $colour_id)
         ?>
             <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
                 <div class="w-8 sm:w-6 h-6 sm:h-5 bg-[<?= $row['hex_code'] ?>] active:border-[3px] active:border-[#cecece] active:border-double <?= $row['colour_id'] == $colour_id ? 'border-[3px] border-[#cecece] border-double' : '' ?>"></div>
-            </a>
+            </a> 
         <?php
         }
     }
@@ -1066,7 +1066,7 @@ function checkLinkCategory($product_category)
             FROM
             product_type
             JOIN product_tbl ON product_tbl.product_category = '$product_category'
-            AND product_tbl.product_type_id = product_type.id LIMIT 8;";
+            AND product_tbl.product_type_id = product_type.id LIMIT 8";
 
     $result = $conn->query($sql);
 
@@ -1094,7 +1094,7 @@ function showLinkCategory($product_category)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
         ?>
-            <a class="capitalize" href="<?= "/nstudio/views/search.php?type=$row[id]&category=$row[category]" ?>">
+            <a class="capitalize text-black" href="<?= "/nstudio/views/search.php?type=$row[id]&category=$row[category]" ?>">
                 <?= $row['type_value'] ?>
             </a>
         <?php

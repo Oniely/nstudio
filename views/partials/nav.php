@@ -1,38 +1,38 @@
 <nav class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem]" id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
-            <?php if (checkLinkCategory("MEN")) : ?>
+            <a class="nav_links uppercase text-black" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
+            <?php if ($App->store->checkCategory("MEN")) : ?>
                 <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                     <div class="w-full h-full m-auto flex">
                         <div class="flex flex-col flex-wrap items-start text-sm w-[18rem] gap-[6px]">
-                            <?php showLinkCategory("MEN") ?>
+                            <?php $App->store->showCategoryLinks('MEN') ?>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
         </li>
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
-            <?php if (checkLinkCategory("WOMEN")) : ?>
+            <a class="nav_links uppercase text-black" id="NAV_LINK" href="/nstudio/women.php">WOMEN</a>
+            <?php if ($App->store->checkCategory("WOMEN")) : ?>
                 <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                     <div class="w-full h-full m-auto flex">
                         <div class="flex flex-col flex-wrap items-start text-sm w-[18rem] gap-[6px]">
-                            <?php showLinkCategory("WOMEN") ?>
+                            <?php $App->store->showCategoryLinks('WOMEN') ?>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
         </li>
         <li>
-            <a class="nav_links uppercase" id="NAV_LINK" href="/nstudio/community.php">COMMUNITY</a>
+            <a class="nav_links uppercase text-black" id="NAV_LINK" href="/nstudio/community.php">COMMUNITY</a>
             <div class="nav_hover w-full h-0 absolute top-[3rem] flex justify-start items-start left-0 bg-white px-[2rem] py-[0rem] overflow-hidden">
                 <div class="w-full h-full m-auto flex">
                     <div class="flex flex-col items-start text-sm w-[18rem] gap-[6px]">
-                        <a href="/nstudio/community.php#about">About</a>
-                        <a href="/nstudio/community.php#vision">Vision</a>
-                        <a href="/nstudio/community.php#mission">Mission</a>
-                        <a href="/nstudio/community.php#our-team">Our Team</a>
+                        <a class="text-black capitalize" href="/nstudio/community.php#about">About</a>
+                        <a class="text-black capitalize" href="/nstudio/community.php#vision">Vision</a>
+                        <a class="text-black capitalize" href="/nstudio/community.php#mission">Mission</a>
+                        <a class="text-black capitalize" href="/nstudio/community.php#our-team">Our Team</a>
                     </div>
                 </div>
             </div>
@@ -49,10 +49,10 @@
     </div>
 
     <div id="burger_menu" class="absolute top-[3rem] left-0 w-full bg-white flex flex-col overflow-hidden transition-all delay-300 ease-in-out border-b border-[#101010]">
-        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$homeActive == 'active' ? 'underline' : '' ?>" href="/nstudio/index.php">HOME</a>
-        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$menActive == 'active' ? 'underline' : '' ?>" href="/nstudio/men.php">MEN</a>
-        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$womenActive == 'active' ? 'underline' : '' ?>" href="/nstudio/women.php">WOMEN</a>
-        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium <?= @$communityActive == 'active' ? 'underline' : '' ?>" href="/nstudio/community.php">COMMUNITY</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium text-black <?= @$homeActive == 'active' ? 'underline' : '' ?>" href="/nstudio/index.php">HOME</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium text-black <?= @$menActive == 'active' ? 'underline' : '' ?>" href="/nstudio/men.php">MEN</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium text-black <?= @$womenActive == 'active' ? 'underline' : '' ?>" href="/nstudio/women.php">WOMEN</a>
+        <a class="pl-5 py-4 text-[1.1rem] hover:underline hover:bg-slate-100 font-medium text-black <?= @$communityActive == 'active' ? 'underline' : '' ?>" href="/nstudio/community.php">COMMUNITY</a>
     </div>
 
     <a href="/nstudio/" class="h-[2.8rem] shrink-0">
@@ -95,7 +95,7 @@
                     if (!isset($_SESSION["id"]) || $_SESSION["id"] === "") {
                         echo "";
                     } else {
-                        echo cartCount($_SESSION['id']);
+                        echo $App->store->cartCount($_SESSION['id']);
                     }
                     ?>
                 </span>

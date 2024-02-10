@@ -7,10 +7,17 @@ require '../connection.php';
 if (isset($_GET["keywords"])) {
     $keywords = $_GET["keywords"];
 
-    $sql = "SELECT DISTINCT keywords FROM product_tbl WHERE keywords LIKE '%$keywords%'";
+    $sql = 
+        "SELECT DISTINCT
+            product_tbl.*,
+            product_item.*
+        FROM
+            product_tbl
+        JOIN
+            product_item ON product_tbl.product_id = product_item.product_id WHERE keywords LIKE '%$keywords%'";
     $result = $conn->query($sql);
 
-    $suggestions = array();
+    $suggestions = [];
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {

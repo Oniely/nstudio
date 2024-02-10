@@ -1,19 +1,7 @@
 <?php
 
 session_start();
-require 'includes/connection.php';
-
-if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
-    $userID = $_SESSION["id"];
-
-    $sql = "SELECT * FROM site_user WHERE id = $userID";
-    $result = $conn->query($sql);
-
-    $row = $result->fetch_assoc();
-    $profile_img = $row['image_path'];
-} else {
-    $userID = "";
-}
+require_once './includes/THE_INITIALIZER.php';
 
 require "./includes/functions.php";
 
@@ -39,7 +27,10 @@ $womenActive = 'active';
             </h3>
         </div>
         <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
-            <?php showAllWomenProduct(); ?>
+            <?php
+                $products = $App->db->getCategoryProducts('WOMEN');
+                $App->store->showProducts($products);
+            ?>
         </div>
     </main>
     <!-- Footer -->

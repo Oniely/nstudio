@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once '../../includes/THE_INITIALIZER.php';
 
 require '../../includes/connection.php';
 require '../../includes/functions.php';
