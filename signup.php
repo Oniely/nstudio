@@ -1,11 +1,17 @@
 <?php
 
 session_start();
-require "includes/redirect.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     header('location: login.php');
 }
+
+require_once "includes/redirect.php";
+require_once "./includes/THE_MYSQL.php";
+require_once "./includes/THE_AUTH.php";
+
+$db = new Mysql();
+$Auth = new Auth($db);
 
 ?>
 
@@ -25,9 +31,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
             <form method="POST" id="signUpForm" class="w-full h-full flex flex-col items-center gap-[1.2rem] md:gap-[15px] text-[14px] text-[#101010]">
                 <?php
 
-                require "includes/auth.php";
-
-                if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST") {
+                if (isset($_POST['submit'])) {
                     $fname = $_POST["fname"];
                     $lname = $_POST["lname"];
                     $contact = $_POST["contact"];
@@ -35,7 +39,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     $email = $_POST["email"];
                     $password = $_POST["password"];
 
-                    if (signUpAuth($fname, $lname, $contact, $username, $email, $password)) {
+                    if ($Auth->signUpAuth($fname, $lname, $contact, $username, $email, $password)) {
                         redirect('login.php');
                     } else {
                         echo "<span class='err'>Account Already Exist.</span>";

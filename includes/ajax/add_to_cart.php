@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+ 
 require '../redirect.php';
 require '../connection.php';
 

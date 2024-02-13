@@ -1,7 +1,7 @@
 <?php
 
 require_once 'THE_MYSQL.php';
-require_once 'THE_FUNCTION.php';
+require_once 'THE_STORE.php';
 require_once 'THE_RENDERER.php';
 
 class App {

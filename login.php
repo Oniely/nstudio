@@ -1,11 +1,16 @@
 <?php
 
 session_start();
-require "./includes/auth.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
-    header('location: index.php');
+    header('location: /nstudio/');
 }
+
+require_once "./includes/THE_MYSQL.php";
+require_once "./includes/THE_AUTH.php";
+
+$db = new Mysql();
+$Auth = new Auth($db);
 
 ?>
 <!doctype html>
@@ -30,14 +35,10 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     $usernameEmail = $_POST['usernameEmail'];
                     $passw = $_POST['password'];
 
-                    if (loginAuth($usernameEmail, $passw)) {
-                        if (updateUserStatus($_SESSION['id'], true)) {
-                            header('location: index.php');
-                        } else {
-                            echo "<span class='err'>Something went wrong.</span>";
-                        }
+                    if ($Auth->loginAuth($usernameEmail, $passw)) {
+                        header('Location: index.php');
                     } else {
-                        echo "<span class='err'>Credentials Incorrect.</span>";
+                        echo "<span class='err'>Incorrect Credentials.</span>";
                     }
                 }
 

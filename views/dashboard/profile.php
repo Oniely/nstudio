@@ -2,29 +2,23 @@
 
 session_start();
 require_once '../../includes/THE_INITIALIZER.php';
-
-require '../../includes/connection.php';
-require '../../includes/functions.php';
+require_once '../../includes/redirect.php';
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
 
-    $sql = "SELECT * FROM site_user WHERE id = $userID";
-    $result = $conn->query($sql);
+    $row = $App->store->getUser($userID);
 
-    $row = $result->fetch_assoc();
     $fname = $row['fname'];
     $lname = $row['lname'];
-    $email = $row['email'];
-    $username = $row['username'];
     $contact_number = $row['contact_number'];
+    $username = $row['username'];
+    $email = $row['email'];
     $password = $row['password'];
     $profile_img = $row['image_path'];
 } else {
     header("Location: /nstudio/login.php");
 }
-
-$profile = true;
 
 ?>
 <!DOCTYPE html>
@@ -79,97 +73,33 @@ $profile = true;
                         <input type="file" name="profile_img" id="profile_img" accept="image/png, image/jpeg" class="border w-full py-2 px-2">
                     </div>
                     <div class="col-span-1 md:col-span-2">
-                        <input class="border border-[#101010] bg-[#101010] text-white hover:bg-white hover:text-[#101010] w-full py-2.5 transition-colors delay-75 ease-linear cursor-pointer" type="submit" value="Update Profile">
+                        <input name="submit" id="submit" class="border border-[#101010] bg-[#101010] text-white hover:bg-white hover:text-[#101010] w-full py-2.5 transition-colors delay-75 ease-linear cursor-pointer" type="submit" value="Update Profile">
                     </div>
                 </form>
 
                 <?php
 
-                if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === "POST") {
                     $fname = $_POST['fname'];
                     $lname = $_POST['lname'];
-                    $email = $_POST['email'];
-                    $username = $_POST['username'];
                     $contact_number = $_POST['contact_number'];
+                    $username = $_POST['username'];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'] ?: "";
 
-                    $newPassword = $_POST['password'];
-                    if ($newPassword != "") {
-                        $hashPass = hash_password($newPassword);
-                    }
-
-                    if (isset($_FILES["profile_img"]) && $_FILES["profile_img"]["error"] == UPLOAD_ERR_OK) {
-                        $file_name = $_FILES["profile_img"]["name"];
-                        $file_type = $_FILES["profile_img"]["type"];
-                        $file_size = $_FILES["profile_img"]["size"];
-                        $file_temp = $_FILES["profile_img"]["tmp_name"];
-
-                        $upload_dir = "/nstudio/img/profile/";
-                        $destination = $upload_dir . $file_name;
-
-                        if (move_uploaded_file($file_temp, "../../img/profile/" . $file_name)) {
-                            if (isset($hashPass)) {
-                                $sql = "UPDATE site_user SET 
-                                        fname = ?, lname = ?, 
-                                        email = ?, image_path = ?, 
-                                        username = ?, contact_number = ?, 
-                                        password = ? WHERE id = $userID";
-                            } else {
-                                $sql = "UPDATE site_user SET 
-                                        fname = ?, lname = ?, 
-                                        email = ?, image_path = ?, 
-                                        username = ?, contact_number = ? 
-                                        WHERE id = $userID";
-                            }
-
-                            $query = $conn->prepare($sql);
-
-                            if (isset($hashPass)) {
-                                $query->bind_param("sssssss", $fname, $lname, $email, $destination, $username, $contact_number, $hashPass);
-                            } else {
-                                $query->bind_param("ssssss", $fname, $lname, $email, $destination, $username, $contact_number);
-                            }
-                            $query->execute();
-
-                            if ($query->affected_rows == 1) {
-                                echo "<script>alert('Profile Updated!')</script>";
-                                echo "<script>window.location.href = 'profile.php'</script>";
-                            } else {
-                                echo "<script>alert('Error!')</script>";
-                                echo "<script>window.location.href = 'profile.php'</script>";
-                            }
-                        } else {
-                            echo "Error uploading file.";
-                        }
+                    $requestStatus = $App->store->updateProfile($fname, $lname, $contact_number, $username, $email, $password);
+                    $msg = $requestStatus ?: "FAILED";
+                    if ($requestStatus) {
+                        echo
+                        "<script>
+                                alert('$msg');
+                            </script>";
+                        redirect('profile.php');
                     } else {
-                        if (isset($hashPass)) {
-                            $sql = "UPDATE site_user SET 
-                                    fname = ?, lname = ?, 
-                                    email = ?, 
-                                    username = ?, contact_number = ?, 
-                                    password = ? WHERE id = $userID";
-                        } else {
-                            $sql = "UPDATE site_user SET 
-                                    fname = ?, lname = ?, 
-                                    email = ?,
-                                    username = ?, contact_number = ? 
-                                    WHERE id = $userID";
-                        }
-                        $query = $conn->prepare($sql);
-
-                        if (isset($hashPass)) {
-                            $query->bind_param("ssssss", $fname, $lname, $email, $username, $contact_number, $hashPass);
-                        } else {
-                            $query->bind_param("sssss", $fname, $lname, $email, $username, $contact_number);
-                        }
-                        $query->execute();
-
-                        if ($query->affected_rows == 1) {
-                            echo "<script>alert('Profile Updated!')</script>";
-                            echo "<script>window.location.href = 'profile.php'</script>";
-                        } else {
-                            echo "<script>alert('Error!')</script>";
-                            echo "<script>window.location.href = 'profile.php'</script>";
-                        }
+                        echo
+                        "<script>
+                                alert('$msg');
+                            </script>";
                     }
                 }
 
@@ -179,5 +109,10 @@ $profile = true;
     <!-- Footer -->
     <?php require '../partials/footer.php' ?>
 </body>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </html>

@@ -1,4 +1,4 @@
-<nav class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem]" id="main_navbar">
+<nav class="nav_bar border-b-[0.1px] border-[#101010] w-full h-[3rem] flex justify-between items-center px-[4rem] md:px-4 bottom-[-4.5rem] z-50" id="main_navbar">
     <ul class="flex lg:flex md:hidden gap-6 text-[14px] font-medium">
         <li>
             <a class="nav_links uppercase text-black" id="NAV_LINK" href="/nstudio/men.php">MEN</a>
@@ -92,7 +92,7 @@
                 <img class="max-w-full h-[1.3rem]" src="/nstudio/img/shopbag.svg" alt="" />
                 <span id="cartNumber" class="absolute top-[-10px] right-[-10px] w-5 text-[12px] text-center bg-red-400 rounded-full">
                     <?php
-                    if (!isset($_SESSION["id"]) || $_SESSION["id"] === "") {
+                    if (!isset($_SESSION["id"]) || $_SESSION["id"] == null) {
                         echo "";
                     } else {
                         echo $App->store->cartCount($_SESSION['id']);

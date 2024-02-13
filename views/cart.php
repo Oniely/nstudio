@@ -1,23 +1,13 @@
 <?php
 
 session_start();
-require_once '../includes/THE_INITIALIZER.php';
 
-require_once "../includes/connection.php";
-require_once "../includes/functions.php";
-
-if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
-    $userID = $_SESSION["id"];
-
-    $sql = "SELECT * FROM site_user WHERE id = $userID";
-    $result = $conn->query($sql);
-
-    $row = $result->fetch_assoc();
-    $profile_img = $row['image_path'];
-} else {
+if (!isset($_SESSION["id"]) || $_SESSION["id"] == null) {
     header('location: /nstudio/login.php');
     exit;
 }
+
+require_once '../includes/THE_INITIALIZER.php';
 
 ?>
 
@@ -34,18 +24,20 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     <?php require_once './partials/nav.php' ?>
     <!-- Main Section -->
     <main class="min-h-screen animate__animated fadeIn">
-        <?php if (checkCartProduct($userID)) : ?>
+        <?php if ($cartCount = $App->store->cartCount($userID) > 0) : ?>
             <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-[2rem] md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
                 <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 pr-10 md:px-6 w-auto">
                     <div class="text-2xl text-[#505050] font-semibold self-start md:pl-6">
-                        <?php $cartCount = cartCount($userID) ?>
                         <h1 class="relative after:content-['(<?= $cartCount ?>)'] after:absolute after:top-[-3px] after:text-sm">
                             Your Bag
                         </h1>
                     </div>
                     <!-- Cart Products -->
                     <div class="container max-w-full flex flex-col gap-3">
-                        <?php $subtotal = showCartProducts($userID) ?>
+                        <?php
+                        $App->store->showCartProducts($userID);
+                        $subtotal = $App->store->getCartSubtotal($userID);
+                        ?>
                     </div>
                     <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="popup-btn" class="hidden" type="button">
                         Toggle modal
@@ -93,7 +85,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
                     <div class="flex flex-col gap-2 font-[Lato]">
                         <div class="flex justify-between text-gray-600 font-semibold">
                             <h1>Subtotal</h1>
-                            <span class="before:content-['₱'] before:mr-[2px]" id="subtotal"><?= @$subtotal ? @$subtotal : "--" ?></span>
+                            <span class="before:content-['₱'] before:mr-[2px]" id="subtotal"><?= @$subtotal ? $subtotal : "--" ?></span>
                         </div>
                         <span class="text-xs text-gray-400 leading-4 tracking-wide whitespace-nowrap sm:whitespace-normal">SHIPPING & TAXES CALCULATED AT CHECKOUT</span>
                         <div class="w-full h-10 mt-2">
