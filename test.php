@@ -9,32 +9,15 @@ $App = new App();
 ?>
 <div class="flex">
 
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="profile_img" id="profile_img">
-        <input type="submit" name="submit" id="submit">
-    </form>
-
     <?php
 
-    if (isset($_POST['submit'])) {
-        if (
-            isset($_FILES['profile_img'])
-            && $_FILES['profile_img']['error'] === UPLOAD_ERR_OK
-            && $_FILES['profile_img']['size'] > 0
-        ) {
+    $username = "admins";
+    $email = "asdasd@gmail.com";
 
-            $file_name = $_FILES['profile_img']['name'];
-            $file_temp = $_FILES['profile_img']['tmp_name'];
+    $result = $App->store->checkUsernameAndEmail(1, $username, $email);
 
-            $destination = "/nstudio/img/profile/" . $file_name;
-
-            if (move_uploaded_file($file_temp, "./img/profile/" . $file_name)) {
-                echo $destination;
-            } else {
-                echo "FAILED";
-            }
-        }
-    }
+    echo $result;
 
     ?>
+
 </div>

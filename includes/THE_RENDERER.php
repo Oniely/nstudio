@@ -497,6 +497,32 @@ class ProductRenderer
                 </div>
             </form>
         </div>
+    <?php
+    }
+
+    public function renderCheckoutProducts($row)
+    {
+    ?>
+
+        <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
+            <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
+                <div class="w-28 h-40 shrink-0 relative">
+                    <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
+                        <img class="max-w-full h-full object-cover aspect-square object-top" src="<?= "/nstudio/img/product/" . $row['product_item_id'] . "_image1.png" ?>" alt="product">
+                    </a>
+                    <span class="absolute -top-1 -right-1 w-5 bg-red-300 text-center text-sm rounded-full"><?= $row['cart_quantity'] ?></span>
+                </div>
+                <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
+                    <h3 class="text-[15px]"><?= $row['product_name'] ?></h3>
+                    <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
+                </div>
+            </div>
+
+            <div>
+                <span class="before:content-['₱']"><?= $row['price'] * $row['cart_quantity'] ?> </span>
+            </div>
+        </div>
+
 <?php
     }
 }

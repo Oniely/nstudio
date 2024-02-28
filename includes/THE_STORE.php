@@ -135,4 +135,8 @@ class EcommerceStore extends Auth
         $this->render->desktopViewProduct($product);
         $this->render->mobileViewProduct($product);
     }
+
+    public function showCheckoutProducts($userID) {
+        
+    }
 }

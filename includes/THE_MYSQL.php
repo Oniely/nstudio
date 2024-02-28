@@ -330,5 +330,32 @@ class Mysql extends Database
         return $result[0]['quantity'];
     }
 
-    
+    public function getCheckoutProducts($userID) {
+        $sqlQuery = 
+            "SELECT
+                cart_tbl.user_id,
+                cart_tbl.product_item_id,
+                cart_tbl.quantity cart_quantity,
+                product_item.*,
+                product_tbl.product_price price,
+                colour.colour_value,
+                size.size_value,
+                product_tbl.product_name
+            FROM
+                cart_tbl
+            JOIN 
+                product_item
+            JOIN 
+                product_tbl ON product_item.product_id = product_tbl.product_id
+            JOIN 
+                colour ON product_item.colour_id = colour.id
+            JOIN 
+                size ON product_item.size_id = size.id
+            WHERE
+                cart_tbl.product_item_id = product_item.id
+            AND 
+                cart_tbl.user_id = ?";
+
+            return $this->select($sqlQuery, [$userID]);
+    }
 }

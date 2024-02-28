@@ -129,8 +129,8 @@ class Auth
         if ($user['username'] === $username && $user['email'] === $email) {
             return true;
         } else {
-            $sql = "SELECT * FROM site_user WHERE (username=? AND email=?) OR (username!=? OR email!=?)";
-            $res =  $this->db->select($sql, [$username, $email, $username, $email]);
+            $sql = "SELECT * FROM site_user WHERE (username = ? OR email = ?) AND username != ? AND email != ?";
+            $res =  $this->db->select($sql, [$username, $email, $user['username'], $user['email']]);
 
             if ($res) {
                 return "ALREADY EXIST";
