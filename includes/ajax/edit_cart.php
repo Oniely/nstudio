@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_POST['action']) && $_POST['action'] == "done" && isset($_POST['item_id']) && isset($_POST['currentItemID'])) {
         $product_item_id = $_POST['item_id'];
         $currentItemID = $_POST['currentItemID'];
-
+        // check if the item already exist in the cart
         $sql = "SELECT * FROM cart_tbl WHERE product_item_id = ?";
         $query = $conn->prepare($sql);
         $query->bind_param('i', $product_item_id);
@@ -65,13 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
-
+            // if the selected value is already in the cart then just update the quantity of that cart
             if ($row['product_item_id'] == $product_item_id) {
                 $sql = "SELECT quantity FROM cart_tbl WHERE product_item_id = $currentItemID";
                 $quantity = $conn->query($sql)->fetch_assoc();
 
-                $sql = "DELETE FROM cart_tbl WHERE product_item_id = $currentItemID";
-                $result = $conn->query($sql);
+                $sqlDelete = "DELETE FROM cart_tbl WHERE product_item_id = $currentItemID";
+                $result = $conn->query($sqlDelete);
 
                 if ($result) {
                     $sql = "UPDATE cart_tbl SET quantity = quantity + $quantity[quantity] WHERE product_item_id = ?";
@@ -87,15 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         exit();
                     }
                 }
+            } else {
+                echo "ERROR";
+                exit();
             }
         }
-
+        // real editing here
         $sql = "UPDATE cart_tbl SET product_item_id = ?  WHERE product_item_id = ?";
         $query = $conn->prepare($sql);
         $query->bind_param("ii", $product_item_id, $currentItemID);
-        $query->execute();
 
-        if ($query) {
+        if ($query->execute()) {
             $sql = "SELECT
                     product_item.id,
                     colour_value,

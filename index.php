@@ -1,5 +1,7 @@
 <?php
 
+global $App;
+
 session_start();
 require_once './includes/THE_INITIALIZER.php';
 
@@ -24,11 +26,11 @@ $homeActive = "active";
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
             <div class="absolute md:top-0 top-[0] px-1">
-                <img class="max-w-full h-[minmax(100%,35vh)] object-cover object-center animate__animated fadeIn" src="./img/nechma_text.svg" alt="Nechma Studio">
+                <img fetchpriority="high" class="max-w-full h-[minmax(100%,35vh)] object-cover object-center animate__animated fadeIn" src="./img/nechma_text.svg" alt="Nechma Studio">
             </div>
             <!-- Hero Image -->
             <div class="w-[min(100%_30rem)] xs:w-full max-w-full sm:h-[85vh] h-[100vh] absolute bottom-[-2.5rem] pointer-events-none select-none animate__animated fadeIn">
-                <img class="w-full h-full object-cover" src="./img/nechma_hero.svg" alt="hero" />
+                <img fetchpriority="high" class="w-full h-full object-cover" src="./img/nechma_hero.svg" alt="hero" />
             </div>
             <!-- Hero Buttons -->
             <div class="w-[min(100%,_68rem)] absolute bottom-[8rem] sm:bottom-[4rem] flex justify-between gap-3 items-center px-10 xs:px-[1rem]">

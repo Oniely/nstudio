@@ -223,19 +223,19 @@ class ProductRenderer
             <div class="flex items-start pt-[1rem] px-[4rem] lgt:px-[2rem] relative">
                 <div id="leftContainer" class="overflowYelement w-[9rem] lgt:hidden flex flex-col sticky top-12 h-[37rem] overflow-y-auto gap-2">
                     <a href="#rimg1">
-                        <img class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg1" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt=" img1" draggable="false" />
+                        <img fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg1" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt=" img1" draggable="false" />
                     </a>
                     <a href="#rimg2">
-                        <img class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg2" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" alt=" img2" draggable="false" />
+                        <img fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg2" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" alt=" img2" draggable="false" />
                     </a>
                     <a href="#rimg3">
-                        <img class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt=" img3" draggable="false" />
+                        <img  fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt=" img3" draggable="false" />
                     </a>
                 </div>
                 <div id="rightContainer" class="flex flex-col ml-[4rem] lgt:ml-0 gap-2">
-                    <img class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg1" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt="img1" draggable="false" />
-                    <img class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg2" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" draggable="false" />
-                    <img class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt="img3" draggable="false" />
+                    <img fetchpriority="low" class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg1" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt="img1" draggable="false" />
+                    <img fetchpriority="low" class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg2" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" draggable="false" />
+                    <img fetchpriority="low" class="max-w-full h-[40rem] lgt:h-[45rem] object-cover cursor-auto" id="rimg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt="img3" draggable="false" />
                 </div>
                 <form id="productForm" class="productForm flex flex-col justify-start gap-6 sticky top-12 ml-[4rem] lgt:ml-[2rem] w-[26rem]">
                     <div class="flex flex-col text-xl">
@@ -261,12 +261,12 @@ class ProductRenderer
                     </div>
                     <div class="flex flex-col gap-5">
                         <div class="w-full h-[2.7rem] border border-[#101010]">
-                            <button type="submit" value="add" class="addToCartBtn w-full h-full border border-[#101010] text-center text-[16px] capitalize" name="addToCartBtn" id="addToCartBtn">
+                            <button type="submit" value="add" class="addToCartBtn w-full h-full border border-[#101010] text-center text-[16px] capitalize disabled:bg-gray-200 disabled:cursor-not-allowed" name="addToCartBtn" id="addToCartBtn">
                                 Add To Bag
                             </button>
                         </div>
                         <div class="w-full h-[2.7rem]">
-                            <button type="submit" value="buy" data-item-id="<?= $row['product_id'] ?>" class="w-full h-full border border-[#101010] bg-[#101010] text-white text-center text-[16px] capitalize">
+                            <button type="submit" value="buy" data-item-id="<?= $row['product_id'] ?>" class="buyNowBtn w-full h-full border border-[#101010] bg-[#101010] text-white text-center text-[16px] capitalize disabled:opacity-80 disabled:cursor-not-allowed">
                                 Buy Now
                             </button>
                         </div>
@@ -394,13 +394,13 @@ class ProductRenderer
                     <div id="imageSlider" class="flex w-full overflow-auto snap-x snap-mandatory">
                         <span id="counter" class="absolute top-[3rem] md:top-[2.5rem] left-[1rem] md:left-[0.5rem] px-2 bg-gray-600 rounded-xl text-white md:text-sm xs:text-xs">1/3</span>
                         <div class="w-full shrink-0 snap-start snap-always">
-                            <img id="image1" class="img1 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt="image1" />
+                            <img fetchpriority="high" id="image1" class="img1 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image1.png" ?>" alt="image1" />
                         </div>
                         <div class="w-full shrink-0 snap-start snap-always">
-                            <img id="image2" class="img2 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" alt="image2" />
+                            <img fetchpriority="low" id="image2" class="img2 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" alt="image2" />
                         </div>
                         <div class="w-full shrink-0 snap-start snap-always">
-                            <img id="image3" class="img3 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt="image3" />
+                            <img fetchpriority="low" id="image3" class="img3 max-w-full w-full h-full object-cover object-top" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt="image3" />
                         </div>
                     </div>
                 </div>
@@ -485,12 +485,12 @@ class ProductRenderer
                         <p class="font-semibold before:content-['₱'] before:font-medium before:mr-[2px]"><?= $row['product_price'] ?></p>
                     </div>
                     <div class="w-full h-[2.5rem] border border-[#101010]">
-                        <button type="submit" value="add" class="addToCartBtn w-full h-full border border-[#101010] text-center text-[16px] capitalize" name="addToCartBtn" id="addToCartBtn">
+                        <button type="submit" value="add" class="addToCartBtn w-full h-full border border-[#101010] text-center text-[16px] capitalize disabled:bg-gray-200 disabled:cursor-not-allowed" name="addToCartBtn" id="addToCartBtn">
                             Add To Bag
                         </button>
                     </div>
                     <div class="w-full h-[2.5rem]">
-                        <button type="submit" value="buy" data-item-id="<?= $row['product_id'] ?>" class="w-full h-full border border-[#101010] bg-[#101010] text-white text-center text-[16px] capitalize">
+                        <button type="submit" value="buy" data-item-id="<?= $row['product_id'] ?>" class="buyNowBtn w-full h-full border border-[#101010] bg-[#101010] text-white text-center text-[16px] capitalize disabled:opacity-80 disabled:cursor-not-allowed">
                             Buy Now
                         </button>
                     </div>

@@ -3,12 +3,24 @@ $(document).ready(() => {
         e.preventDefault();
 
         const action = $(document.activeElement).val();
+
+        $('.addToCartBtn').attr('disabled', true);
+        $('.buyNowBtn').attr('disabled', true);
+
         const product_item_id = $(document.activeElement).attr('data-item-id');
 
         var radioButton = $("input[name='size']:checked");
 
         if (radioButton.length == 0) {
-            alert("Please choose a size for your product.");
+            $('#warning-text').text('Please choose a size for your product.');
+            gsap.to("#alert-warning", { duration: 1, opacity: 1 });
+            gsap.from(".line", { duration: 5, right: "" });
+            gsap.to(".line", { duration: 5, right: "0.5" });
+            setTimeout(() => {
+                gsap.to("#alert-warning", { duration: 0.4, opacity: 0 });
+                $('.addToCartBtn').attr('disabled', false);
+                $('.buyNowBtn').attr('disabled', false);
+            }, 5000);
             return false;
         }
 
@@ -26,14 +38,22 @@ $(document).ready(() => {
                     size: $("input[name='size']:checked").attr("data-size-id"),
                 },
                 success: (res) => {
-                    if (res === "ERROR") return alert("An error occurred while adding the item to your cart. Please try again later.");
+                    $('.addToCartBtn').attr('disabled', false);
+                    $('.buyNowBtn').attr('disabled', false);
+
+
                     if (res === "NOT LOGGED IN") return window.location.replace('/nstudio/login.php');
                     if (res === "OUT OF STOCK") return alert("Sorry, this product is out of stock.");
                     if (res === "FULL STOCK") return alert("You have already added the maximum amount of this product to your cart.");
 
                     $("#cartNumber").text(res);
-                    alert("Item added to cart");
-                    console.log(res);
+
+                    gsap.to("#alert-success", { duration: 1, opacity: 1 });
+                    gsap.from(".line", { duration: 5, right: "" });
+                    gsap.to(".line", { duration: 5, right: "0.5" });
+                    setTimeout(() => {
+                        gsap.to("#alert-success", { duration: 0.4, opacity: 0 });
+                    }, 5000);
                 },
             });
         }
@@ -43,6 +63,8 @@ $(document).ready(() => {
 
             window.location.replace(`/nstudio/views/checkout.php?item=${product_item_id}&colour=${$('#colourContainer').attr("data-colour-id")}&size=${$("input[name='size']:checked").attr("data-size-id")}`)
         }
+        $('.addToCartBtn').attr('disabled', false);
+        $('.buyNowBtn').attr('disabled', false);
         return true;
     });
 });

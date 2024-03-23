@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/nstudio/styles/navbar.css" />
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="/nstudio/script/animation.js" defer></script>
     <script src="/nstudio/script/nav.js" defer></script>
     <script src="/nstudio/script/magnet.js" defer></script>

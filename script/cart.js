@@ -90,7 +90,15 @@ $(document).ready(function () {
         const selectedValueID = $(this).parent().siblings('.editContainer').children('.variation').val();
         const currentItemID = $(this).closest('.cartProduct').data('item-id');
 
-        console.log([selectedValueID, currentItemID]);
+        if (selectedValueID === null || selectedValueID === "") {
+            alert('NO VALUE')
+            return;
+        }
+
+        if (selectedValueID == currentItemID) {
+            location.reload();
+            return;
+        }
 
         $.ajax({
             type: "POST",
@@ -107,8 +115,10 @@ $(document).ready(function () {
                 $(this).parent().siblings('.editContainer').html(res);
                 $(this).hide();
                 $(this).siblings('.editItem').show();
+                $(this).siblings('.removeItem').show();
 
                 $(this).siblings('.editItem').data('item-id', selectedValueID);
+                $(this).siblings('.removeItem').data('delete-item-id', selectedValueID);
                 $(this).closest('.cartProduct').data('item-id', selectedValueID);
 
                 $(this).closest('.cartProduct').find('.addBtn').data('item-id', selectedValueID);
@@ -143,6 +153,7 @@ $(document).ready(function () {
 
                 $(e.target).parent().siblings('.editContainer').html(res);
                 $(e.target).hide();
+                $(e.target).siblings('.removeItem').hide();
                 $(e.target).siblings('.doneBtn').show();
             }
         })
