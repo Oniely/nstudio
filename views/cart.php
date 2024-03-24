@@ -1,5 +1,8 @@
 <?php
 
+global $App;
+global $userID;
+
 session_start();
 
 if (!isset($_SESSION["id"]) || $_SESSION["id"] == null) {

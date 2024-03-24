@@ -21,7 +21,23 @@ if (isset($_POST['action']) && $_POST['action'] === "delete_product") {
         $query->execute();
 
         if ($query->affected_rows > 0) {
-            echo "SUCCESS";
+            $sql = "SELECT * FROM cart_tbl WHERE user_id=?";
+            $query = $conn->prepare($sql);
+            $query->bind_param('i', $userID);
+
+            if ($query->execute()) {
+                $result = $query->get_result();
+                if ($result->num_rows > 0) {
+                    echo "SUCCESS";
+                    return;
+                } else {
+                    echo "EMPTY";
+                    return;
+                }
+            } else {
+                echo "FAILURE";
+                return;
+            }
         } else {
             echo "FAILURE";
         }
