@@ -2,6 +2,7 @@
 
 session_start();
 require_once 'includes/connection.php';
+include './includes/THE_INITIALIZER.php';
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -14,8 +15,6 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
 } else {
     $userID = "";
 }
-
-require_once "./includes/functions.php";
 
 $communityActive = "active";
 

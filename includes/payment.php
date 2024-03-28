@@ -3,7 +3,7 @@
 session_start();
 
 require "../includes/connection.php";
-require "../includes/functions.php";
+require "../includes/THE_FUNCTIONS.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];

@@ -6,7 +6,6 @@ session_start();
 require_once '../includes/THE_INITIALIZER.php';
 
 require_once "../includes/connection.php";
-require_once "../includes/functions.php";
 
 if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     $userID = $_SESSION["id"];
@@ -21,9 +20,7 @@ if (isset($_SESSION["id"]) && $_SESSION["id"] !== "") {
     exit;
 }
 
-if (checkAddressDefault($userID)) {
-    $address_id = addressDefault($userID);
-
+if ($address_id = $App->db->checkDefaultAddress($userID)) {
     $sql = "SELECT * FROM address_tbl WHERE id = '$address_id'";
     $result = $conn->query($sql);
 

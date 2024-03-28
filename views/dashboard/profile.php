@@ -22,6 +22,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     header("Location: /nstudio/login.php");
 }
 
+$profile = true;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -381,4 +381,17 @@ class Mysql extends Database
 
         return $this->select($sql, [$product_id, $colour_id, $size_id]);
     }
+
+    public function checkDefaultAddress($userID)
+    {
+        $sql = "SELECT * FROM user_address WHERE user_id = ? AND is_default = 1";
+        $result = $this->select($sql, [$userID]);
+
+        if ($result) {
+            $row = $result[0];
+            return $row['address_id'];
+        } else {
+            return false;
+        }
+    }
 }

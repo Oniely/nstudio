@@ -5,8 +5,6 @@ global $App;
 session_start();
 require_once './includes/THE_INITIALIZER.php';
 
-require_once "./includes/functions.php";
-
 $homeActive = "active";
 ?>
 
@@ -45,9 +43,9 @@ $homeActive = "active";
     </section>
     <!-- New Arival Section -->
     <?php
-        $menCount = $App->db->countCategoryRows('MEN', true);
-        $womenCount = $App->db->countCategoryRows('WOMEN', true);
-        if ($menCount > 0 || $womenCount > 0) : 
+    $menCount = $App->db->countCategoryRows('MEN', true);
+    $womenCount = $App->db->countCategoryRows('WOMEN', true);
+    if ($menCount > 0 || $womenCount > 0) :
     ?>
         <section class="flex flex-col justify-center items-center w-full h-auto px-[4rem] md:px-4 overflow-hidden">
             <!-- Header -->

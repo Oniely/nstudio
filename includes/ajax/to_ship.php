@@ -3,7 +3,7 @@
 session_start();
 
 require "../connection.php";
-require "../functions.php";
+require "../THE_DASHBOARD.php";
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];

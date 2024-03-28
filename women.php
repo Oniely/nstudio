@@ -3,8 +3,6 @@
 session_start();
 require_once './includes/THE_INITIALIZER.php';
 
-require "./includes/functions.php";
-
 $womenActive = 'active';
 
 ?>
@@ -28,8 +26,8 @@ $womenActive = 'active';
         </div>
         <div class="container flex flex-wrap md:grid md:grid-cols-2 md:gap-8 xs:gap-4 place-items-center justify-evenly items-center md:px-3">
             <?php
-                $products = $App->db->getCategoryProducts('WOMEN');
-                $App->store->showProducts($products);
+            $products = $App->db->getCategoryProducts('WOMEN');
+            $App->store->showProducts($products);
             ?>
         </div>
     </main>

@@ -17,8 +17,6 @@ if (isset($_GET['key'])) {
     $type_value = $data[0]['type_value'];
 }
 
-require_once "../includes/functions.php";
-
 ?>
 
 <!DOCTYPE html>

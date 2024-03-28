@@ -227,10 +227,10 @@ $(document).ready(function () {
 		});
 	});
 
-	$(".removeItem").on("click", (e) => {
+	$(".cartProduct").on("click", '.removeItem', (e) => {
 		e.preventDefault();
 
-		let product_item_id = $(e.target).data("delete-item-id");
+		let product_item_id = $(e.currentTarget).data("delete-item-id");
 		$.ajax({
 			type: "POST",
 			url: "../includes/ajax/delete_cart_product.php",

@@ -178,18 +178,4 @@ class EcommerceStore extends Auth
             $this->render->renderAddressCard($row);
         }
     }
-
-    // DASHBOARD
-    public function orderCount($userID,  $orderStatus, $orderStatus2 = "")
-    {
-        if ($orderStatus2 == "" || $orderStatus2 == null) {
-            $sql = "SELECT COUNT(*) as count FROM shop_order_tbl WHERE user_id = ? AND order_status = ?";
-            $data = $this->db->select($sql, [$userID, $orderStatus]);
-            return $count = $data[0]['count'];
-        }
-
-        $sql = "SELECT COUNT(*) as count FROM shop_order_tbl WHERE user_id = ? AND order_status = ? || order_status = ?";
-        $data = $this->db->select($sql, [$userID, $orderStatus, $orderStatus2]);
-        return $count = $data[0]['count'];
-    }
 }

@@ -1,12 +1,10 @@
 <?php
 
-global $App;
-
 session_start();
 require_once '../../includes/THE_INITIALIZER.php';
 
 require_once '../../includes/connection.php';
-require_once '../../includes/functions.php';
+require_once "../../includes/THE_DASHBOARD.php";
 
 if (isset($_SESSION['id']) && $_SESSION['id'] !== "") {
     $userID = $_SESSION['id'];
@@ -58,11 +56,11 @@ $purchases = true;
                     <div class="w-full flex flex-col justify-center items-center border">
                         <!-- BUTTONS -->
                         <?php
-                        $payCount = $App->store->orderCount($userID, 'TO PAY');
-                        $shipCount = $App->store->orderCount($userID, 'TO SHIP', 'SHIPPED');
-                        $receiveCount = $App->store->orderCount($userID, 'TO RECEIVE', 'DELIVERED');
-                        $completedCount = $App->store->orderCount($userID, 'COMPLETED');
-                        $cancelledCount = $App->store->orderCount($userID, 'CANCELLED');
+                        $payCount = orderCount($userID, 'TO PAY');
+                        $shipCount = orderCount($userID, 'TO SHIP', 'SHIPPED');
+                        $receiveCount = orderCount($userID, 'TO RECEIVE', 'DELIVERED');
+                        $completedCount = orderCount($userID, 'COMPLETED');
+                        $cancelledCount = orderCount($userID, 'CANCELLED');
                         ?>
                         <div class="w-full flex h-[3rem] border-b text-[15px] md:text-sm xs:gap-1 xs:px-1">
                             <div class="w-full h-full hover:border-b-2 active:border-b relative border-b-2">
