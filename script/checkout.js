@@ -5,4 +5,3 @@ $('#showProducts').on('click', function () {
         $(window).scrollTop(0);
     }
 });
-// FIX BUG: when scrolling the arrow this function triggers
