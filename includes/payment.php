@@ -117,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay"])) {
             }
         }
         // IF BUYNOW IS SET, UNSET IT AND REDIRECT TO DASHBOARD
+        // THE BUY NOW SESSION PURPOSE IS SO WHEN CHECKING OUT THE EXISTING CARTS ITEMS WILL NOT BE DELETED
         // AND EXIT
         if (isset($_SESSION['BUYNOW']) && $_SESSION['BUYNOW'] == true) {
             unset($_SESSION["BUYNOW"]);

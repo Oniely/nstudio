@@ -298,24 +298,22 @@ class Mysql extends Database
         return $this->select($sqlQuery);
     }
 
-    public function getProductAvailableSize($product_id)
+    public function getProductAvailableSize($product_id, $colour_id)
     {
         $sqlQuery =
             "SELECT DISTINCT
-                size.*,
-                product_item.product_id
-            FROM
-                size
-            JOIN 
-                product_item
-            WHERE
-                size.id = product_item.size_id
-            AND 
-                product_item.quantity > 0
-            AND 
-                product_item.product_id = ?";
+            size.*,
+            product_item.product_id
+          FROM
+            size
+            JOIN product_item
+          WHERE
+            size.id = product_item.size_id
+            AND product_item.quantity > 0
+            AND product_item.product_id = ?
+            AND product_item.colour_id = ?";
 
-        return $this->select($sqlQuery, [$product_id]);
+        return $this->select($sqlQuery, [$product_id, $colour_id]);
     }
 
     public function getProductItemQuantity($product_item_id)
@@ -330,8 +328,9 @@ class Mysql extends Database
         return $result[0]['quantity'];
     }
 
-    public function getCheckoutProducts($userID) {
-        $sqlQuery = 
+    public function getCheckoutProducts($userID)
+    {
+        $sqlQuery =
             "SELECT
                 cart_tbl.user_id,
                 cart_tbl.product_item_id,
@@ -356,6 +355,30 @@ class Mysql extends Database
             AND 
                 cart_tbl.user_id = ?";
 
-            return $this->select($sqlQuery, [$userID]);
+        return $this->select($sqlQuery, [$userID]);
+    }
+
+    public function getBuyNowProduct($product_id, $colour_id, $size_id)
+    {
+        $sql = "SELECT
+        product_item.*,
+        product_item.id product_item_id,
+        colour.id colour_id,
+        colour.colour_value,
+        size.size_value,
+        product_tbl.product_id,
+        product_tbl.product_name,
+        product_tbl.product_price price
+        FROM
+        product_item
+        INNER JOIN product_tbl ON product_item.product_id = product_tbl.product_id
+        INNER JOIN colour ON product_item.colour_id = colour.id
+        INNER JOIN size ON product_item.size_id = size.id
+        WHERE
+        product_item.product_id = ?
+        AND product_item.colour_id = ?
+        AND product_item.size_id = ?";
+
+        return $this->select($sql, [$product_id, $colour_id, $size_id]);
     }
 }

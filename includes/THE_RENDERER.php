@@ -198,9 +198,9 @@ class ProductRenderer
 
         $rootPath = $_SERVER['DOCUMENT_ROOT'];
         $outputPathsArray = [
-            $rootPath . "/nstudio/img/product/{$row['id']}_image1.png",
-            $rootPath . "/nstudio/img/product/{$row['id']}_image2.png",
-            $rootPath . "/nstudio/img/product/{$row['id']}_image3.png"
+            "/nstudio/img/product/{$row['id']}_image1.png",
+            "/nstudio/img/product/{$row['id']}_image2.png",
+            "/nstudio/img/product/{$row['id']}_image3.png"
         ];
 
         $blobDataArray = [
@@ -229,7 +229,7 @@ class ProductRenderer
                         <img fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg2" src="<?= "/nstudio/img/product/{$row['id']}_image2.png" ?>" alt=" img2" draggable="false" />
                     </a>
                     <a href="#rimg3">
-                        <img  fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt=" img3" draggable="false" />
+                        <img fetchpriority="high" class="max-w-full h-[13rem] object-cover cursor-pointer hover:opacity-90 hoverProduct" id="limg3" src="<?= "/nstudio/img/product/{$row['id']}_image3.png" ?>" alt=" img3" draggable="false" />
                     </a>
                 </div>
                 <div id="rightContainer" class="flex flex-col ml-[4rem] lgt:ml-0 gap-2">
@@ -251,7 +251,7 @@ class ProductRenderer
                     <div class="flex flex-col gap-2">
                         <p class="text-xs tracking-wider">SIZES</p>
                         <div class="flex flex-wrap justify-between pl-[2px] w-[20rem]">
-                            <?php $this->showProductSizeButtons($row['product_id']) ?>
+                            <?php $this->showProductSizeButtons($row['product_id'], $row['colour_id']) ?>
                         </div>
                     </div>
                     <div class="flex">
@@ -345,10 +345,10 @@ class ProductRenderer
         }
     }
 
-    public function showProductSizeButtons($product_id)
+    public function showProductSizeButtons($product_id, $colour_id)
     {
         $sizes = $this->db->getAllSizes();
-        $productSizes = $this->db->getProductAvailableSize($product_id);
+        $productSizes = $this->db->getProductAvailableSize($product_id, $colour_id);
         $availableSize = [];
 
         foreach ($productSizes as $size) {
@@ -417,7 +417,7 @@ class ProductRenderer
                 <div class="flex flex-col gap-2 px-[1rem]">
                     <p class="text-xs tracking-wider">SIZES</p>
                     <div class="flex flex-wrap justify-start gap-6 sm:gap-4 pl-[1px] w-full">
-                        <?php $this->showProductSizeButtons($row['product_id']) ?>
+                        <?php $this->showProductSizeButtons($row['product_id'], $row['colour_id']) ?>
                     </div>
                 </div>
                 <div class="flex px-[1rem]">
@@ -502,12 +502,15 @@ class ProductRenderer
 
     public function renderCheckoutProducts($row)
     {
+        $blob = $row['product_image1'];
+        $path = "/nstudio/img/product/$row[id]_image1.png";
+        $this->blobToImage($blob, $path);
     ?>
         <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
             <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
                 <div class="w-28 h-40 shrink-0 relative">
                     <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
-                        <img class="max-w-full h-full object-cover aspect-square object-top" src="<?= "/nstudio/img/product/" . $row['product_item_id'] . "_image1.png" ?>" alt="product">
+                        <img class="max-w-full h-full object-cover aspect-square object-top" src="<?= $path ?>" alt="product">
                     </a>
                     <span class="absolute -top-1 -right-1 w-5 bg-red-300 text-center text-sm rounded-full"><?= $row['cart_quantity'] ?></span>
                 </div>
@@ -521,14 +524,52 @@ class ProductRenderer
                 <span class="before:content-['₱']"><?= $row['price'] * $row['cart_quantity'] ?> </span>
             </div>
         </div>
-
-<?php
+    <?php
     }
 
-    public function renderAddressCard($row) {
+    public function renderBuyNowProduct($row)
+    {
+        $blob = $row['product_image1'];
+        $path = "/nstudio/img/product/$row[id]_image1.png";
+        $this->blobToImage($blob, $path);
+
+        $product_items = [];
+        $product_items[$row['product_item_id']] = ["quantity" => 1, "price" => $row['price']];
+        if ($row['quantity'] <= 0) {
+            echo "Product is out of stock";
+            exit();
+        }
+    ?>
+        <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
+            <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
+                <div class="w-28 h-40 shrink-0 relative">
+                    <a href="<?= "/nstudio/views/product.php?id=$row[product_id]&colour=$row[colour_id]" ?>">
+                        <img class="max-w-full h-full object-cover aspect-square object-top" src="<?= $path ?>" alt="product">
+                    </a>
+                    <span class="absolute -top-1 -right-1 w-5 bg-red-300 text-center text-sm rounded-full">1</span>
+                </div>
+                <div class="w-full flex flex-col items-start gap-1 text-start text-[14px]">
+                    <h3 class="text-[15px]"><?= $row['product_name'] ?></h3>
+                    <p class="text-gray-400"><?= $row['colour_value'] ?> | <?= $row['size_value'] ?></p>
+                </div>
+            </div>
+
+            <div>
+                <span class="before:content-['₱']"><?= $row['price'] ?> </span>
+            </div>
+        </div>
+    <?php
+        $subtotal = $row['price'];
+        $_SESSION['product_items'] = $product_items;
+        $_SESSION['BUYNOW'] = true;
+        return $subtotal;
+    }
+
+    public function renderAddressCard($row)
+    {
         $sql = "SELECT * FROM address_tbl WHERE id = ?";
         $address = $this->db->select($sql, [$row['address_id']])[0];
-        ?>
+    ?>
         <div class="addressCard w-[19rem] md:w-full flex flex-col border-[0.1px] border-[#505050] hover:shadow-xl hover:bg-[#f7f7f7] p-4 text-[15px] gap-3" data-address-id="<?= $address['id'] ?>">
             <div class="font-semibold flex justify-between">
                 <h1 class="is_default"><?= $row['is_default'] == 1 ? 'Default' : "" ?></h1>
@@ -549,8 +590,6 @@ class ProductRenderer
                 <button class="editBtn w-full h-full py-1 font-medium hover:text-white hover:bg-[#101010] active:bg-[#202020]" data-address-id="<?= $address['id'] ?>">Edit</button>
             </div>
         </div>
-        <?php
+<?php
     }
-
-
 }

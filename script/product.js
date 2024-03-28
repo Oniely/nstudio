@@ -7,8 +7,6 @@ $(document).ready(() => {
         $('.addToCartBtn').attr('disabled', true);
         $('.buyNowBtn').attr('disabled', true);
 
-        const product_item_id = $(document.activeElement).attr('data-item-id');
-
         var radioButton = $("input[name='size']:checked");
 
         if (radioButton.length == 0) {
@@ -16,10 +14,10 @@ $(document).ready(() => {
             gsap.to("#alert-warning", { duration: 1, opacity: 1 });
             gsap.from(".line", { duration: 5, right: "" });
             gsap.to(".line", { duration: 5, right: "0.5" });
+            $('.addToCartBtn').attr('disabled', false);
+            $('.buyNowBtn').attr('disabled', false);
             setTimeout(() => {
                 gsap.to("#alert-warning", { duration: 0.4, opacity: 0 });
-                $('.addToCartBtn').attr('disabled', false);
-                $('.buyNowBtn').attr('disabled', false);
             }, 5000);
             return false;
         }
@@ -58,13 +56,27 @@ $(document).ready(() => {
             });
         }
 
-        if (action === 'buy') {
-            if (product_item_id === undefined) return alert("An error occurred while adding the item to your cart. Please try again later.");
-
-            window.location.replace(`/nstudio/views/checkout.php?item=${product_item_id}&colour=${$('#colourContainer').attr("data-colour-id")}&size=${$("input[name='size']:checked").attr("data-size-id")}`)
-        }
         $('.addToCartBtn').attr('disabled', false);
         $('.buyNowBtn').attr('disabled', false);
+
+        if (action === 'buy') {
+            const product_item_id = $('.buyNowBtn').attr('data-item-id');
+            const colour_id = $('#colourContainer').attr("data-colour-id");
+            const size_id = $("input[name='size']:checked").attr("data-size-id");
+            console.log(product_item_id);
+            
+            if (product_item_id === undefined) {
+                $('#warning-text').text('An error has occured when buying this product, Please Try Again Later.')
+                gsap.to("#alert-warning", { duration: 1, opacity: 1 });
+                gsap.from(".line", { duration: 5, right: "" });
+                gsap.to(".line", { duration: 5, right: "0.5" });
+                setTimeout(() => {
+                    gsap.to("#alert-warning", { duration: 0.4, opacity: 0 });
+                }, 5000);
+                return;
+            }
+            window.location.replace(`/nstudio/views/checkout.php?item=${product_item_id}&colour=${colour_id}&size=${size_id}`)
+        }
         return true;
     });
 });

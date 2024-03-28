@@ -36,7 +36,7 @@ class EcommerceStore extends Auth
 
         foreach ($products as $row) {
             $img = $row['product_image1'];
-            $path = $_SERVER['DOCUMENT_ROOT'] . "/nstudio/img/product/prod" . $row['id'] . ".png";
+            $path = "/nstudio/img/product/prod" . $row['id'] . ".png";
             $this->blobToImage($img, $path);
             $img_path = "/nstudio/img/product/prod" . $row['id'] . ".png";
             if ($row['quantity'] > 0) {
@@ -53,7 +53,7 @@ class EcommerceStore extends Auth
 
         foreach ($dataSet as $row) {
             $img = $row['product_image1'];
-            $path = $_SERVER['DOCUMENT_ROOT'] . "/nstudio/img/product/prod" . $row['id'] . ".png";
+            $path = "/nstudio/img/product/prod" . $row['id'] . ".png";
             $this->blobToImage($img, $path);
 
             $img_path = "./img/product/prod" . $row['id'] . ".png";
@@ -99,7 +99,7 @@ class EcommerceStore extends Auth
 
         foreach ($products as $row) {
             $img = $row['product_image1'];
-            $path = $_SERVER['DOCUMENT_ROOT'] . "/nstudio/img/product/prod" . $row['id'] . ".png";
+            $path = "/nstudio/img/product/prod" . $row['product_item_id'] . ".png";
             $this->blobToImage($img, $path);
             $img_path = "/nstudio/img/product/prod" . $row['product_item_id'] . ".png";
             $this->render->cartProducts($row, $img_path);
@@ -136,11 +136,36 @@ class EcommerceStore extends Auth
         $this->render->mobileViewProduct($product);
     }
 
-    public function showCheckoutProducts($userID) {
-        // todo
+    public function showCheckoutProducts($userID)
+    {
+        $products = $this->db->getCheckoutProducts($userID);
+        $subtotal = 0;
+        $product_items = [];
+        foreach ($products as $row) {
+            $this->render->renderCheckoutProducts($row);
+            $product_items[$row['product_item_id']] = ["quantity" => $row['cart_quantity'], "price" => $row['price']];
+            $subtotal += $row['price'] * $row['cart_quantity'];
+        }
+        $_SESSION['product_items'] = $product_items;
+        return $subtotal;
     }
 
-    public function showUserAddresses($userID) {
+    public function showBuyNowProduct($product_id, $colour_id, $size_id)
+    {
+        $data = $this->db->getBuyNowProduct($product_id, $colour_id, $size_id);
+        if ($data ===  null || sizeof($data) < 1 || sizeof($data) === 0) {
+            $this->render->showFallbackMessage("The Data cannot be found.");
+            return;
+        }
+        $product = $data[0];
+
+        $subtotal = $this->render->renderBuyNowProduct($product);
+        $_SESSION['BUYNOW'] = true;
+        return $subtotal;
+    }
+
+    public function showUserAddresses($userID)
+    {
         $sql = "SELECT * FROM user_address WHERE user_id = ?";
         $address = $this->db->select($sql, [$userID]);
         if (sizeof($address) === 0) {
@@ -154,5 +179,3 @@ class EcommerceStore extends Auth
         }
     }
 }
-
-

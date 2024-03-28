@@ -30,7 +30,7 @@ require_once '../includes/THE_INITIALIZER.php';
         <?php if ($cartCount = $App->store->cartCount($userID) > 0) : ?>
             <div class="container max-w-full h-full pt-[4rem] pb-[4rem] pl-[4rem] lg:pl-[2rem] md:pr-0 pr-4 md:pl-0 flex flex-row md:flex-col relative">
                 <div class="flex flex-col md:items-center gap-10 md:gap-4 pt-4 pr-10 md:px-6 w-auto">
-                    <div class="text-2xl text-[#505050] font-semibold self-start md:pl-6">
+                    <div class="text-2xl text-[#505050] font-semibold self-start">
                         <h1 class="relative after:content-['(<?= $cartCount ?>)'] after:absolute after:top-[-3px] after:text-sm">
                             Your Bag
                         </h1>

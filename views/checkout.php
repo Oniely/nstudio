@@ -1,5 +1,7 @@
 <?php
 
+global $App;
+
 session_start();
 require_once '../includes/THE_INITIALIZER.php';
 
@@ -138,7 +140,7 @@ $provinceOptions = array(
     <?php require_once './partials/nav.php' ?>
     <!-- Main -->
     <main class="min-h-screen animate__animated fadeIn">
-        <div class="container max-w-full min-h-screen py-[4rem] md:pt-[1rem] px-[3rem] md:px-[2rem] sm:px-[1rem] flex flex-row md:flex-col-reverse relative">
+        <div class="container max-w-full min-h-screen py-[4rem] md:pt-[4rem] px-[3rem] md:px-[2rem] sm:px-[1rem] flex flex-row md:flex-col-reverse relative">
             <form action="/nstudio/includes/payment.php" method="POST" class="w-full flex flex-col items-center p-3 pr-5 md:pr-1 md:p-1 md:mt-[2rem]">
                 <div class="flex flex-col w-full">
                     <div class="flex flex-col">
@@ -259,9 +261,9 @@ $provinceOptions = array(
                         $colour_id = $_GET['colour'];
                         $size_id = $_GET['size'];
 
-                        $subtotal = showBuyNowProduct($item_id, $colour_id, $size_id);
+                        $subtotal = $App->store->showBuyNowProduct($item_id, $colour_id, $size_id);
                     } else {
-                        $subtotal = showCheckOutProducts($userID);
+                        $subtotal = $App->store->showCheckoutProducts($userID);
                     }
 
                     $_SESSION['total'] = $subtotal + 120;
@@ -286,7 +288,7 @@ $provinceOptions = array(
                 </div>
             </div>
             <!-- end -->
-            <div class="md:flex sticky top-[3rem] left-0 hidden justify-between items-center w-full h-14 bg-white border-b">
+            <div class="md:flex md:-mb-4 fixed top-[3rem] left-0 hidden justify-between items-center w-full h-14 bg-white border-b px-[2rem] sm:px-[1rem]">
                 <button id="showProducts" class="flex justify-center items-center h-full">
                     <span class="mr-3 text-sm">Show Order Summary</span>
                     <svg id="arrow" class="rotate-180" xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
