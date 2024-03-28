@@ -153,7 +153,7 @@ $(document).ready(function () {
 						"Something went wrong, Please Try Again Later."
 					);
 
-				$("#success-text").text("Cart Item Edited Successful!");
+				$("#success-text").text("Cart Item Modified!");
 				gsap.to("#alert-success", { duration: 1, opacity: 1 });
 				gsap.from(".line", { duration: 5, right: "" });
 				gsap.to(".line", { duration: 5, right: "0.5" });

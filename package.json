@@ -1,9 +1,15 @@
 {
-    "devDependencies": {
-        "autoprefixer": "^10.4.16",
-        "postcss": "^8.4.32",
-        "prettier": "^3.1.1",
-        "prettier-plugin-tailwindcss": "^0.5.9",
-        "tailwindcss": "^3.3.6"
-    }
+  "name": "nstudio",
+  "version": "1.0.0",
+  "description": "Integrated via [1] database and connected through frontend PHP and backend JAVA.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
 }

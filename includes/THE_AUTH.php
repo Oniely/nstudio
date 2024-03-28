@@ -4,7 +4,6 @@ require_once 'THE_MYSQL.php';
 
 class Auth
 {
-
     public $db;
 
     public function __construct(Mysql $db)

@@ -22,7 +22,7 @@ $homeActive = "active";
     <!-- Navbar -->
     <?php require './views/partials/nav.php' ?>
     <!-- Hero Section -->
-    <main class="main_hero w-full h-[110vh] sm:h-screen flex justify-center items-center pt-[5rem] overflow-hidden" id="hero_section">
+    <main class="main_hero w-full h-[110vh] sm:h-screen flex justify-center items-center pt-[5rem] overflow-hidden text" id="hero_section">
         <div class="container h-full relative text-sm flex flex-col justify-center items-center">
             <!-- Hero Text -->
             <div class="absolute md:top-0 top-[0] px-1">

@@ -137,6 +137,22 @@ class EcommerceStore extends Auth
     }
 
     public function showCheckoutProducts($userID) {
-        
+        // todo
+    }
+
+    public function showUserAddresses($userID) {
+        $sql = "SELECT * FROM user_address WHERE user_id = ?";
+        $address = $this->db->select($sql, [$userID]);
+        if (sizeof($address) === 0) {
+            echo '<div class="h-[6rem] flex items-center">
+                    <h1>No added address yet.</h1>
+                </div>';
+            return;
+        }
+        foreach ($address as $row) {
+            $this->render->renderAddressCard($row);
+        }
     }
 }
+
+

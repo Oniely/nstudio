@@ -503,7 +503,6 @@ class ProductRenderer
     public function renderCheckoutProducts($row)
     {
     ?>
-
         <div class="flex justify-between items-start w-full min-w-[40vw] md:min-w-[min(100%,30rem)] border-b py-3 pr-2">
             <div class="flex justify-between items-start gap-5 w-[min(100%,30rem)]">
                 <div class="w-28 h-40 shrink-0 relative">
@@ -525,4 +524,33 @@ class ProductRenderer
 
 <?php
     }
+
+    public function renderAddressCard($row) {
+        $sql = "SELECT * FROM address_tbl WHERE id = ?";
+        $address = $this->db->select($sql, [$row['address_id']])[0];
+        ?>
+        <div class="addressCard w-[19rem] md:w-full flex flex-col border-[0.1px] border-[#505050] hover:shadow-xl hover:bg-[#f7f7f7] p-4 text-[15px] gap-3" data-address-id="<?= $address['id'] ?>">
+            <div class="font-semibold flex justify-between">
+                <h1 class="is_default"><?= $row['is_default'] == 1 ? 'Default' : "" ?></h1>
+                <button class="deleteBtn p-1 active:scale-90" data-address-id="<?= $address['id'] ?>">
+                    <img class="w-4 h-4 object-cover pointer-events-none" src="/nstudio/img/x.svg" alt="x">
+                </button>
+            </div>
+            <div class="font-medium leading-[1.2rem]">
+                <p class="fullname overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['fname'] . " " . $address['lname'] ?></p>
+                <p class="email overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['email'] ?></p>
+                <p class="street_name overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['street_name'] ?></p>
+                <p class="city overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['city'] . ", " .  $address['province'] ?></p>
+                <p class="pcode overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['postal_code'] ?></p>
+                <p class="country overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['country'] ?></p>
+                <p class="contact_number overflow-hidden text-ellipsis whitespace-nowrap"><?= $address['contact_number'] ?></p>
+            </div>
+            <div class="flex justify-center items-center border border-[#505050] transition-colors delay-75 ease-in-out">
+                <button class="editBtn w-full h-full py-1 font-medium hover:text-white hover:bg-[#101010] active:bg-[#202020]" data-address-id="<?= $address['id'] ?>">Edit</button>
+            </div>
+        </div>
+        <?php
+    }
+
+
 }
